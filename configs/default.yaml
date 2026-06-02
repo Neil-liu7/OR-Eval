@@ -1,0 +1,39 @@
+api_url: "http://ebill.baidu-int.com/v1/models/{model}"
+
+api:
+  # Prefer exporting OR_EVAL_API_KEY instead of editing this file.
+  api_key_env: "OR_EVAL_API_KEY"
+  max_tokens: 4096
+  temperature: 0
+
+# Models can be simple strings (use default provider) or dicts with provider config.
+# All models below route through the eBill proxy by default.
+# To use OpenAI/Anthropic directly, set provider and api_key_env explicitly.
+models:
+  - deepseek-v3
+  - deepseek-v3.2
+  - gpt-4o-mini
+  - gemini-2.5-pro
+  - o3-mini
+
+datasets:
+  - NL4OPT
+  - MAMO_EasyLP
+  - MAMO_ComplexLP
+  - OptiBench
+  - IndustryOR
+  - OptMATH_Bench
+
+execution:
+  timeout: 30
+  memory_limit_mb: 2048
+
+prompt_search:
+  seed: 42
+  per_dataset: 50
+  final_full: true
+
+evaluation:
+  tolerance_primary: 0.05
+  tolerances: [0.05, 0.01, 0.0001]
+  concurrency: 4

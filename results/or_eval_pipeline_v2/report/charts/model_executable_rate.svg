@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="380" viewBox="0 0 900 380">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="24" y="32" font-family="Arial, sans-serif" font-size="20" font-weight="700">Full Eval Executable Rate by Model</text>
+<text x="230" y="366" font-family="Arial, sans-serif" font-size="12" fill="#555">executable</text>
+<text x="24" y="75" font-family="Arial, sans-serif" font-size="12" fill="#222">deepseek-v3</text>
+<rect x="230" y="56" width="630" height="28" fill="#edf2f2"/>
+<rect x="230" y="56" width="540" height="28" fill="#b24b3f"/>
+<text x="778" y="75" font-family="Arial, sans-serif" font-size="12" fill="#222">0.858</text>
+<text x="24" y="115" font-family="Arial, sans-serif" font-size="12" fill="#222">deepseek-v3.2</text>
+<rect x="230" y="96" width="630" height="28" fill="#edf2f2"/>
+<rect x="230" y="96" width="452" height="28" fill="#2f6f73"/>
+<text x="690" y="115" font-family="Arial, sans-serif" font-size="12" fill="#222">0.718</text>
+<text x="24" y="155" font-family="Arial, sans-serif" font-size="12" fill="#222">gemini-2.5-pro</text>
+<rect x="230" y="136" width="630" height="28" fill="#edf2f2"/>
+<rect x="230" y="136" width="242" height="28" fill="#2f6f73"/>
+<text x="480" y="155" font-family="Arial, sans-serif" font-size="12" fill="#222">0.385</text>
+<text x="24" y="195" font-family="Arial, sans-serif" font-size="12" fill="#222">gpt-4.1-mini</text>
+<rect x="230" y="176" width="630" height="28" fill="#edf2f2"/>
+<rect x="230" y="176" width="548" height="28" fill="#b24b3f"/>
+<text x="786" y="195" font-family="Arial, sans-serif" font-size="12" fill="#222">0.870</text>
+<text x="24" y="235" font-family="Arial, sans-serif" font-size="12" fill="#222">gpt-4o</text>
+<rect x="230" y="216" width="630" height="28" fill="#edf2f2"/>
+<rect x="230" y="216" width="272" height="28" fill="#2f6f73"/>
+<text x="510" y="235" font-family="Arial, sans-serif" font-size="12" fill="#222">0.432</text>
+<text x="24" y="275" font-family="Arial, sans-serif" font-size="12" fill="#222">gpt-4o-mini</text>
+<rect x="230" y="256" width="630" height="28" fill="#edf2f2"/>
+<rect x="230" y="256" width="501" height="28" fill="#2f6f73"/>
+<text x="739" y="275" font-family="Arial, sans-serif" font-size="12" fill="#222">0.797</text>
+<text x="24" y="315" font-family="Arial, sans-serif" font-size="12" fill="#222">o3-mini</text>
+<rect x="230" y="296" width="630" height="28" fill="#edf2f2"/>
+<rect x="230" y="296" width="608" height="28" fill="#b24b3f"/>
+<text x="846" y="315" font-family="Arial, sans-serif" font-size="12" fill="#222">0.965</text>
+</svg>

@@ -1,0 +1,2462 @@
+{
+  "model": "deepseek-v3",
+  "seed": 42,
+  "per_dataset": 50,
+  "validation_size": 300,
+  "final_full": false,
+  "best_prompt": {
+    "id": "neutral_grid_careful_list_status_parse_first_refine_scale_care",
+    "text": "Carefully translate the natural language optimization problem into decision variables, objective, and constraints, then solve it with Python.\nYou may use packages such as scipy.optimize, cvxpy, pulp, pyomo, gurobipy, pyscipopt, coptpy, ortools, highspy, or another suitable solver.\nInside the code, define the data from the question explicitly before creating the model.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\nAlso print a short SOLVER_STATUS line when available.\n\nProblem:\n{question}\nPay close attention to units, integer requirements, and whether the task asks to minimize or maximize.\n",
+    "prompt_type": "neutral",
+    "metadata": {
+      "instruction": "careful",
+      "solver_mention": "list",
+      "output": "status",
+      "reasoning": "parse_first",
+      "refinement": "scale_care"
+    }
+  },
+  "round1": [
+    {
+      "prompt": {
+        "id": "neutral_grid_direct_none_strict_codeonly",
+        "text": "Solve the optimization problem below with Python.\nChoose the modeling approach yourself.\nDo not include prose outside the code block.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\n\nProblem:\n{question}\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "direct",
+          "solver_mention": "none",
+          "output": "strict",
+          "reasoning": "codeonly"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.55,
+        "acc_5pct": 0.55,
+        "acc_1pct": 0.5133333333333333,
+        "acc_1e-4": 0.45666666666666667,
+        "executable_rate": 0.7233333333333334,
+        "solve_rate": 0.6866666666666666,
+        "mean_gap": 81.72507175544179,
+        "avg_latency": 15.664267014662425,
+        "avg_tokens": 963.01,
+        "solver_distribution": {
+          "counts": {
+            "cvxpy": 11,
+            "gurobipy": 1,
+            "mip": 1,
+            "ortools": 7,
+            "pulp": 212,
+            "pyomo": 33,
+            "scipy.optimize": 13,
+            "unknown": 22
+          },
+          "shares": {
+            "cvxpy": 0.03666666666666667,
+            "gurobipy": 0.0033333333333333335,
+            "mip": 0.0033333333333333335,
+            "ortools": 0.023333333333333334,
+            "pulp": 0.7066666666666667,
+            "pyomo": 0.11,
+            "scipy.optimize": 0.043333333333333335,
+            "unknown": 0.07333333333333333
+          },
+          "max_share": 0.7066666666666667,
+          "entropy": 1.0626940265764921,
+          "uniformity": 0.5110478007080765
+        }
+      },
+      "search_score": 0.5807714467374744
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_direct_none_compact_plan_in_comments",
+        "text": "Solve the optimization problem below with Python.\nChoose the modeling approach yourself.\nPut any reasoning as concise comments inside the code only.\n\nReturn only executable Python code in a fenced ```python block. Print exactly OBJECTIVE_VALUE: <number>.\n\nProblem:\n{question}\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "direct",
+          "solver_mention": "none",
+          "output": "compact",
+          "reasoning": "plan_in_comments"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.47333333333333333,
+        "acc_5pct": 0.47333333333333333,
+        "acc_1pct": 0.43666666666666665,
+        "acc_1e-4": 0.3933333333333333,
+        "executable_rate": 0.64,
+        "solve_rate": 0.6133333333333333,
+        "mean_gap": 80.56071004420521,
+        "avg_latency": 14.914377318223318,
+        "avg_tokens": 897.85,
+        "solver_distribution": {
+          "counts": {
+            "cvxpy": 16,
+            "docplex": 2,
+            "gurobipy": 4,
+            "mip": 1,
+            "ortools": 14,
+            "pulp": 112,
+            "pulp+scipy.optimize": 1,
+            "pyomo": 60,
+            "scipy.optimize": 63,
+            "unknown": 27
+          },
+          "shares": {
+            "cvxpy": 0.05333333333333334,
+            "docplex": 0.006666666666666667,
+            "gurobipy": 0.013333333333333334,
+            "mip": 0.0033333333333333335,
+            "ortools": 0.04666666666666667,
+            "pulp": 0.37333333333333335,
+            "pulp+scipy.optimize": 0.0033333333333333335,
+            "pyomo": 0.2,
+            "scipy.optimize": 0.21,
+            "unknown": 0.09
+          },
+          "max_share": 0.37333333333333335,
+          "entropy": 1.662524726525502,
+          "uniformity": 0.7220253147577383
+        }
+      },
+      "search_score": 0.5315358648091072
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_direct_none_status_parse_first",
+        "text": "Solve the optimization problem below with Python.\nChoose the modeling approach yourself.\nInside the code, define the data from the question explicitly before creating the model.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\nAlso print a short SOLVER_STATUS line when available.\n\nProblem:\n{question}\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "direct",
+          "solver_mention": "none",
+          "output": "status",
+          "reasoning": "parse_first"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.6033333333333334,
+        "acc_5pct": 0.6033333333333334,
+        "acc_1pct": 0.5733333333333334,
+        "acc_1e-4": 0.5233333333333333,
+        "executable_rate": 0.7633333333333333,
+        "solve_rate": 0.7266666666666667,
+        "mean_gap": 81.52072051159867,
+        "avg_latency": 17.5301274061203,
+        "avg_tokens": 1075.36,
+        "solver_distribution": {
+          "counts": {
+            "cvxpy": 11,
+            "docplex": 1,
+            "mip": 1,
+            "ortools": 7,
+            "pulp": 236,
+            "pulp+pyomo": 1,
+            "pyomo": 23,
+            "scipy.optimize": 6,
+            "unknown": 14
+          },
+          "shares": {
+            "cvxpy": 0.03666666666666667,
+            "docplex": 0.0033333333333333335,
+            "mip": 0.0033333333333333335,
+            "ortools": 0.023333333333333334,
+            "pulp": 0.7866666666666666,
+            "pulp+pyomo": 0.0033333333333333335,
+            "pyomo": 0.07666666666666666,
+            "scipy.optimize": 0.02,
+            "unknown": 0.04666666666666667
+          },
+          "max_share": 0.7866666666666666,
+          "entropy": 0.8728616365676489,
+          "uniformity": 0.3972564505107862
+        }
+      },
+      "search_score": 0.6147256450510785
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_direct_anylib_strict_codeonly",
+        "text": "Solve the optimization problem below with Python.\nUse any appropriate Python optimization package or a clear exact algorithm.\nDo not include prose outside the code block.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\n\nProblem:\n{question}\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "direct",
+          "solver_mention": "anylib",
+          "output": "strict",
+          "reasoning": "codeonly"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.5733333333333334,
+        "acc_5pct": 0.5733333333333334,
+        "acc_1pct": 0.5233333333333333,
+        "acc_1e-4": 0.45666666666666667,
+        "executable_rate": 0.7766666666666666,
+        "solve_rate": 0.7366666666666667,
+        "mean_gap": 1.3646638422373043,
+        "avg_latency": 15.795071909427643,
+        "avg_tokens": 993.4733333333334,
+        "solver_distribution": {
+          "counts": {
+            "cvxpy": 14,
+            "gurobipy": 2,
+            "mip": 1,
+            "ortools": 10,
+            "pulp": 105,
+            "pulp+scipy.optimize": 2,
+            "pyomo": 16,
+            "scipy.optimize": 124,
+            "unknown": 26
+          },
+          "shares": {
+            "cvxpy": 0.04666666666666667,
+            "gurobipy": 0.006666666666666667,
+            "mip": 0.0033333333333333335,
+            "ortools": 0.03333333333333333,
+            "pulp": 0.35,
+            "pulp+scipy.optimize": 0.006666666666666667,
+            "pyomo": 0.05333333333333334,
+            "scipy.optimize": 0.41333333333333333,
+            "unknown": 0.08666666666666667
+          },
+          "max_share": 0.41333333333333333,
+          "entropy": 1.4431227322803566,
+          "uniformity": 0.6567934598792401
+        }
+      },
+      "search_score": 0.6223460126545907
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_direct_anylib_compact_plan_in_comments",
+        "text": "Solve the optimization problem below with Python.\nUse any appropriate Python optimization package or a clear exact algorithm.\nPut any reasoning as concise comments inside the code only.\n\nReturn only executable Python code in a fenced ```python block. Print exactly OBJECTIVE_VALUE: <number>.\n\nProblem:\n{question}\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "direct",
+          "solver_mention": "anylib",
+          "output": "compact",
+          "reasoning": "plan_in_comments"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.65,
+        "acc_5pct": 0.65,
+        "acc_1pct": 0.59,
+        "acc_1e-4": 0.5233333333333333,
+        "executable_rate": 0.8266666666666667,
+        "solve_rate": 0.81,
+        "mean_gap": 39.43811077587631,
+        "avg_latency": 16.03922106107076,
+        "avg_tokens": 952.8866666666667,
+        "solver_distribution": {
+          "counts": {
+            "cvxpy": 12,
+            "docplex": 2,
+            "gurobipy": 2,
+            "mip+ortools": 1,
+            "ortools": 13,
+            "pulp": 60,
+            "pulp+scipy.optimize": 2,
+            "pyomo": 4,
+            "scipy.optimize": 169,
+            "unknown": 35
+          },
+          "shares": {
+            "cvxpy": 0.04,
+            "docplex": 0.006666666666666667,
+            "gurobipy": 0.006666666666666667,
+            "mip+ortools": 0.0033333333333333335,
+            "ortools": 0.043333333333333335,
+            "pulp": 0.2,
+            "pulp+scipy.optimize": 0.006666666666666667,
+            "pyomo": 0.013333333333333334,
+            "scipy.optimize": 0.5633333333333334,
+            "unknown": 0.11666666666666667
+          },
+          "max_share": 0.5633333333333334,
+          "entropy": 1.3373890723903672,
+          "uniformity": 0.580820694296845
+        }
+      },
+      "search_score": 0.6784154027630178
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_direct_anylib_status_parse_first",
+        "text": "Solve the optimization problem below with Python.\nUse any appropriate Python optimization package or a clear exact algorithm.\nInside the code, define the data from the question explicitly before creating the model.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\nAlso print a short SOLVER_STATUS line when available.\n\nProblem:\n{question}\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "direct",
+          "solver_mention": "anylib",
+          "output": "status",
+          "reasoning": "parse_first"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.6766666666666666,
+        "acc_5pct": 0.6766666666666666,
+        "acc_1pct": 0.6466666666666666,
+        "acc_1e-4": 0.5833333333333334,
+        "executable_rate": 0.8466666666666667,
+        "solve_rate": 0.8,
+        "mean_gap": 82.35091549311333,
+        "avg_latency": 17.821421531041462,
+        "avg_tokens": 1080.6233333333332,
+        "solver_distribution": {
+          "counts": {
+            "cvxpy": 10,
+            "gurobipy": 1,
+            "mip": 1,
+            "ortools": 5,
+            "pulp": 229,
+            "pulp+scipy.optimize": 1,
+            "pyomo": 7,
+            "scipy.optimize": 26,
+            "unknown": 20
+          },
+          "shares": {
+            "cvxpy": 0.03333333333333333,
+            "gurobipy": 0.0033333333333333335,
+            "mip": 0.0033333333333333335,
+            "ortools": 0.016666666666666666,
+            "pulp": 0.7633333333333333,
+            "pulp+scipy.optimize": 0.0033333333333333335,
+            "pyomo": 0.023333333333333334,
+            "scipy.optimize": 0.08666666666666667,
+            "unknown": 0.06666666666666667
+          },
+          "max_share": 0.7633333333333333,
+          "entropy": 0.9249761219593431,
+          "uniformity": 0.4209747749502818
+        }
+      },
+      "search_score": 0.6850974774950283
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_direct_list_strict_codeonly",
+        "text": "Solve the optimization problem below with Python.\nYou may use packages such as scipy.optimize, cvxpy, pulp, pyomo, gurobipy, pyscipopt, coptpy, ortools, highspy, or another suitable solver.\nDo not include prose outside the code block.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\n\nProblem:\n{question}\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "direct",
+          "solver_mention": "list",
+          "output": "strict",
+          "reasoning": "codeonly"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.5866666666666667,
+        "acc_5pct": 0.5866666666666667,
+        "acc_1pct": 0.5166666666666667,
+        "acc_1e-4": 0.44666666666666666,
+        "executable_rate": 0.8133333333333334,
+        "solve_rate": 0.76,
+        "mean_gap": 460.60512774604314,
+        "avg_latency": 16.397952605088552,
+        "avg_tokens": 1043.5933333333332,
+        "solver_distribution": {
+          "counts": {
+            "coptpy": 2,
+            "cvxpy": 14,
+            "gurobipy": 1,
+            "mip+scipy.optimize": 1,
+            "ortools": 6,
+            "pulp": 104,
+            "pulp+scipy.optimize": 5,
+            "pyomo": 5,
+            "scipy.optimize": 140,
+            "unknown": 22
+          },
+          "shares": {
+            "coptpy": 0.006666666666666667,
+            "cvxpy": 0.04666666666666667,
+            "gurobipy": 0.0033333333333333335,
+            "mip+scipy.optimize": 0.0033333333333333335,
+            "ortools": 0.02,
+            "pulp": 0.3466666666666667,
+            "pulp+scipy.optimize": 0.016666666666666666,
+            "pyomo": 0.016666666666666666,
+            "scipy.optimize": 0.4666666666666667,
+            "unknown": 0.07333333333333333
+          },
+          "max_share": 0.4666666666666667,
+          "entropy": 1.3436906094384309,
+          "uniformity": 0.583557417064328
+        }
+      },
+      "search_score": 0.631689075039766
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_direct_list_compact_plan_in_comments",
+        "text": "Solve the optimization problem below with Python.\nYou may use packages such as scipy.optimize, cvxpy, pulp, pyomo, gurobipy, pyscipopt, coptpy, ortools, highspy, or another suitable solver.\nPut any reasoning as concise comments inside the code only.\n\nReturn only executable Python code in a fenced ```python block. Print exactly OBJECTIVE_VALUE: <number>.\n\nProblem:\n{question}\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "direct",
+          "solver_mention": "list",
+          "output": "compact",
+          "reasoning": "plan_in_comments"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.5466666666666666,
+        "acc_5pct": 0.5466666666666666,
+        "acc_1pct": 0.49666666666666665,
+        "acc_1e-4": 0.43,
+        "executable_rate": 0.7833333333333333,
+        "solve_rate": 0.7666666666666667,
+        "mean_gap": 3.0345011944393896,
+        "avg_latency": 15.42192124446233,
+        "avg_tokens": 965.0866666666667,
+        "solver_distribution": {
+          "counts": {
+            "coptpy": 2,
+            "cvxpy": 14,
+            "docplex": 3,
+            "gurobipy": 1,
+            "ortools": 5,
+            "ortools+scipy.optimize": 1,
+            "pulp": 76,
+            "pulp+scipy.optimize": 4,
+            "pyomo": 2,
+            "scipy.optimize": 171,
+            "unknown": 21
+          },
+          "shares": {
+            "coptpy": 0.006666666666666667,
+            "cvxpy": 0.04666666666666667,
+            "docplex": 0.01,
+            "gurobipy": 0.0033333333333333335,
+            "ortools": 0.016666666666666666,
+            "ortools+scipy.optimize": 0.0033333333333333335,
+            "pulp": 0.25333333333333335,
+            "pulp+scipy.optimize": 0.013333333333333334,
+            "pyomo": 0.006666666666666667,
+            "scipy.optimize": 0.57,
+            "unknown": 0.07
+          },
+          "max_share": 0.57,
+          "entropy": 1.2741065799048155,
+          "uniformity": 0.5313437139470728
+        }
+      },
+      "search_score": 0.5924677047280404
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_direct_list_status_parse_first",
+        "text": "Solve the optimization problem below with Python.\nYou may use packages such as scipy.optimize, cvxpy, pulp, pyomo, gurobipy, pyscipopt, coptpy, ortools, highspy, or another suitable solver.\nInside the code, define the data from the question explicitly before creating the model.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\nAlso print a short SOLVER_STATUS line when available.\n\nProblem:\n{question}\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "direct",
+          "solver_mention": "list",
+          "output": "status",
+          "reasoning": "parse_first"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.63,
+        "acc_5pct": 0.63,
+        "acc_1pct": 0.5866666666666667,
+        "acc_1e-4": 0.5233333333333333,
+        "executable_rate": 0.84,
+        "solve_rate": 0.8,
+        "mean_gap": 3596.719183801019,
+        "avg_latency": 18.469731256167094,
+        "avg_tokens": 1147.4233333333334,
+        "solver_distribution": {
+          "counts": {
+            "coptpy": 2,
+            "cvxpy": 11,
+            "docplex": 2,
+            "docplex+scipy.optimize": 1,
+            "mip+pulp+scipy.optimize": 1,
+            "mip+pyomo": 1,
+            "mip+pyscipopt+scipy.optimize": 1,
+            "mip+scipy.optimize": 2,
+            "ortools": 2,
+            "ortools+scipy.optimize": 1,
+            "pulp": 197,
+            "pulp+pyomo+scipy.optimize": 1,
+            "pulp+scipy.optimize": 2,
+            "pyomo": 1,
+            "scipy.optimize": 61,
+            "unknown": 14
+          },
+          "shares": {
+            "coptpy": 0.006666666666666667,
+            "cvxpy": 0.03666666666666667,
+            "docplex": 0.006666666666666667,
+            "docplex+scipy.optimize": 0.0033333333333333335,
+            "mip+pulp+scipy.optimize": 0.0033333333333333335,
+            "mip+pyomo": 0.0033333333333333335,
+            "mip+pyscipopt+scipy.optimize": 0.0033333333333333335,
+            "mip+scipy.optimize": 0.006666666666666667,
+            "ortools": 0.006666666666666667,
+            "ortools+scipy.optimize": 0.0033333333333333335,
+            "pulp": 0.6566666666666666,
+            "pulp+pyomo+scipy.optimize": 0.0033333333333333335,
+            "pulp+scipy.optimize": 0.006666666666666667,
+            "pyomo": 0.0033333333333333335,
+            "scipy.optimize": 0.20333333333333334,
+            "unknown": 0.04666666666666667
+          },
+          "max_share": 0.6566666666666666,
+          "entropy": 1.1644172656663647,
+          "uniformity": 0.4199747536755878
+        }
+      },
+      "search_score": 0.6509974753675588
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_expert_none_strict_codeonly",
+        "text": "You are an operations research expert writing a reproducible Python solution.\nChoose the modeling approach yourself.\nDo not include prose outside the code block.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\n\nProblem:\n{question}\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "expert",
+          "solver_mention": "none",
+          "output": "strict",
+          "reasoning": "codeonly"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.6566666666666666,
+        "acc_5pct": 0.6566666666666666,
+        "acc_1pct": 0.6233333333333333,
+        "acc_1e-4": 0.5733333333333334,
+        "executable_rate": 0.81,
+        "solve_rate": 0.7866666666666666,
+        "mean_gap": 262.0312988684999,
+        "avg_latency": 15.127111144065857,
+        "avg_tokens": 967.82,
+        "solver_distribution": {
+          "counts": {
+            "cvxpy": 13,
+            "gurobipy": 1,
+            "ortools": 7,
+            "pulp": 245,
+            "pyomo": 10,
+            "scipy.optimize": 5,
+            "unknown": 19
+          },
+          "shares": {
+            "cvxpy": 0.043333333333333335,
+            "gurobipy": 0.0033333333333333335,
+            "ortools": 0.023333333333333334,
+            "pulp": 0.8166666666666667,
+            "pyomo": 0.03333333333333333,
+            "scipy.optimize": 0.016666666666666666,
+            "unknown": 0.06333333333333334
+          },
+          "max_share": 0.8166666666666667,
+          "entropy": 0.7644779567558058,
+          "uniformity": 0.39286395475502256
+        }
+      },
+      "search_score": 0.6567863954755022
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_expert_none_compact_plan_in_comments",
+        "text": "You are an operations research expert writing a reproducible Python solution.\nChoose the modeling approach yourself.\nPut any reasoning as concise comments inside the code only.\n\nReturn only executable Python code in a fenced ```python block. Print exactly OBJECTIVE_VALUE: <number>.\n\nProblem:\n{question}\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "expert",
+          "solver_mention": "none",
+          "output": "compact",
+          "reasoning": "plan_in_comments"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.47333333333333333,
+        "acc_5pct": 0.47333333333333333,
+        "acc_1pct": 0.45,
+        "acc_1e-4": 0.41333333333333333,
+        "executable_rate": 0.6133333333333333,
+        "solve_rate": 0.5933333333333334,
+        "mean_gap": 1601.9510375641241,
+        "avg_latency": 14.225010917186736,
+        "avg_tokens": 894.3966666666666,
+        "solver_distribution": {
+          "counts": {
+            "cvxpy": 13,
+            "gurobipy": 11,
+            "ortools": 8,
+            "pulp": 157,
+            "pyomo": 71,
+            "scipy.optimize": 13,
+            "unknown": 27
+          },
+          "shares": {
+            "cvxpy": 0.043333333333333335,
+            "gurobipy": 0.03666666666666667,
+            "ortools": 0.02666666666666667,
+            "pulp": 0.5233333333333333,
+            "pyomo": 0.23666666666666666,
+            "scipy.optimize": 0.043333333333333335,
+            "unknown": 0.09
+          },
+          "max_share": 0.5233333333333333,
+          "entropy": 1.3865507355896831,
+          "uniformity": 0.7125461246310967
+        }
+      },
+      "search_score": 0.5252546124631097
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_expert_none_status_parse_first",
+        "text": "You are an operations research expert writing a reproducible Python solution.\nChoose the modeling approach yourself.\nInside the code, define the data from the question explicitly before creating the model.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\nAlso print a short SOLVER_STATUS line when available.\n\nProblem:\n{question}\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "expert",
+          "solver_mention": "none",
+          "output": "status",
+          "reasoning": "parse_first"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.6466666666666666,
+        "acc_5pct": 0.6466666666666666,
+        "acc_1pct": 0.6133333333333333,
+        "acc_1e-4": 0.5633333333333334,
+        "executable_rate": 0.8133333333333334,
+        "solve_rate": 0.78,
+        "mean_gap": 82.42586936327162,
+        "avg_latency": 18.27857396920522,
+        "avg_tokens": 1100.88,
+        "solver_distribution": {
+          "counts": {
+            "cvxpy": 11,
+            "docplex": 1,
+            "ortools": 10,
+            "pulp": 248,
+            "pyomo": 11,
+            "scipy.optimize": 7,
+            "unknown": 12
+          },
+          "shares": {
+            "cvxpy": 0.03666666666666667,
+            "docplex": 0.0033333333333333335,
+            "ortools": 0.03333333333333333,
+            "pulp": 0.8266666666666667,
+            "pyomo": 0.03666666666666667,
+            "scipy.optimize": 0.023333333333333334,
+            "unknown": 0.04
+          },
+          "max_share": 0.8266666666666667,
+          "entropy": 0.7486153852519898,
+          "uniformity": 0.3847122055534899
+        }
+      },
+      "search_score": 0.6471378872220157
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_expert_anylib_strict_codeonly",
+        "text": "You are an operations research expert writing a reproducible Python solution.\nUse any appropriate Python optimization package or a clear exact algorithm.\nDo not include prose outside the code block.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\n\nProblem:\n{question}\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "expert",
+          "solver_mention": "anylib",
+          "output": "strict",
+          "reasoning": "codeonly"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.6233333333333333,
+        "acc_5pct": 0.6233333333333333,
+        "acc_1pct": 0.5933333333333334,
+        "acc_1e-4": 0.5466666666666666,
+        "executable_rate": 0.7966666666666666,
+        "solve_rate": 0.7566666666666667,
+        "mean_gap": 84.15535395487466,
+        "avg_latency": 15.384227560361227,
+        "avg_tokens": 972.25,
+        "solver_distribution": {
+          "counts": {
+            "cvxpy": 10,
+            "gurobipy": 3,
+            "ortools": 10,
+            "pulp": 219,
+            "pyomo": 21,
+            "scipy.optimize": 12,
+            "unknown": 25
+          },
+          "shares": {
+            "cvxpy": 0.03333333333333333,
+            "gurobipy": 0.01,
+            "ortools": 0.03333333333333333,
+            "pulp": 0.73,
+            "pyomo": 0.07,
+            "scipy.optimize": 0.04,
+            "unknown": 0.08333333333333333
+          },
+          "max_share": 0.73,
+          "entropy": 1.0245158274326949,
+          "uniformity": 0.5264969854492355
+        }
+      },
+      "search_score": 0.6483163652115901
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_expert_anylib_compact_plan_in_comments",
+        "text": "You are an operations research expert writing a reproducible Python solution.\nUse any appropriate Python optimization package or a clear exact algorithm.\nPut any reasoning as concise comments inside the code only.\n\nReturn only executable Python code in a fenced ```python block. Print exactly OBJECTIVE_VALUE: <number>.\n\nProblem:\n{question}\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "expert",
+          "solver_mention": "anylib",
+          "output": "compact",
+          "reasoning": "plan_in_comments"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.5466666666666666,
+        "acc_5pct": 0.5466666666666666,
+        "acc_1pct": 0.5233333333333333,
+        "acc_1e-4": 0.4766666666666667,
+        "executable_rate": 0.7133333333333334,
+        "solve_rate": 0.6966666666666667,
+        "mean_gap": 11.322550303644679,
+        "avg_latency": 15.096773552894593,
+        "avg_tokens": 917.3966666666666,
+        "solver_distribution": {
+          "counts": {
+            "cvxpy": 11,
+            "docplex": 1,
+            "gurobipy": 4,
+            "ortools": 17,
+            "pulp": 149,
+            "pyomo": 42,
+            "scipy.optimize": 45,
+            "unknown": 31
+          },
+          "shares": {
+            "cvxpy": 0.03666666666666667,
+            "docplex": 0.0033333333333333335,
+            "gurobipy": 0.013333333333333334,
+            "ortools": 0.056666666666666664,
+            "pulp": 0.49666666666666665,
+            "pyomo": 0.14,
+            "scipy.optimize": 0.15,
+            "unknown": 0.10333333333333333
+          },
+          "max_share": 0.49666666666666665,
+          "entropy": 1.5024151705672142,
+          "uniformity": 0.7225089719778888
+        }
+      },
+      "search_score": 0.5975842305311222
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_expert_anylib_status_parse_first",
+        "text": "You are an operations research expert writing a reproducible Python solution.\nUse any appropriate Python optimization package or a clear exact algorithm.\nInside the code, define the data from the question explicitly before creating the model.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\nAlso print a short SOLVER_STATUS line when available.\n\nProblem:\n{question}\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "expert",
+          "solver_mention": "anylib",
+          "output": "status",
+          "reasoning": "parse_first"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.6466666666666666,
+        "acc_5pct": 0.6466666666666666,
+        "acc_1pct": 0.6166666666666667,
+        "acc_1e-4": 0.5733333333333334,
+        "executable_rate": 0.81,
+        "solve_rate": 0.78,
+        "mean_gap": 3558.9484195765917,
+        "avg_latency": 18.622645534674326,
+        "avg_tokens": 1097.8433333333332,
+        "solver_distribution": {
+          "counts": {
+            "cvxpy": 11,
+            "mip": 1,
+            "ortools": 18,
+            "pulp": 238,
+            "pyomo": 4,
+            "scipy.optimize": 12,
+            "unknown": 16
+          },
+          "shares": {
+            "cvxpy": 0.03666666666666667,
+            "mip": 0.0033333333333333335,
+            "ortools": 0.06,
+            "pulp": 0.7933333333333333,
+            "pyomo": 0.013333333333333334,
+            "scipy.optimize": 0.04,
+            "unknown": 0.05333333333333334
+          },
+          "max_share": 0.7933333333333333,
+          "entropy": 0.8353510187412141,
+          "uniformity": 0.42928550382799247
+        }
+      },
+      "search_score": 0.6575952170494659
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_expert_list_strict_codeonly",
+        "text": "You are an operations research expert writing a reproducible Python solution.\nYou may use packages such as scipy.optimize, cvxpy, pulp, pyomo, gurobipy, pyscipopt, coptpy, ortools, highspy, or another suitable solver.\nDo not include prose outside the code block.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\n\nProblem:\n{question}\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "expert",
+          "solver_mention": "list",
+          "output": "strict",
+          "reasoning": "codeonly"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.6533333333333333,
+        "acc_5pct": 0.6533333333333333,
+        "acc_1pct": 0.62,
+        "acc_1e-4": 0.56,
+        "executable_rate": 0.8166666666666667,
+        "solve_rate": 0.79,
+        "mean_gap": 3547.0757244404726,
+        "avg_latency": 15.8384619251887,
+        "avg_tokens": 1019.34,
+        "solver_distribution": {
+          "counts": {
+            "coptpy": 2,
+            "cvxpy": 14,
+            "docplex": 2,
+            "gurobipy": 2,
+            "ortools": 5,
+            "pulp": 223,
+            "pyomo": 2,
+            "scipy.optimize": 31,
+            "unknown": 19
+          },
+          "shares": {
+            "coptpy": 0.006666666666666667,
+            "cvxpy": 0.04666666666666667,
+            "docplex": 0.006666666666666667,
+            "gurobipy": 0.006666666666666667,
+            "ortools": 0.016666666666666666,
+            "pulp": 0.7433333333333333,
+            "pyomo": 0.006666666666666667,
+            "scipy.optimize": 0.10333333333333333,
+            "unknown": 0.06333333333333334
+          },
+          "max_share": 0.7433333333333333,
+          "entropy": 0.9746610793226275,
+          "uniformity": 0.44358737353295347
+        }
+      },
+      "search_score": 0.665025404019962
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_expert_list_compact_plan_in_comments",
+        "text": "You are an operations research expert writing a reproducible Python solution.\nYou may use packages such as scipy.optimize, cvxpy, pulp, pyomo, gurobipy, pyscipopt, coptpy, ortools, highspy, or another suitable solver.\nPut any reasoning as concise comments inside the code only.\n\nReturn only executable Python code in a fenced ```python block. Print exactly OBJECTIVE_VALUE: <number>.\n\nProblem:\n{question}\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "expert",
+          "solver_mention": "list",
+          "output": "compact",
+          "reasoning": "plan_in_comments"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.6166666666666667,
+        "acc_5pct": 0.6166666666666667,
+        "acc_1pct": 0.5633333333333334,
+        "acc_1e-4": 0.5033333333333333,
+        "executable_rate": 0.79,
+        "solve_rate": 0.7666666666666667,
+        "mean_gap": 81.50636776619605,
+        "avg_latency": 15.071586018403371,
+        "avg_tokens": 952.77,
+        "solver_distribution": {
+          "counts": {
+            "coptpy": 2,
+            "cvxpy": 12,
+            "docplex": 3,
+            "gurobipy": 1,
+            "ortools": 2,
+            "pulp": 172,
+            "pulp+scipy.optimize": 1,
+            "pyomo": 6,
+            "scipy.optimize": 80,
+            "unknown": 21
+          },
+          "shares": {
+            "coptpy": 0.006666666666666667,
+            "cvxpy": 0.04,
+            "docplex": 0.01,
+            "gurobipy": 0.0033333333333333335,
+            "ortools": 0.006666666666666667,
+            "pulp": 0.5733333333333334,
+            "pulp+scipy.optimize": 0.0033333333333333335,
+            "pyomo": 0.02,
+            "scipy.optimize": 0.26666666666666666,
+            "unknown": 0.07
+          },
+          "max_share": 0.5733333333333334,
+          "entropy": 1.2154357607259185,
+          "uniformity": 0.5278570439911475
+        }
+      },
+      "search_score": 0.6424523710657815
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_expert_list_status_parse_first",
+        "text": "You are an operations research expert writing a reproducible Python solution.\nYou may use packages such as scipy.optimize, cvxpy, pulp, pyomo, gurobipy, pyscipopt, coptpy, ortools, highspy, or another suitable solver.\nInside the code, define the data from the question explicitly before creating the model.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\nAlso print a short SOLVER_STATUS line when available.\n\nProblem:\n{question}\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "expert",
+          "solver_mention": "list",
+          "output": "status",
+          "reasoning": "parse_first"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.68,
+        "acc_5pct": 0.68,
+        "acc_1pct": 0.6433333333333333,
+        "acc_1e-4": 0.58,
+        "executable_rate": 0.85,
+        "solve_rate": 0.82,
+        "mean_gap": 3517.2907028605778,
+        "avg_latency": 18.388154446283977,
+        "avg_tokens": 1158.0633333333333,
+        "solver_distribution": {
+          "counts": {
+            "coptpy": 2,
+            "cvxpy": 10,
+            "docplex": 1,
+            "ortools": 3,
+            "pulp": 249,
+            "pulp+scipy.optimize": 1,
+            "scipy.optimize": 19,
+            "unknown": 15
+          },
+          "shares": {
+            "coptpy": 0.006666666666666667,
+            "cvxpy": 0.03333333333333333,
+            "docplex": 0.0033333333333333335,
+            "ortools": 0.01,
+            "pulp": 0.83,
+            "pulp+scipy.optimize": 0.0033333333333333335,
+            "scipy.optimize": 0.06333333333333334,
+            "unknown": 0.05
+          },
+          "max_share": 0.83,
+          "entropy": 0.7100529846646264,
+          "uniformity": 0.3414633065813546
+        }
+      },
+      "search_score": 0.6726463306581355
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_careful_none_strict_codeonly",
+        "text": "Carefully translate the natural language optimization problem into decision variables, objective, and constraints, then solve it with Python.\nChoose the modeling approach yourself.\nDo not include prose outside the code block.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\n\nProblem:\n{question}\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "careful",
+          "solver_mention": "none",
+          "output": "strict",
+          "reasoning": "codeonly"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.51,
+        "acc_5pct": 0.51,
+        "acc_1pct": 0.48333333333333334,
+        "acc_1e-4": 0.44,
+        "executable_rate": 0.6866666666666666,
+        "solve_rate": 0.65,
+        "mean_gap": 82.19477327628678,
+        "avg_latency": 15.236546460787455,
+        "avg_tokens": 990.1533333333333,
+        "solver_distribution": {
+          "counts": {
+            "cvxpy": 12,
+            "gurobipy": 1,
+            "mip": 2,
+            "mip+pyomo": 1,
+            "ortools": 5,
+            "pulp": 209,
+            "pyomo": 49,
+            "scipy.optimize": 7,
+            "unknown": 14
+          },
+          "shares": {
+            "cvxpy": 0.04,
+            "gurobipy": 0.0033333333333333335,
+            "mip": 0.006666666666666667,
+            "mip+pyomo": 0.0033333333333333335,
+            "ortools": 0.016666666666666666,
+            "pulp": 0.6966666666666667,
+            "pyomo": 0.16333333333333333,
+            "scipy.optimize": 0.023333333333333334,
+            "unknown": 0.04666666666666667
+          },
+          "max_share": 0.6966666666666667,
+          "entropy": 1.0468905058334896,
+          "uniformity": 0.47646040219642705
+        }
+      },
+      "search_score": 0.541979373552976
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_careful_none_compact_plan_in_comments",
+        "text": "Carefully translate the natural language optimization problem into decision variables, objective, and constraints, then solve it with Python.\nChoose the modeling approach yourself.\nPut any reasoning as concise comments inside the code only.\n\nReturn only executable Python code in a fenced ```python block. Print exactly OBJECTIVE_VALUE: <number>.\n\nProblem:\n{question}\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "careful",
+          "solver_mention": "none",
+          "output": "compact",
+          "reasoning": "plan_in_comments"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.43,
+        "acc_5pct": 0.43,
+        "acc_1pct": 0.41,
+        "acc_1e-4": 0.36,
+        "executable_rate": 0.5833333333333334,
+        "solve_rate": 0.5633333333333334,
+        "mean_gap": 8.241127622004902e+57,
+        "avg_latency": 14.816103941599527,
+        "avg_tokens": 923.0166666666667,
+        "solver_distribution": {
+          "counts": {
+            "cvxpy": 13,
+            "gurobipy": 5,
+            "mip": 1,
+            "mip+pulp": 1,
+            "ortools": 4,
+            "pulp": 158,
+            "pyomo": 80,
+            "scipy.optimize": 15,
+            "unknown": 23
+          },
+          "shares": {
+            "cvxpy": 0.043333333333333335,
+            "gurobipy": 0.016666666666666666,
+            "mip": 0.0033333333333333335,
+            "mip+pulp": 0.0033333333333333335,
+            "ortools": 0.013333333333333334,
+            "pulp": 0.5266666666666666,
+            "pyomo": 0.26666666666666666,
+            "scipy.optimize": 0.05,
+            "unknown": 0.07666666666666666
+          },
+          "max_share": 0.5266666666666666,
+          "entropy": 1.3366958925604515,
+          "uniformity": 0.6083565177397477
+        }
+      },
+      "search_score": 0.47850231844064145
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_careful_none_status_parse_first",
+        "text": "Carefully translate the natural language optimization problem into decision variables, objective, and constraints, then solve it with Python.\nChoose the modeling approach yourself.\nInside the code, define the data from the question explicitly before creating the model.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\nAlso print a short SOLVER_STATUS line when available.\n\nProblem:\n{question}\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "careful",
+          "solver_mention": "none",
+          "output": "status",
+          "reasoning": "parse_first"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.6666666666666666,
+        "acc_5pct": 0.6666666666666666,
+        "acc_1pct": 0.63,
+        "acc_1e-4": 0.57,
+        "executable_rate": 0.8133333333333334,
+        "solve_rate": 0.78,
+        "mean_gap": 80.77579306248171,
+        "avg_latency": 18.2273947485288,
+        "avg_tokens": 1116.0566666666666,
+        "solver_distribution": {
+          "counts": {
+            "cvxpy": 11,
+            "docplex": 6,
+            "ortools": 5,
+            "pulp": 250,
+            "pyomo": 15,
+            "scipy.optimize": 4,
+            "unknown": 9
+          },
+          "shares": {
+            "cvxpy": 0.03666666666666667,
+            "docplex": 0.02,
+            "ortools": 0.016666666666666666,
+            "pulp": 0.8333333333333334,
+            "pyomo": 0.05,
+            "scipy.optimize": 0.013333333333333334,
+            "unknown": 0.03
+          },
+          "max_share": 0.8333333333333334,
+          "entropy": 0.7321798896531303,
+          "uniformity": 0.3762660316092106
+        }
+      },
+      "search_score": 0.658626603160921
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_careful_anylib_strict_codeonly",
+        "text": "Carefully translate the natural language optimization problem into decision variables, objective, and constraints, then solve it with Python.\nUse any appropriate Python optimization package or a clear exact algorithm.\nDo not include prose outside the code block.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\n\nProblem:\n{question}\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "careful",
+          "solver_mention": "anylib",
+          "output": "strict",
+          "reasoning": "codeonly"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.47,
+        "acc_5pct": 0.47,
+        "acc_1pct": 0.43,
+        "acc_1e-4": 0.38333333333333336,
+        "executable_rate": 0.6566666666666666,
+        "solve_rate": 0.62,
+        "mean_gap": 91.42261074870862,
+        "avg_latency": 15.307812039852143,
+        "avg_tokens": 991.5333333333333,
+        "solver_distribution": {
+          "counts": {
+            "cvxpy": 10,
+            "mip": 2,
+            "ortools": 11,
+            "pulp": 155,
+            "pyomo": 64,
+            "scipy.optimize": 34,
+            "unknown": 24
+          },
+          "shares": {
+            "cvxpy": 0.03333333333333333,
+            "mip": 0.006666666666666667,
+            "ortools": 0.03666666666666667,
+            "pulp": 0.5166666666666667,
+            "pyomo": 0.21333333333333335,
+            "scipy.optimize": 0.11333333333333333,
+            "unknown": 0.08
+          },
+          "max_share": 0.5166666666666667,
+          "entropy": 1.3875892962740517,
+          "uniformity": 0.7130798392452441
+        }
+      },
+      "search_score": 0.5316413172578577
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_careful_anylib_compact_plan_in_comments",
+        "text": "Carefully translate the natural language optimization problem into decision variables, objective, and constraints, then solve it with Python.\nUse any appropriate Python optimization package or a clear exact algorithm.\nPut any reasoning as concise comments inside the code only.\n\nReturn only executable Python code in a fenced ```python block. Print exactly OBJECTIVE_VALUE: <number>.\n\nProblem:\n{question}\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "careful",
+          "solver_mention": "anylib",
+          "output": "compact",
+          "reasoning": "plan_in_comments"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.5433333333333333,
+        "acc_5pct": 0.5433333333333333,
+        "acc_1pct": 0.5166666666666667,
+        "acc_1e-4": 0.4533333333333333,
+        "executable_rate": 0.7266666666666667,
+        "solve_rate": 0.6966666666666667,
+        "mean_gap": 15491343.10779848,
+        "avg_latency": 16.576334148248037,
+        "avg_tokens": 971.01,
+        "solver_distribution": {
+          "counts": {
+            "cvxpy": 11,
+            "docplex": 2,
+            "gurobipy": 1,
+            "mip": 1,
+            "ortools": 8,
+            "pulp": 114,
+            "pulp+scipy.optimize": 1,
+            "pyomo": 35,
+            "scipy.optimize": 100,
+            "unknown": 27
+          },
+          "shares": {
+            "cvxpy": 0.03666666666666667,
+            "docplex": 0.006666666666666667,
+            "gurobipy": 0.0033333333333333335,
+            "mip": 0.0033333333333333335,
+            "ortools": 0.02666666666666667,
+            "pulp": 0.38,
+            "pulp+scipy.optimize": 0.0033333333333333335,
+            "pyomo": 0.11666666666666667,
+            "scipy.optimize": 0.3333333333333333,
+            "unknown": 0.09
+          },
+          "max_share": 0.38,
+          "entropy": 1.5095588281716388,
+          "uniformity": 0.6555930691832818
+        }
+      },
+      "search_score": 0.5912259735849947
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_careful_anylib_status_parse_first",
+        "text": "Carefully translate the natural language optimization problem into decision variables, objective, and constraints, then solve it with Python.\nUse any appropriate Python optimization package or a clear exact algorithm.\nInside the code, define the data from the question explicitly before creating the model.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\nAlso print a short SOLVER_STATUS line when available.\n\nProblem:\n{question}\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "careful",
+          "solver_mention": "anylib",
+          "output": "status",
+          "reasoning": "parse_first"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.61,
+        "acc_5pct": 0.61,
+        "acc_1pct": 0.5766666666666667,
+        "acc_1e-4": 0.53,
+        "executable_rate": 0.7566666666666667,
+        "solve_rate": 0.7333333333333333,
+        "mean_gap": 2.801962792792118,
+        "avg_latency": 17.348287355105082,
+        "avg_tokens": 1098.92,
+        "solver_distribution": {
+          "counts": {
+            "cvxpy": 7,
+            "cvxpy+scipy.optimize": 1,
+            "docplex": 1,
+            "ortools": 9,
+            "pulp": 223,
+            "pyomo": 26,
+            "scipy.optimize": 15,
+            "unknown": 18
+          },
+          "shares": {
+            "cvxpy": 0.023333333333333334,
+            "cvxpy+scipy.optimize": 0.0033333333333333335,
+            "docplex": 0.0033333333333333335,
+            "ortools": 0.03,
+            "pulp": 0.7433333333333333,
+            "pyomo": 0.08666666666666667,
+            "scipy.optimize": 0.05,
+            "unknown": 0.06
+          },
+          "max_share": 0.7433333333333333,
+          "entropy": 0.9819369682487267,
+          "uniformity": 0.47221186485266053
+        }
+      },
+      "search_score": 0.6255545198185994
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_careful_list_strict_codeonly",
+        "text": "Carefully translate the natural language optimization problem into decision variables, objective, and constraints, then solve it with Python.\nYou may use packages such as scipy.optimize, cvxpy, pulp, pyomo, gurobipy, pyscipopt, coptpy, ortools, highspy, or another suitable solver.\nDo not include prose outside the code block.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\n\nProblem:\n{question}\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "careful",
+          "solver_mention": "list",
+          "output": "strict",
+          "reasoning": "codeonly"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.64,
+        "acc_5pct": 0.64,
+        "acc_1pct": 0.5833333333333334,
+        "acc_1e-4": 0.5266666666666666,
+        "executable_rate": 0.8333333333333334,
+        "solve_rate": 0.79,
+        "mean_gap": 3.619245453337791,
+        "avg_latency": 15.795638028780619,
+        "avg_tokens": 1042.95,
+        "solver_distribution": {
+          "counts": {
+            "coptpy": 2,
+            "cvxpy": 14,
+            "docplex": 1,
+            "ortools": 3,
+            "pulp": 188,
+            "pulp+scipy.optimize": 2,
+            "scipy.optimize": 74,
+            "unknown": 16
+          },
+          "shares": {
+            "coptpy": 0.006666666666666667,
+            "cvxpy": 0.04666666666666667,
+            "docplex": 0.0033333333333333335,
+            "ortools": 0.01,
+            "pulp": 0.6266666666666667,
+            "pulp+scipy.optimize": 0.006666666666666667,
+            "scipy.optimize": 0.24666666666666667,
+            "unknown": 0.05333333333333334
+          },
+          "max_share": 0.6266666666666667,
+          "entropy": 1.0693539624300903,
+          "uniformity": 0.5142505528509514
+        }
+      },
+      "search_score": 0.6660917219517618
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_careful_list_compact_plan_in_comments",
+        "text": "Carefully translate the natural language optimization problem into decision variables, objective, and constraints, then solve it with Python.\nYou may use packages such as scipy.optimize, cvxpy, pulp, pyomo, gurobipy, pyscipopt, coptpy, ortools, highspy, or another suitable solver.\nPut any reasoning as concise comments inside the code only.\n\nReturn only executable Python code in a fenced ```python block. Print exactly OBJECTIVE_VALUE: <number>.\n\nProblem:\n{question}\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "careful",
+          "solver_mention": "list",
+          "output": "compact",
+          "reasoning": "plan_in_comments"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.6033333333333334,
+        "acc_5pct": 0.6033333333333334,
+        "acc_1pct": 0.5466666666666666,
+        "acc_1e-4": 0.48,
+        "executable_rate": 0.8,
+        "solve_rate": 0.7733333333333333,
+        "mean_gap": 3.6419053466526585,
+        "avg_latency": 15.931198608875274,
+        "avg_tokens": 1014.6466666666666,
+        "solver_distribution": {
+          "counts": {
+            "coptpy": 2,
+            "cvxpy": 18,
+            "docplex": 2,
+            "ortools": 1,
+            "pulp": 147,
+            "pulp+scipy.optimize": 2,
+            "scipy.optimize": 112,
+            "unknown": 16
+          },
+          "shares": {
+            "coptpy": 0.006666666666666667,
+            "cvxpy": 0.06,
+            "docplex": 0.006666666666666667,
+            "ortools": 0.0033333333333333335,
+            "pulp": 0.49,
+            "pulp+scipy.optimize": 0.006666666666666667,
+            "scipy.optimize": 0.37333333333333335,
+            "unknown": 0.05333333333333334
+          },
+          "max_share": 0.49,
+          "entropy": 1.1617409475800278,
+          "uniformity": 0.5586793012904505
+        }
+      },
+      "search_score": 0.6382012634623784
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_careful_list_status_parse_first",
+        "text": "Carefully translate the natural language optimization problem into decision variables, objective, and constraints, then solve it with Python.\nYou may use packages such as scipy.optimize, cvxpy, pulp, pyomo, gurobipy, pyscipopt, coptpy, ortools, highspy, or another suitable solver.\nInside the code, define the data from the question explicitly before creating the model.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\nAlso print a short SOLVER_STATUS line when available.\n\nProblem:\n{question}\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "careful",
+          "solver_mention": "list",
+          "output": "status",
+          "reasoning": "parse_first"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.6666666666666666,
+        "acc_5pct": 0.6666666666666666,
+        "acc_1pct": 0.62,
+        "acc_1e-4": 0.5666666666666667,
+        "executable_rate": 0.88,
+        "solve_rate": 0.8366666666666667,
+        "mean_gap": 81.55655450121611,
+        "avg_latency": 17.93321153561274,
+        "avg_tokens": 1154.0566666666666,
+        "solver_distribution": {
+          "counts": {
+            "coptpy": 2,
+            "cvxpy": 10,
+            "docplex": 3,
+            "ortools": 3,
+            "pulp": 243,
+            "scipy.optimize": 26,
+            "unknown": 13
+          },
+          "shares": {
+            "coptpy": 0.006666666666666667,
+            "cvxpy": 0.03333333333333333,
+            "docplex": 0.01,
+            "ortools": 0.01,
+            "pulp": 0.81,
+            "scipy.optimize": 0.08666666666666667,
+            "unknown": 0.043333333333333335
+          },
+          "max_share": 0.81,
+          "entropy": 0.7575404700215984,
+          "uniformity": 0.38929879182210125
+        }
+      },
+      "search_score": 0.6790965458488767
+    }
+  ],
+  "round2": [
+    {
+      "prompt": {
+        "id": "neutral_grid_direct_anylib_status_parse_first_refine_numeric_guard",
+        "text": "Solve the optimization problem below with Python.\nUse any appropriate Python optimization package or a clear exact algorithm.\nInside the code, define the data from the question explicitly before creating the model.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\nAlso print a short SOLVER_STATUS line when available.\n\nProblem:\n{question}\nWhen extracting the answer, print only the objective value, not variable values.\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "direct",
+          "solver_mention": "anylib",
+          "output": "status",
+          "reasoning": "parse_first",
+          "refinement": "numeric_guard"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.6533333333333333,
+        "acc_5pct": 0.6533333333333333,
+        "acc_1pct": 0.61,
+        "acc_1e-4": 0.56,
+        "executable_rate": 0.8333333333333334,
+        "solve_rate": 0.7933333333333333,
+        "mean_gap": 81.58204107181244,
+        "avg_latency": 16.736276563803354,
+        "avg_tokens": 1069.55,
+        "solver_distribution": {
+          "counts": {
+            "cvxpy": 12,
+            "docplex": 1,
+            "mip+pulp": 1,
+            "ortools": 6,
+            "pulp": 230,
+            "pulp+scipy.optimize": 1,
+            "pyomo": 7,
+            "scipy.optimize": 22,
+            "unknown": 20
+          },
+          "shares": {
+            "cvxpy": 0.04,
+            "docplex": 0.0033333333333333335,
+            "mip+pulp": 0.0033333333333333335,
+            "ortools": 0.02,
+            "pulp": 0.7666666666666667,
+            "pulp+scipy.optimize": 0.0033333333333333335,
+            "pyomo": 0.023333333333333334,
+            "scipy.optimize": 0.07333333333333333,
+            "unknown": 0.06666666666666667
+          },
+          "max_share": 0.7666666666666667,
+          "entropy": 0.9275603808111702,
+          "uniformity": 0.42215092183962716
+        }
+      },
+      "search_score": 0.6662150921839627
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_direct_anylib_status_parse_first_refine_robust_status",
+        "text": "Solve the optimization problem below with Python.\nUse any appropriate Python optimization package or a clear exact algorithm.\nInside the code, define the data from the question explicitly before creating the model.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\nAlso print a short SOLVER_STATUS line when available.\n\nProblem:\n{question}\nSuppress verbose solver logs when possible and handle non-optimal statuses explicitly.\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "direct",
+          "solver_mention": "anylib",
+          "output": "status",
+          "reasoning": "parse_first",
+          "refinement": "robust_status"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.6466666666666666,
+        "acc_5pct": 0.6466666666666666,
+        "acc_1pct": 0.6133333333333333,
+        "acc_1e-4": 0.5533333333333333,
+        "executable_rate": 0.8066666666666666,
+        "solve_rate": 0.78,
+        "mean_gap": 7.203528196568463,
+        "avg_latency": 18.32065820455551,
+        "avg_tokens": 1129.0533333333333,
+        "solver_distribution": {
+          "counts": {
+            "cvxpy": 11,
+            "cvxpy+pulp": 1,
+            "mip": 1,
+            "ortools": 11,
+            "pulp": 227,
+            "pulp+scipy.optimize": 1,
+            "pyomo": 10,
+            "scipy.optimize": 22,
+            "unknown": 16
+          },
+          "shares": {
+            "cvxpy": 0.03666666666666667,
+            "cvxpy+pulp": 0.0033333333333333335,
+            "mip": 0.0033333333333333335,
+            "ortools": 0.03666666666666667,
+            "pulp": 0.7566666666666667,
+            "pulp+scipy.optimize": 0.0033333333333333335,
+            "pyomo": 0.03333333333333333,
+            "scipy.optimize": 0.07333333333333333,
+            "unknown": 0.05333333333333334
+          },
+          "max_share": 0.7566666666666667,
+          "entropy": 0.9717572932245262,
+          "uniformity": 0.44226580352684075
+        }
+      },
+      "search_score": 0.658226580352684
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_direct_anylib_status_parse_first_refine_scale_care",
+        "text": "Solve the optimization problem below with Python.\nUse any appropriate Python optimization package or a clear exact algorithm.\nInside the code, define the data from the question explicitly before creating the model.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\nAlso print a short SOLVER_STATUS line when available.\n\nProblem:\n{question}\nPay close attention to units, integer requirements, and whether the task asks to minimize or maximize.\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "direct",
+          "solver_mention": "anylib",
+          "output": "status",
+          "reasoning": "parse_first",
+          "refinement": "scale_care"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.63,
+        "acc_5pct": 0.63,
+        "acc_1pct": 0.5966666666666667,
+        "acc_1e-4": 0.5566666666666666,
+        "executable_rate": 0.7933333333333333,
+        "solve_rate": 0.76,
+        "mean_gap": 81.29975526717493,
+        "avg_latency": 17.569028104146323,
+        "avg_tokens": 1106.6033333333332,
+        "solver_distribution": {
+          "counts": {
+            "cvxpy": 11,
+            "gurobipy": 1,
+            "ortools": 7,
+            "pulp": 215,
+            "pulp+pyomo+scipy.optimize": 1,
+            "pulp+scipy.optimize": 1,
+            "pyomo": 17,
+            "scipy.optimize": 27,
+            "unknown": 20
+          },
+          "shares": {
+            "cvxpy": 0.03666666666666667,
+            "gurobipy": 0.0033333333333333335,
+            "ortools": 0.023333333333333334,
+            "pulp": 0.7166666666666667,
+            "pulp+pyomo+scipy.optimize": 0.0033333333333333335,
+            "pulp+scipy.optimize": 0.0033333333333333335,
+            "pyomo": 0.056666666666666664,
+            "scipy.optimize": 0.09,
+            "unknown": 0.06666666666666667
+          },
+          "max_share": 0.7166666666666667,
+          "entropy": 1.064608265343637,
+          "uniformity": 0.4845241020534655
+        }
+      },
+      "search_score": 0.6481190768720131
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_careful_list_status_parse_first_refine_numeric_guard",
+        "text": "Carefully translate the natural language optimization problem into decision variables, objective, and constraints, then solve it with Python.\nYou may use packages such as scipy.optimize, cvxpy, pulp, pyomo, gurobipy, pyscipopt, coptpy, ortools, highspy, or another suitable solver.\nInside the code, define the data from the question explicitly before creating the model.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\nAlso print a short SOLVER_STATUS line when available.\n\nProblem:\n{question}\nWhen extracting the answer, print only the objective value, not variable values.\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "careful",
+          "solver_mention": "list",
+          "output": "status",
+          "reasoning": "parse_first",
+          "refinement": "numeric_guard"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.6866666666666666,
+        "acc_5pct": 0.6866666666666666,
+        "acc_1pct": 0.6433333333333333,
+        "acc_1e-4": 0.5833333333333334,
+        "executable_rate": 0.8733333333333333,
+        "solve_rate": 0.8333333333333334,
+        "mean_gap": 3547.001942075875,
+        "avg_latency": 17.584359466234844,
+        "avg_tokens": 1161.54,
+        "solver_distribution": {
+          "counts": {
+            "coptpy": 2,
+            "cvxpy": 11,
+            "docplex": 2,
+            "mip+pulp+scipy.optimize": 1,
+            "ortools": 1,
+            "pulp": 242,
+            "pulp+scipy.optimize": 2,
+            "scipy.optimize": 25,
+            "unknown": 14
+          },
+          "shares": {
+            "coptpy": 0.006666666666666667,
+            "cvxpy": 0.03666666666666667,
+            "docplex": 0.006666666666666667,
+            "mip+pulp+scipy.optimize": 0.0033333333333333335,
+            "ortools": 0.0033333333333333335,
+            "pulp": 0.8066666666666666,
+            "pulp+scipy.optimize": 0.006666666666666667,
+            "scipy.optimize": 0.08333333333333333,
+            "unknown": 0.04666666666666667
+          },
+          "max_share": 0.8066666666666666,
+          "entropy": 0.7828579444882727,
+          "uniformity": 0.35629400497484043
+        }
+      },
+      "search_score": 0.6892960671641508
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_careful_list_status_parse_first_refine_robust_status",
+        "text": "Carefully translate the natural language optimization problem into decision variables, objective, and constraints, then solve it with Python.\nYou may use packages such as scipy.optimize, cvxpy, pulp, pyomo, gurobipy, pyscipopt, coptpy, ortools, highspy, or another suitable solver.\nInside the code, define the data from the question explicitly before creating the model.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\nAlso print a short SOLVER_STATUS line when available.\n\nProblem:\n{question}\nSuppress verbose solver logs when possible and handle non-optimal statuses explicitly.\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "careful",
+          "solver_mention": "list",
+          "output": "status",
+          "reasoning": "parse_first",
+          "refinement": "robust_status"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.68,
+        "acc_5pct": 0.68,
+        "acc_1pct": 0.6466666666666666,
+        "acc_1e-4": 0.59,
+        "executable_rate": 0.8366666666666667,
+        "solve_rate": 0.7966666666666666,
+        "mean_gap": 83.52832380066125,
+        "avg_latency": 18.271603282292684,
+        "avg_tokens": 1187.0533333333333,
+        "solver_distribution": {
+          "counts": {
+            "coptpy": 2,
+            "cvxpy": 14,
+            "docplex": 2,
+            "ortools": 2,
+            "pulp": 244,
+            "pulp+scipy.optimize": 1,
+            "scipy.optimize": 24,
+            "unknown": 11
+          },
+          "shares": {
+            "coptpy": 0.006666666666666667,
+            "cvxpy": 0.04666666666666667,
+            "docplex": 0.006666666666666667,
+            "ortools": 0.006666666666666667,
+            "pulp": 0.8133333333333334,
+            "pulp+scipy.optimize": 0.0033333333333333335,
+            "scipy.optimize": 0.08,
+            "unknown": 0.03666666666666667
+          },
+          "max_share": 0.8133333333333334,
+          "entropy": 0.75356623266071,
+          "uniformity": 0.36238875561366174
+        }
+      },
+      "search_score": 0.6762388755613662
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_careful_list_status_parse_first_refine_scale_care",
+        "text": "Carefully translate the natural language optimization problem into decision variables, objective, and constraints, then solve it with Python.\nYou may use packages such as scipy.optimize, cvxpy, pulp, pyomo, gurobipy, pyscipopt, coptpy, ortools, highspy, or another suitable solver.\nInside the code, define the data from the question explicitly before creating the model.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\nAlso print a short SOLVER_STATUS line when available.\n\nProblem:\n{question}\nPay close attention to units, integer requirements, and whether the task asks to minimize or maximize.\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "careful",
+          "solver_mention": "list",
+          "output": "status",
+          "reasoning": "parse_first",
+          "refinement": "scale_care"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.6933333333333334,
+        "acc_5pct": 0.6933333333333334,
+        "acc_1pct": 0.6566666666666666,
+        "acc_1e-4": 0.5966666666666667,
+        "executable_rate": 0.8566666666666667,
+        "solve_rate": 0.8266666666666667,
+        "mean_gap": 80.46629113457591,
+        "avg_latency": 18.350135156313577,
+        "avg_tokens": 1195.2866666666666,
+        "solver_distribution": {
+          "counts": {
+            "coptpy": 2,
+            "cvxpy": 14,
+            "docplex": 1,
+            "ortools": 1,
+            "pulp": 234,
+            "pulp+scipy.optimize": 1,
+            "scipy.optimize": 36,
+            "unknown": 11
+          },
+          "shares": {
+            "coptpy": 0.006666666666666667,
+            "cvxpy": 0.04666666666666667,
+            "docplex": 0.0033333333333333335,
+            "ortools": 0.0033333333333333335,
+            "pulp": 0.78,
+            "pulp+scipy.optimize": 0.0033333333333333335,
+            "scipy.optimize": 0.12,
+            "unknown": 0.03666666666666667
+          },
+          "max_share": 0.78,
+          "entropy": 0.8029099154740754,
+          "uniformity": 0.3861180511116752
+        }
+      },
+      "search_score": 0.6952784717778342
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_direct_anylib_compact_plan_in_comments_refine_numeric_guard",
+        "text": "Solve the optimization problem below with Python.\nUse any appropriate Python optimization package or a clear exact algorithm.\nPut any reasoning as concise comments inside the code only.\n\nReturn only executable Python code in a fenced ```python block. Print exactly OBJECTIVE_VALUE: <number>.\n\nProblem:\n{question}\nWhen extracting the answer, print only the objective value, not variable values.\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "direct",
+          "solver_mention": "anylib",
+          "output": "compact",
+          "reasoning": "plan_in_comments",
+          "refinement": "numeric_guard"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.6066666666666667,
+        "acc_5pct": 0.6066666666666667,
+        "acc_1pct": 0.5333333333333333,
+        "acc_1e-4": 0.4533333333333333,
+        "executable_rate": 0.8133333333333334,
+        "solve_rate": 0.79,
+        "mean_gap": 1.1240166088392865e+296,
+        "avg_latency": 15.389992716312408,
+        "avg_tokens": 960.5733333333334,
+        "solver_distribution": {
+          "counts": {
+            "cvxpy": 11,
+            "docplex": 2,
+            "gurobipy": 1,
+            "ortools": 19,
+            "pulp": 60,
+            "pulp+scipy.optimize": 1,
+            "pyomo": 6,
+            "pyomo+scipy.optimize": 1,
+            "scipy.optimize": 167,
+            "unknown": 32
+          },
+          "shares": {
+            "cvxpy": 0.03666666666666667,
+            "docplex": 0.006666666666666667,
+            "gurobipy": 0.0033333333333333335,
+            "ortools": 0.06333333333333334,
+            "pulp": 0.2,
+            "pulp+scipy.optimize": 0.0033333333333333335,
+            "pyomo": 0.02,
+            "pyomo+scipy.optimize": 0.0033333333333333335,
+            "scipy.optimize": 0.5566666666666666,
+            "unknown": 0.10666666666666667
+          },
+          "max_share": 0.5566666666666666,
+          "entropy": 1.3513583777297073,
+          "uniformity": 0.586887486521742
+        }
+      },
+      "search_score": 0.6460220819855075
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_direct_anylib_compact_plan_in_comments_refine_robust_status",
+        "text": "Solve the optimization problem below with Python.\nUse any appropriate Python optimization package or a clear exact algorithm.\nPut any reasoning as concise comments inside the code only.\n\nReturn only executable Python code in a fenced ```python block. Print exactly OBJECTIVE_VALUE: <number>.\n\nProblem:\n{question}\nSuppress verbose solver logs when possible and handle non-optimal statuses explicitly.\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "direct",
+          "solver_mention": "anylib",
+          "output": "compact",
+          "reasoning": "plan_in_comments",
+          "refinement": "robust_status"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.5766666666666667,
+        "acc_5pct": 0.5766666666666667,
+        "acc_1pct": 0.5266666666666666,
+        "acc_1e-4": 0.4866666666666667,
+        "executable_rate": 0.7766666666666666,
+        "solve_rate": 0.76,
+        "mean_gap": 80.08332041120524,
+        "avg_latency": 15.817118481000264,
+        "avg_tokens": 982.9666666666667,
+        "solver_distribution": {
+          "counts": {
+            "cvxpy": 14,
+            "docplex": 1,
+            "gurobipy": 2,
+            "ortools": 20,
+            "pulp": 91,
+            "pulp+pyomo+scipy.optimize": 1,
+            "pyomo": 15,
+            "scipy.optimize": 130,
+            "unknown": 26
+          },
+          "shares": {
+            "cvxpy": 0.04666666666666667,
+            "docplex": 0.0033333333333333335,
+            "gurobipy": 0.006666666666666667,
+            "ortools": 0.06666666666666667,
+            "pulp": 0.30333333333333334,
+            "pulp+pyomo+scipy.optimize": 0.0033333333333333335,
+            "pyomo": 0.05,
+            "scipy.optimize": 0.43333333333333335,
+            "unknown": 0.08666666666666667
+          },
+          "max_share": 0.43333333333333335,
+          "entropy": 1.4809601443089875,
+          "uniformity": 0.6740140082104911
+        }
+      },
+      "search_score": 0.626401400821049
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_direct_anylib_compact_plan_in_comments_refine_scale_care",
+        "text": "Solve the optimization problem below with Python.\nUse any appropriate Python optimization package or a clear exact algorithm.\nPut any reasoning as concise comments inside the code only.\n\nReturn only executable Python code in a fenced ```python block. Print exactly OBJECTIVE_VALUE: <number>.\n\nProblem:\n{question}\nPay close attention to units, integer requirements, and whether the task asks to minimize or maximize.\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "direct",
+          "solver_mention": "anylib",
+          "output": "compact",
+          "reasoning": "plan_in_comments",
+          "refinement": "scale_care"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.6266666666666667,
+        "acc_5pct": 0.6266666666666667,
+        "acc_1pct": 0.59,
+        "acc_1e-4": 0.5333333333333333,
+        "executable_rate": 0.8533333333333334,
+        "solve_rate": 0.8166666666666667,
+        "mean_gap": 1.0998452984279035,
+        "avg_latency": 17.00535257101059,
+        "avg_tokens": 1041.8733333333332,
+        "solver_distribution": {
+          "counts": {
+            "cvxpy": 9,
+            "mip+scipy.optimize": 1,
+            "ortools": 13,
+            "pulp": 71,
+            "pulp+scipy.optimize": 3,
+            "pyomo": 2,
+            "scipy.optimize": 170,
+            "unknown": 31
+          },
+          "shares": {
+            "cvxpy": 0.03,
+            "mip+scipy.optimize": 0.0033333333333333335,
+            "ortools": 0.043333333333333335,
+            "pulp": 0.23666666666666666,
+            "pulp+scipy.optimize": 0.01,
+            "pyomo": 0.006666666666666667,
+            "scipy.optimize": 0.5666666666666667,
+            "unknown": 0.10333333333333333
+          },
+          "max_share": 0.5666666666666667,
+          "entropy": 1.2371454647306424,
+          "uniformity": 0.5949412089417233
+        }
+      },
+      "search_score": 0.6688274542275057
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_expert_list_status_parse_first_refine_numeric_guard",
+        "text": "You are an operations research expert writing a reproducible Python solution.\nYou may use packages such as scipy.optimize, cvxpy, pulp, pyomo, gurobipy, pyscipopt, coptpy, ortools, highspy, or another suitable solver.\nInside the code, define the data from the question explicitly before creating the model.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\nAlso print a short SOLVER_STATUS line when available.\n\nProblem:\n{question}\nWhen extracting the answer, print only the objective value, not variable values.\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "expert",
+          "solver_mention": "list",
+          "output": "status",
+          "reasoning": "parse_first",
+          "refinement": "numeric_guard"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.6566666666666666,
+        "acc_5pct": 0.6566666666666666,
+        "acc_1pct": 0.6266666666666667,
+        "acc_1e-4": 0.5833333333333334,
+        "executable_rate": 0.8366666666666667,
+        "solve_rate": 0.7966666666666666,
+        "mean_gap": 81.46462499195621,
+        "avg_latency": 17.54644142707189,
+        "avg_tokens": 1149.98,
+        "solver_distribution": {
+          "counts": {
+            "coptpy": 2,
+            "cvxpy": 10,
+            "docplex": 2,
+            "ortools": 3,
+            "pulp": 248,
+            "pyomo": 1,
+            "scipy.optimize": 16,
+            "unknown": 18
+          },
+          "shares": {
+            "coptpy": 0.006666666666666667,
+            "cvxpy": 0.03333333333333333,
+            "docplex": 0.006666666666666667,
+            "ortools": 0.01,
+            "pulp": 0.8266666666666667,
+            "pyomo": 0.0033333333333333335,
+            "scipy.optimize": 0.05333333333333334,
+            "unknown": 0.06
+          },
+          "max_share": 0.8266666666666667,
+          "entropy": 0.727740085439309,
+          "uniformity": 0.34996900410646725
+        }
+      },
+      "search_score": 0.6553302337439801
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_expert_list_status_parse_first_refine_robust_status",
+        "text": "You are an operations research expert writing a reproducible Python solution.\nYou may use packages such as scipy.optimize, cvxpy, pulp, pyomo, gurobipy, pyscipopt, coptpy, ortools, highspy, or another suitable solver.\nInside the code, define the data from the question explicitly before creating the model.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\nAlso print a short SOLVER_STATUS line when available.\n\nProblem:\n{question}\nSuppress verbose solver logs when possible and handle non-optimal statuses explicitly.\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "expert",
+          "solver_mention": "list",
+          "output": "status",
+          "reasoning": "parse_first",
+          "refinement": "robust_status"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.6866666666666666,
+        "acc_5pct": 0.6866666666666666,
+        "acc_1pct": 0.66,
+        "acc_1e-4": 0.5966666666666667,
+        "executable_rate": 0.8466666666666667,
+        "solve_rate": 0.8166666666666667,
+        "mean_gap": 83.16732685801584,
+        "avg_latency": 18.772620944182076,
+        "avg_tokens": 1183.22,
+        "solver_distribution": {
+          "counts": {
+            "coptpy": 2,
+            "cvxpy": 11,
+            "docplex": 2,
+            "docplex+mip": 3,
+            "ortools": 4,
+            "pulp": 249,
+            "scipy.optimize": 16,
+            "unknown": 13
+          },
+          "shares": {
+            "coptpy": 0.006666666666666667,
+            "cvxpy": 0.03666666666666667,
+            "docplex": 0.006666666666666667,
+            "docplex+mip": 0.01,
+            "ortools": 0.013333333333333334,
+            "pulp": 0.83,
+            "scipy.optimize": 0.05333333333333334,
+            "unknown": 0.043333333333333335
+          },
+          "max_share": 0.83,
+          "entropy": 0.7386425298026864,
+          "uniformity": 0.3552119715786714
+        }
+      },
+      "search_score": 0.6780211971578671
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_expert_list_status_parse_first_refine_scale_care",
+        "text": "You are an operations research expert writing a reproducible Python solution.\nYou may use packages such as scipy.optimize, cvxpy, pulp, pyomo, gurobipy, pyscipopt, coptpy, ortools, highspy, or another suitable solver.\nInside the code, define the data from the question explicitly before creating the model.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\nAlso print a short SOLVER_STATUS line when available.\n\nProblem:\n{question}\nPay close attention to units, integer requirements, and whether the task asks to minimize or maximize.\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "expert",
+          "solver_mention": "list",
+          "output": "status",
+          "reasoning": "parse_first",
+          "refinement": "scale_care"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.6633333333333333,
+        "acc_5pct": 0.6633333333333333,
+        "acc_1pct": 0.6333333333333333,
+        "acc_1e-4": 0.5866666666666667,
+        "executable_rate": 0.8133333333333334,
+        "solve_rate": 0.7933333333333333,
+        "mean_gap": 94.87031070363383,
+        "avg_latency": 18.81620679537455,
+        "avg_tokens": 1183.5066666666667,
+        "solver_distribution": {
+          "counts": {
+            "coptpy": 2,
+            "cvxpy": 12,
+            "docplex": 6,
+            "mip+pulp": 1,
+            "ortools": 3,
+            "pulp": 248,
+            "pyomo": 1,
+            "scipy.optimize": 16,
+            "unknown": 11
+          },
+          "shares": {
+            "coptpy": 0.006666666666666667,
+            "cvxpy": 0.04,
+            "docplex": 0.02,
+            "mip+pulp": 0.0033333333333333335,
+            "ortools": 0.01,
+            "pulp": 0.8266666666666667,
+            "pyomo": 0.0033333333333333335,
+            "scipy.optimize": 0.05333333333333334,
+            "unknown": 0.03666666666666667
+          },
+          "max_share": 0.8266666666666667,
+          "entropy": 0.7593819265045919,
+          "uniformity": 0.34560960874796876
+        }
+      },
+      "search_score": 0.6548942942081302
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_careful_list_strict_codeonly_refine_numeric_guard",
+        "text": "Carefully translate the natural language optimization problem into decision variables, objective, and constraints, then solve it with Python.\nYou may use packages such as scipy.optimize, cvxpy, pulp, pyomo, gurobipy, pyscipopt, coptpy, ortools, highspy, or another suitable solver.\nDo not include prose outside the code block.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\n\nProblem:\n{question}\nWhen extracting the answer, print only the objective value, not variable values.\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "careful",
+          "solver_mention": "list",
+          "output": "strict",
+          "reasoning": "codeonly",
+          "refinement": "numeric_guard"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.6166666666666667,
+        "acc_5pct": 0.6166666666666667,
+        "acc_1pct": 0.5533333333333333,
+        "acc_1e-4": 0.49,
+        "executable_rate": 0.8433333333333334,
+        "solve_rate": 0.7766666666666666,
+        "mean_gap": 88.09887996174878,
+        "avg_latency": 15.996347496509552,
+        "avg_tokens": 1057.2633333333333,
+        "solver_distribution": {
+          "counts": {
+            "coptpy": 2,
+            "cvxpy": 12,
+            "mip+pulp+scipy.optimize": 1,
+            "ortools": 5,
+            "pulp": 166,
+            "pulp+pyomo+scipy.optimize": 1,
+            "pulp+scipy.optimize": 5,
+            "scipy.optimize": 90,
+            "unknown": 18
+          },
+          "shares": {
+            "coptpy": 0.006666666666666667,
+            "cvxpy": 0.04,
+            "mip+pulp+scipy.optimize": 0.0033333333333333335,
+            "ortools": 0.016666666666666666,
+            "pulp": 0.5533333333333333,
+            "pulp+pyomo+scipy.optimize": 0.0033333333333333335,
+            "pulp+scipy.optimize": 0.016666666666666666,
+            "scipy.optimize": 0.3,
+            "unknown": 0.06
+          },
+          "max_share": 0.5533333333333333,
+          "entropy": 1.1941188475830082,
+          "uniformity": 0.5434669081622439
+        }
+      },
+      "search_score": 0.6546800241495577
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_careful_list_strict_codeonly_refine_robust_status",
+        "text": "Carefully translate the natural language optimization problem into decision variables, objective, and constraints, then solve it with Python.\nYou may use packages such as scipy.optimize, cvxpy, pulp, pyomo, gurobipy, pyscipopt, coptpy, ortools, highspy, or another suitable solver.\nDo not include prose outside the code block.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\n\nProblem:\n{question}\nSuppress verbose solver logs when possible and handle non-optimal statuses explicitly.\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "careful",
+          "solver_mention": "list",
+          "output": "strict",
+          "reasoning": "codeonly",
+          "refinement": "robust_status"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.6333333333333333,
+        "acc_5pct": 0.6333333333333333,
+        "acc_1pct": 0.5833333333333334,
+        "acc_1e-4": 0.53,
+        "executable_rate": 0.8133333333333334,
+        "solve_rate": 0.7633333333333333,
+        "mean_gap": 240.6843782009681,
+        "avg_latency": 16.36493332942327,
+        "avg_tokens": 1078.13,
+        "solver_distribution": {
+          "counts": {
+            "coptpy": 2,
+            "cvxpy": 11,
+            "docplex": 3,
+            "docplex+mip": 2,
+            "gurobipy": 1,
+            "mip+pulp+scipy.optimize": 1,
+            "ortools": 2,
+            "ortools+scipy.optimize": 1,
+            "pulp": 237,
+            "pulp+scipy.optimize": 1,
+            "scipy.optimize": 30,
+            "unknown": 9
+          },
+          "shares": {
+            "coptpy": 0.006666666666666667,
+            "cvxpy": 0.03666666666666667,
+            "docplex": 0.01,
+            "docplex+mip": 0.006666666666666667,
+            "gurobipy": 0.0033333333333333335,
+            "mip+pulp+scipy.optimize": 0.0033333333333333335,
+            "ortools": 0.006666666666666667,
+            "ortools+scipy.optimize": 0.0033333333333333335,
+            "pulp": 0.79,
+            "pulp+scipy.optimize": 0.0033333333333333335,
+            "scipy.optimize": 0.1,
+            "unknown": 0.03
+          },
+          "max_share": 0.79,
+          "entropy": 0.8652065945059915,
+          "uniformity": 0.34818474753560924
+        }
+      },
+      "search_score": 0.6408184747535609
+    },
+    {
+      "prompt": {
+        "id": "neutral_grid_careful_list_strict_codeonly_refine_scale_care",
+        "text": "Carefully translate the natural language optimization problem into decision variables, objective, and constraints, then solve it with Python.\nYou may use packages such as scipy.optimize, cvxpy, pulp, pyomo, gurobipy, pyscipopt, coptpy, ortools, highspy, or another suitable solver.\nDo not include prose outside the code block.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\n\nProblem:\n{question}\nPay close attention to units, integer requirements, and whether the task asks to minimize or maximize.\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "careful",
+          "solver_mention": "list",
+          "output": "strict",
+          "reasoning": "codeonly",
+          "refinement": "scale_care"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.63,
+        "acc_5pct": 0.63,
+        "acc_1pct": 0.6033333333333334,
+        "acc_1e-4": 0.55,
+        "executable_rate": 0.83,
+        "solve_rate": 0.7833333333333333,
+        "mean_gap": 84.66648784563563,
+        "avg_latency": 15.76813839673996,
+        "avg_tokens": 1079.9133333333334,
+        "solver_distribution": {
+          "counts": {
+            "coptpy": 2,
+            "cvxpy": 12,
+            "docplex": 2,
+            "mip+scipy.optimize": 1,
+            "ortools": 3,
+            "pulp": 185,
+            "pulp+scipy.optimize": 4,
+            "pyomo": 1,
+            "scipy.optimize": 74,
+            "unknown": 16
+          },
+          "shares": {
+            "coptpy": 0.006666666666666667,
+            "cvxpy": 0.04,
+            "docplex": 0.006666666666666667,
+            "mip+scipy.optimize": 0.0033333333333333335,
+            "ortools": 0.01,
+            "pulp": 0.6166666666666667,
+            "pulp+scipy.optimize": 0.013333333333333334,
+            "pyomo": 0.0033333333333333335,
+            "scipy.optimize": 0.24666666666666667,
+            "unknown": 0.05333333333333334
+          },
+          "max_share": 0.6166666666666667,
+          "entropy": 1.1369139849141514,
+          "uniformity": 0.49375547004685283
+        }
+      },
+      "search_score": 0.6563755470046853
+    }
+  ],
+  "round3": [
+    {
+      "prompt": {
+        "id": "neutral_grid_careful_list_status_parse_first_refine_scale_care",
+        "text": "Carefully translate the natural language optimization problem into decision variables, objective, and constraints, then solve it with Python.\nYou may use packages such as scipy.optimize, cvxpy, pulp, pyomo, gurobipy, pyscipopt, coptpy, ortools, highspy, or another suitable solver.\nInside the code, define the data from the question explicitly before creating the model.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\nAlso print a short SOLVER_STATUS line when available.\n\nProblem:\n{question}\nPay close attention to units, integer requirements, and whether the task asks to minimize or maximize.\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "careful",
+          "solver_mention": "list",
+          "output": "status",
+          "reasoning": "parse_first",
+          "refinement": "scale_care"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.68,
+        "acc_5pct": 0.68,
+        "acc_1pct": 0.6466666666666666,
+        "acc_1e-4": 0.6,
+        "executable_rate": 0.8333333333333334,
+        "solve_rate": 0.7966666666666666,
+        "mean_gap": 83.68739392945541,
+        "avg_latency": 18.89596219778061,
+        "avg_tokens": 1199.41,
+        "solver_distribution": {
+          "counts": {
+            "coptpy": 2,
+            "cvxpy": 13,
+            "docplex": 1,
+            "mip+scipy.optimize": 1,
+            "ortools": 2,
+            "pulp": 241,
+            "pulp+scipy.optimize": 1,
+            "scipy.optimize": 28,
+            "unknown": 11
+          },
+          "shares": {
+            "coptpy": 0.006666666666666667,
+            "cvxpy": 0.043333333333333335,
+            "docplex": 0.0033333333333333335,
+            "mip+scipy.optimize": 0.0033333333333333335,
+            "ortools": 0.006666666666666667,
+            "pulp": 0.8033333333333333,
+            "pulp+scipy.optimize": 0.0033333333333333335,
+            "scipy.optimize": 0.09333333333333334,
+            "unknown": 0.03666666666666667
+          },
+          "max_share": 0.8033333333333333,
+          "entropy": 0.7783439225689497,
+          "uniformity": 0.3542395850644299
+        }
+      },
+      "search_score": 0.6772572918397763
+    }
+  ],
+  "ablation": [
+    {
+      "prompt": {
+        "id": "neutral_grid_careful_list_status_parse_first_refine_scale_care",
+        "text": "Carefully translate the natural language optimization problem into decision variables, objective, and constraints, then solve it with Python.\nYou may use packages such as scipy.optimize, cvxpy, pulp, pyomo, gurobipy, pyscipopt, coptpy, ortools, highspy, or another suitable solver.\nInside the code, define the data from the question explicitly before creating the model.\n\nReturn only one fenced Python block.\nThe program must be self-contained and executable.\nIt must print the final optimal objective value exactly as:\nOBJECTIVE_VALUE: <number>\nIf the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.\nAlso print a short SOLVER_STATUS line when available.\n\nProblem:\n{question}\nPay close attention to units, integer requirements, and whether the task asks to minimize or maximize.\n",
+        "prompt_type": "neutral",
+        "metadata": {
+          "instruction": "careful",
+          "solver_mention": "list",
+          "output": "status",
+          "reasoning": "parse_first",
+          "refinement": "scale_care"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.6633333333333333,
+        "acc_5pct": 0.6633333333333333,
+        "acc_1pct": 0.63,
+        "acc_1e-4": 0.58,
+        "executable_rate": 0.8566666666666667,
+        "solve_rate": 0.81,
+        "mean_gap": 112.41707369574756,
+        "avg_latency": 18.729582277933755,
+        "avg_tokens": 1185.7866666666666,
+        "solver_distribution": {
+          "counts": {
+            "coptpy": 2,
+            "cvxpy": 12,
+            "cvxpy+pulp+scipy.optimize": 1,
+            "gurobipy": 1,
+            "ortools": 2,
+            "pulp": 238,
+            "pulp+scipy.optimize": 1,
+            "scipy.optimize": 28,
+            "unknown": 15
+          },
+          "shares": {
+            "coptpy": 0.006666666666666667,
+            "cvxpy": 0.04,
+            "cvxpy+pulp+scipy.optimize": 0.0033333333333333335,
+            "gurobipy": 0.0033333333333333335,
+            "ortools": 0.006666666666666667,
+            "pulp": 0.7933333333333333,
+            "pulp+scipy.optimize": 0.0033333333333333335,
+            "scipy.optimize": 0.09333333333333334,
+            "unknown": 0.05
+          },
+          "max_share": 0.7933333333333333,
+          "entropy": 0.807401247473049,
+          "uniformity": 0.3674641435387059
+        }
+      },
+      "search_score": 0.6724130810205372
+    },
+    {
+      "prompt": {
+        "id": "solver_specific_pyscipopt",
+        "text": "Solve the optimization problem below using Python with pyscipopt/SCIP only.\nReturn only one fenced Python block. Print exactly OBJECTIVE_VALUE: <number>.\n\nProblem:\n{question}\n",
+        "prompt_type": "solver_specific",
+        "metadata": {
+          "solver": "pyscipopt"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.71,
+        "acc_5pct": 0.71,
+        "acc_1pct": 0.7033333333333334,
+        "acc_1e-4": 0.6633333333333333,
+        "executable_rate": 0.84,
+        "solve_rate": 0.8333333333333334,
+        "mean_gap": 22.411930102390862,
+        "avg_latency": 14.876896845499674,
+        "avg_tokens": 898.1033333333334,
+        "solver_distribution": {
+          "counts": {
+            "pyscipopt": 300
+          },
+          "shares": {
+            "pyscipopt": 1.0
+          },
+          "max_share": 1.0,
+          "entropy": -0.0,
+          "uniformity": -0.0
+        }
+      },
+      "search_score": 0.615
+    },
+    {
+      "prompt": {
+        "id": "solver_specific_gurobipy",
+        "text": "Solve the optimization problem below using Python with gurobipy/Gurobi only.\nReturn only one fenced Python block. Print exactly OBJECTIVE_VALUE: <number>.\n\nProblem:\n{question}\n",
+        "prompt_type": "solver_specific",
+        "metadata": {
+          "solver": "gurobipy"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.7266666666666667,
+        "acc_5pct": 0.7266666666666667,
+        "acc_1pct": 0.6933333333333334,
+        "acc_1e-4": 0.65,
+        "executable_rate": 0.8766666666666667,
+        "solve_rate": 0.8666666666666667,
+        "mean_gap": 44065.1642377188,
+        "avg_latency": 15.325655355453492,
+        "avg_tokens": 906.0766666666667,
+        "solver_distribution": {
+          "counts": {
+            "gurobipy": 300
+          },
+          "shares": {
+            "gurobipy": 1.0
+          },
+          "max_share": 1.0,
+          "entropy": -0.0,
+          "uniformity": -0.0
+        }
+      },
+      "search_score": 0.6339999999999999
+    },
+    {
+      "prompt": {
+        "id": "solver_specific_coptpy",
+        "text": "Solve the optimization problem below using Python with coptpy/COPT only.\nReturn only one fenced Python block. Print exactly OBJECTIVE_VALUE: <number>.\n\nProblem:\n{question}\n",
+        "prompt_type": "solver_specific",
+        "metadata": {
+          "solver": "coptpy"
+        }
+      },
+      "metrics": {
+        "n": 300,
+        "accuracy": 0.0,
+        "acc_5pct": 0.0,
+        "acc_1pct": 0.0,
+        "acc_1e-4": 0.0,
+        "executable_rate": 0.0,
+        "solve_rate": 0.0,
+        "mean_gap": 2.0550436940062458,
+        "avg_latency": 15.25346000035604,
+        "avg_tokens": 920.5166666666667,
+        "solver_distribution": {
+          "counts": {
+            "coptpy": 300
+          },
+          "shares": {
+            "coptpy": 1.0
+          },
+          "max_share": 1.0,
+          "entropy": -0.0,
+          "uniformity": -0.0
+        }
+      },
+      "search_score": -0.04999999999999999
+    }
+  ]
+}

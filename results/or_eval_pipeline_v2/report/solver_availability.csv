@@ -1,0 +1,16 @@
+solver,available,packages
+amplpy,False,amplpy:no
+coptpy,False,coptpy:no
+cvxpy,False,cvxpy:no
+docplex,False,"docplex:no, docplex.mp.model:no"
+gurobipy,True,gurobipy:yes@12.0.3
+highspy,False,highspy:no
+linopy,False,linopy:no
+mip,False,mip:no
+mosek,False,mosek:no
+ortools,True,ortools:yes@9.15.6755
+pulp,True,pulp:yes@3.3.1
+pyomo,False,"pyomo:no, pyomo.environ:no"
+pyscipopt,True,pyscipopt:yes@6.2.1
+scipy.optimize,True,scipy.optimize:yes@1.13.1
+xpress,False,xpress:no

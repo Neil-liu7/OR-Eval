@@ -1,0 +1,11 @@
+You are an Operations Research expert. Given the following context and question, select the most appropriate answer.
+
+Context:
+{{ problem_text }}
+
+Question: {{ question }}
+{% for opt in mcq_options %}
+{{ ["A", "B", "C", "D"][loop.index0] }}. {{ opt }}
+{% endfor %}
+
+Answer with only the letter (A, B, C, or D).

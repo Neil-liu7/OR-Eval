@@ -1,0 +1,77 @@
+[
+  {
+    "solver": "amplpy",
+    "available": false,
+    "packages": "amplpy:no"
+  },
+  {
+    "solver": "coptpy",
+    "available": false,
+    "packages": "coptpy:no"
+  },
+  {
+    "solver": "cvxpy",
+    "available": false,
+    "packages": "cvxpy:no"
+  },
+  {
+    "solver": "docplex",
+    "available": false,
+    "packages": "docplex:no, docplex.mp.model:no"
+  },
+  {
+    "solver": "gurobipy",
+    "available": true,
+    "packages": "gurobipy:yes@12.0.3"
+  },
+  {
+    "solver": "highspy",
+    "available": false,
+    "packages": "highspy:no"
+  },
+  {
+    "solver": "linopy",
+    "available": false,
+    "packages": "linopy:no"
+  },
+  {
+    "solver": "mip",
+    "available": false,
+    "packages": "mip:no"
+  },
+  {
+    "solver": "mosek",
+    "available": false,
+    "packages": "mosek:no"
+  },
+  {
+    "solver": "ortools",
+    "available": true,
+    "packages": "ortools:yes@9.15.6755"
+  },
+  {
+    "solver": "pulp",
+    "available": true,
+    "packages": "pulp:yes@3.3.1"
+  },
+  {
+    "solver": "pyomo",
+    "available": false,
+    "packages": "pyomo:no, pyomo.environ:no"
+  },
+  {
+    "solver": "pyscipopt",
+    "available": true,
+    "packages": "pyscipopt:yes@6.2.1"
+  },
+  {
+    "solver": "scipy.optimize",
+    "available": true,
+    "packages": "scipy.optimize:yes@1.13.1"
+  },
+  {
+    "solver": "xpress",
+    "available": false,
+    "packages": "xpress:no"
+  }
+]

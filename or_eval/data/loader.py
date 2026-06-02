@@ -1,0 +1,127 @@
+"""Unified loader for the six SIRL benchmark datasets."""
+from __future__ import annotations
+
+import json
+import random
+from dataclasses import asdict, dataclass, field
+from pathlib import Path
+from typing import Any, Iterable
+
+
+DATASET_FILES = {
+    "NL4OPT": "NL4OPT.jsonl",
+    "MAMO_EasyLP": "MAMO_EasyLP_fixed.jsonl",
+    "MAMO_ComplexLP": "MAMO_ComplexLP_fixed.jsonl",
+    "OptiBench": "OptiBench.jsonl",
+    "IndustryOR": "IndustryOR_fixedV2.json",
+    "OptMATH_Bench": "OptMATH_Bench_166.jsonl",
+}
+
+DEFAULT_DATA_DIR = Path(__file__).resolve().parents[3] / "OPTEngine" / "SIRL" / "test_data"
+
+
+@dataclass(frozen=True)
+class BenchmarkProblem:
+    id: str
+    dataset: str
+    question: str
+    answer: float | str
+    metadata: dict[str, Any] = field(default_factory=dict)
+
+    def to_dict(self) -> dict[str, Any]:
+        return asdict(self)
+
+
+def load_dataset(dataset: str, data_dir: Path | str = DEFAULT_DATA_DIR) -> list[BenchmarkProblem]:
+    data_dir = Path(data_dir)
+    if dataset not in DATASET_FILES:
+        raise KeyError(f"Unknown dataset {dataset!r}. Choose from: {', '.join(DATASET_FILES)}")
+    path = data_dir / DATASET_FILES[dataset]
+    rows = list(_read_json_or_jsonl(path))
+    problems: list[BenchmarkProblem] = []
+    for i, row in enumerate(rows):
+        question = row.get("en_question") or row.get("question") or row.get("problem_text")
+        answer = row.get("en_answer") if "en_answer" in row else row.get("answer")
+        if question is None or answer is None:
+            raise ValueError(f"{path}:{i + 1} is missing en_question/en_answer")
+        metadata = {k: v for k, v in row.items() if k not in {"en_question", "question", "problem_text", "en_answer", "answer"}}
+        raw_id = metadata.get("index", metadata.get("id", i))
+        problems.append(BenchmarkProblem(
+            id=f"{dataset}:{raw_id}",
+            dataset=dataset,
+            question=str(question),
+            answer=_normalize_answer(answer),
+            metadata=metadata,
+        ))
+    return problems
+
+
+def load_datasets(
+    datasets: Iterable[str] | str = "all",
+    data_dir: Path | str = DEFAULT_DATA_DIR,
+    limit_per_dataset: int | None = None,
+) -> list[BenchmarkProblem]:
+    selected = list(DATASET_FILES) if datasets == "all" else list(datasets)
+    problems: list[BenchmarkProblem] = []
+    for dataset in selected:
+        items = load_dataset(dataset, data_dir)
+        if limit_per_dataset is not None:
+            items = items[:limit_per_dataset]
+        problems.extend(items)
+    return problems
+
+
+def validation_split(
+    data_dir: Path | str = DEFAULT_DATA_DIR,
+    per_dataset: int = 50,
+    seed: int = 42,
+    datasets: Iterable[str] | str = "all",
+) -> list[BenchmarkProblem]:
+    selected = list(DATASET_FILES) if datasets == "all" else list(datasets)
+    rng = random.Random(seed)
+    validation: list[BenchmarkProblem] = []
+    for dataset in selected:
+        items = load_dataset(dataset, data_dir)
+        sample_size = min(per_dataset, len(items))
+        validation.extend(rng.sample(items, sample_size))
+    return validation
+
+
+def dataset_counts(data_dir: Path | str = DEFAULT_DATA_DIR) -> dict[str, int]:
+    return {name: len(load_dataset(name, data_dir)) for name in DATASET_FILES}
+
+
+def _read_json_or_jsonl(path: Path) -> Iterable[dict[str, Any]]:
+    if not path.exists():
+        raise FileNotFoundError(path)
+    text = path.read_text(encoding="utf-8").strip()
+    if not text:
+        return []
+    try:
+        parsed = json.loads(text)
+        if isinstance(parsed, list):
+            return parsed
+        if isinstance(parsed, dict):
+            return [parsed]
+    except json.JSONDecodeError:
+        pass
+
+    rows = []
+    for line_no, line in enumerate(text.splitlines(), 1):
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            rows.append(json.loads(line))
+        except json.JSONDecodeError as exc:
+            raise ValueError(f"Invalid JSONL at {path}:{line_no}: {exc}") from exc
+    return rows
+
+
+def _normalize_answer(answer: Any) -> float | str:
+    if isinstance(answer, (int, float)):
+        return float(answer)
+    try:
+        return float(str(answer).strip())
+    except (TypeError, ValueError):
+        return str(answer).strip()

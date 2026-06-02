@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="940" viewBox="0 0 1100 940">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="24" y="32" font-family="Arial, sans-serif" font-size="20" font-weight="700">Prompt Solver Concentration</text>
+<text x="230" y="926" font-family="Arial, sans-serif" font-size="12" fill="#555">max solver share</text>
+<text x="24" y="75" font-family="Arial, sans-serif" font-size="12" fill="#222">deepseek-v3:neutral_best</text>
+<rect x="230" y="56" width="830" height="28" fill="#edf2f2"/>
+<rect x="230" y="56" width="467" height="28" fill="#2f6f73"/>
+<text x="705" y="75" font-family="Arial, sans-serif" font-size="12" fill="#222">0.563</text>
+<text x="24" y="115" font-family="Arial, sans-serif" font-size="12" fill="#222">deepseek-v3:solver_specific_coptpy</text>
+<rect x="230" y="96" width="830" height="28" fill="#edf2f2"/>
+<rect x="230" y="96" width="830" height="28" fill="#b24b3f"/>
+<text x="1068" y="115" font-family="Arial, sans-serif" font-size="12" fill="#222">1.000</text>
+<text x="24" y="155" font-family="Arial, sans-serif" font-size="12" fill="#222">deepseek-v3:solver_specific_gurobipy</text>
+<rect x="230" y="136" width="830" height="28" fill="#edf2f2"/>
+<rect x="230" y="136" width="830" height="28" fill="#b24b3f"/>
+<text x="1068" y="155" font-family="Arial, sans-serif" font-size="12" fill="#222">1.000</text>
+<text x="24" y="195" font-family="Arial, sans-serif" font-size="12" fill="#222">deepseek-v3:solver_specific_pyscipopt</text>
+<rect x="230" y="176" width="830" height="28" fill="#edf2f2"/>
+<rect x="230" y="176" width="830" height="28" fill="#b24b3f"/>
+<text x="1068" y="195" font-family="Arial, sans-serif" font-size="12" fill="#222">1.000</text>
+<text x="24" y="235" font-family="Arial, sans-serif" font-size="12" fill="#222">deepseek-v3.2:neutral_best</text>
+<rect x="230" y="216" width="830" height="28" fill="#edf2f2"/>
+<rect x="230" y="216" width="356" height="28" fill="#2f6f73"/>
+<text x="594" y="235" font-family="Arial, sans-serif" font-size="12" fill="#222">0.430</text>
+<text x="24" y="275" font-family="Arial, sans-serif" font-size="12" fill="#222">deepseek-v3.2:solver_specific_coptpy</text>
+<rect x="230" y="256" width="830" height="28" fill="#edf2f2"/>
+<rect x="230" y="256" width="827" height="28" fill="#b24b3f"/>
+<text x="1065" y="275" font-family="Arial, sans-serif" font-size="12" fill="#222">0.997</text>
+<text x="24" y="315" font-family="Arial, sans-serif" font-size="12" fill="#222">deepseek-v3.2:solver_specific_gurobipy</text>
+<rect x="230" y="296" width="830" height="28" fill="#edf2f2"/>
+<rect x="230" y="296" width="830" height="28" fill="#b24b3f"/>
+<text x="1068" y="315" font-family="Arial, sans-serif" font-size="12" fill="#222">1.000</text>
+<text x="24" y="355" font-family="Arial, sans-serif" font-size="12" fill="#222">deepseek-v3.2:solver_specific_pyscipopt</text>
+<rect x="230" y="336" width="830" height="28" fill="#edf2f2"/>
+<rect x="230" y="336" width="827" height="28" fill="#b24b3f"/>
+<text x="1065" y="355" font-family="Arial, sans-serif" font-size="12" fill="#222">0.997</text>
+<text x="24" y="395" font-family="Arial, sans-serif" font-size="12" fill="#222">gemini-2.5-pro:neutral_best</text>
+<rect x="230" y="376" width="830" height="28" fill="#edf2f2"/>
+<rect x="230" y="376" width="679" height="28" fill="#b24b3f"/>
+<text x="917" y="395" font-family="Arial, sans-serif" font-size="12" fill="#222">0.818</text>
+<text x="24" y="435" font-family="Arial, sans-serif" font-size="12" fill="#222">gpt-4.1-mini:neutral_best</text>
+<rect x="230" y="416" width="830" height="28" fill="#edf2f2"/>
+<rect x="230" y="416" width="719" height="28" fill="#b24b3f"/>
+<text x="957" y="435" font-family="Arial, sans-serif" font-size="12" fill="#222">0.867</text>
+<text x="24" y="475" font-family="Arial, sans-serif" font-size="12" fill="#222">gpt-4.1-mini:solver_specific_coptpy</text>
+<rect x="230" y="456" width="830" height="28" fill="#edf2f2"/>
+<rect x="230" y="456" width="827" height="28" fill="#b24b3f"/>
+<text x="1065" y="475" font-family="Arial, sans-serif" font-size="12" fill="#222">0.997</text>
+<text x="24" y="515" font-family="Arial, sans-serif" font-size="12" fill="#222">gpt-4.1-mini:solver_specific_gurobipy</text>
+<rect x="230" y="496" width="830" height="28" fill="#edf2f2"/>
+<rect x="230" y="496" width="830" height="28" fill="#b24b3f"/>
+<text x="1068" y="515" font-family="Arial, sans-serif" font-size="12" fill="#222">1.000</text>
+<text x="24" y="555" font-family="Arial, sans-serif" font-size="12" fill="#222">gpt-4.1-mini:solver_specific_pyscipopt</text>
+<rect x="230" y="536" width="830" height="28" fill="#edf2f2"/>
+<rect x="230" y="536" width="827" height="28" fill="#b24b3f"/>
+<text x="1065" y="555" font-family="Arial, sans-serif" font-size="12" fill="#222">0.997</text>
+<text x="24" y="595" font-family="Arial, sans-serif" font-size="12" fill="#222">gpt-4o:neutral_best</text>
+<rect x="230" y="576" width="830" height="28" fill="#edf2f2"/>
+<rect x="230" y="576" width="644" height="28" fill="#2f6f73"/>
+<text x="882" y="595" font-family="Arial, sans-serif" font-size="12" fill="#222">0.777</text>
+<text x="24" y="635" font-family="Arial, sans-serif" font-size="12" fill="#222">gpt-4o:solver_specific_coptpy</text>
+<rect x="230" y="616" width="830" height="28" fill="#edf2f2"/>
+<rect x="230" y="616" width="796" height="28" fill="#b24b3f"/>
+<text x="1034" y="635" font-family="Arial, sans-serif" font-size="12" fill="#222">0.960</text>
+<text x="24" y="675" font-family="Arial, sans-serif" font-size="12" fill="#222">gpt-4o:solver_specific_gurobipy</text>
+<rect x="230" y="656" width="830" height="28" fill="#edf2f2"/>
+<rect x="230" y="656" width="777" height="28" fill="#b24b3f"/>
+<text x="1015" y="675" font-family="Arial, sans-serif" font-size="12" fill="#222">0.937</text>
+<text x="24" y="715" font-family="Arial, sans-serif" font-size="12" fill="#222">gpt-4o:solver_specific_pyscipopt</text>
+<rect x="230" y="696" width="830" height="28" fill="#edf2f2"/>
+<rect x="230" y="696" width="794" height="28" fill="#b24b3f"/>
+<text x="1032" y="715" font-family="Arial, sans-serif" font-size="12" fill="#222">0.957</text>
+<text x="24" y="755" font-family="Arial, sans-serif" font-size="12" fill="#222">gpt-4o-mini:neutral_best</text>
+<rect x="230" y="736" width="830" height="28" fill="#edf2f2"/>
+<rect x="230" y="736" width="365" height="28" fill="#2f6f73"/>
+<text x="603" y="755" font-family="Arial, sans-serif" font-size="12" fill="#222">0.440</text>
+<text x="24" y="795" font-family="Arial, sans-serif" font-size="12" fill="#222">gpt-4o-mini:solver_specific_coptpy</text>
+<rect x="230" y="776" width="830" height="28" fill="#edf2f2"/>
+<rect x="230" y="776" width="697" height="28" fill="#b24b3f"/>
+<text x="935" y="795" font-family="Arial, sans-serif" font-size="12" fill="#222">0.840</text>
+<text x="24" y="835" font-family="Arial, sans-serif" font-size="12" fill="#222">gpt-4o-mini:solver_specific_gurobipy</text>
+<rect x="230" y="816" width="830" height="28" fill="#edf2f2"/>
+<rect x="230" y="816" width="536" height="28" fill="#2f6f73"/>
+<text x="774" y="835" font-family="Arial, sans-serif" font-size="12" fill="#222">0.647</text>
+<text x="24" y="875" font-family="Arial, sans-serif" font-size="12" fill="#222">gpt-4o-mini:solver_specific_pyscipopt</text>
+<rect x="230" y="856" width="830" height="28" fill="#edf2f2"/>
+<rect x="230" y="856" width="830" height="28" fill="#b24b3f"/>
+<text x="1068" y="875" font-family="Arial, sans-serif" font-size="12" fill="#222">1.000</text>
+</svg>

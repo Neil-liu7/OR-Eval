@@ -1,0 +1,9 @@
+Solver: PuLP
+- Import: `from pulp import *`
+- Create model: `prob = LpProblem("problem", LpMinimize)` or `LpMaximize`
+- Variable types: `LpVariable("x", cat="Continuous")`, `cat="Integer"`, `cat="Binary"`
+- Add constraint: `prob += (expression <= value)`
+- Set objective: `prob += expression`
+- Solve: `prob.solve(PULP_CBC_CMD(msg=0))`
+- Check status: `prob.status == 1`
+- Get objective value: `pulp.value(prob.objective)`

@@ -1,0 +1,13 @@
+{
+  "framework_ready": true,
+  "results_ready_for_paper": true,
+  "legacy_results": false,
+  "audit_status": "pass",
+  "schema_version": "or-eval-result-v2",
+  "framework_blockers": [],
+  "result_blockers": [],
+  "n": 10606,
+  "objective_evaluable_rate": 0.7245898547991703,
+  "variable_output_rate": 0.6730152743729965,
+  "message": "Framework and results satisfy the strict OR-Eval fairness protocol."
+}

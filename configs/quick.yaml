@@ -1,0 +1,13 @@
+api_url: "http://ebill.baidu-int.com/v1/models/{model}"
+
+api:
+  api_key_env: "OR_EVAL_API_KEY"
+  max_tokens: 2048
+  temperature: 0
+
+execution:
+  timeout: 30
+  memory_limit_mb: 1024
+
+evaluation:
+  concurrency: 2

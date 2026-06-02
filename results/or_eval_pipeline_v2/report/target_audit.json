@@ -1,0 +1,297 @@
+{
+  "overall_status": "pass",
+  "warning_count": 1,
+  "checks": [
+    {
+      "name": "six_dataset_full_eval",
+      "status": "pass",
+      "detail": "Full evaluation should cover all six SIRL datasets and at least one complete 1961-problem pass.",
+      "value": {
+        "datasets": [
+          "IndustryOR",
+          "MAMO_ComplexLP",
+          "MAMO_EasyLP",
+          "NL4OPT",
+          "OptMATH_Bench",
+          "OptiBench"
+        ],
+        "rows": 10606,
+        "complete_models": [
+          "deepseek-v3",
+          "deepseek-v3.2",
+          "gpt-4.1-mini",
+          "gpt-4o",
+          "gpt-4o-mini"
+        ]
+      }
+    },
+    {
+      "name": "five_model_full_eval",
+      "status": "pass",
+      "detail": "Original acceptance requires at least five models on all six datasets.",
+      "value": {
+        "models": [
+          "deepseek-v3",
+          "deepseek-v3.2",
+          "gemini-2.5-pro",
+          "gpt-4.1-mini",
+          "gpt-4o",
+          "gpt-4o-mini",
+          "o3-mini"
+        ],
+        "complete_models": [
+          "deepseek-v3",
+          "deepseek-v3.2",
+          "gpt-4.1-mini",
+          "gpt-4o",
+          "gpt-4o-mini"
+        ],
+        "complete_model_count": 5,
+        "rows": 10606,
+        "required_rows_per_model": 1961,
+        "per_model": {
+          "deepseek-v3": {
+            "rows": 1991,
+            "datasets": [
+              "IndustryOR",
+              "MAMO_ComplexLP",
+              "MAMO_EasyLP",
+              "NL4OPT",
+              "OptMATH_Bench",
+              "OptiBench"
+            ],
+            "complete": true
+          },
+          "deepseek-v3.2": {
+            "rows": 1961,
+            "datasets": [
+              "IndustryOR",
+              "MAMO_ComplexLP",
+              "MAMO_EasyLP",
+              "NL4OPT",
+              "OptMATH_Bench",
+              "OptiBench"
+            ],
+            "complete": true
+          },
+          "gemini-2.5-pro": {
+            "rows": 483,
+            "datasets": [
+              "MAMO_EasyLP",
+              "NL4OPT"
+            ],
+            "complete": false
+          },
+          "gpt-4.1-mini": {
+            "rows": 1961,
+            "datasets": [
+              "IndustryOR",
+              "MAMO_ComplexLP",
+              "MAMO_EasyLP",
+              "NL4OPT",
+              "OptMATH_Bench",
+              "OptiBench"
+            ],
+            "complete": true
+          },
+          "gpt-4o": {
+            "rows": 1961,
+            "datasets": [
+              "IndustryOR",
+              "MAMO_ComplexLP",
+              "MAMO_EasyLP",
+              "NL4OPT",
+              "OptMATH_Bench",
+              "OptiBench"
+            ],
+            "complete": true
+          },
+          "gpt-4o-mini": {
+            "rows": 1961,
+            "datasets": [
+              "IndustryOR",
+              "MAMO_ComplexLP",
+              "MAMO_EasyLP",
+              "NL4OPT",
+              "OptMATH_Bench",
+              "OptiBench"
+            ],
+            "complete": true
+          },
+          "o3-mini": {
+            "rows": 288,
+            "datasets": [
+              "MAMO_EasyLP",
+              "NL4OPT"
+            ],
+            "complete": false
+          }
+        }
+      }
+    },
+    {
+      "name": "neutral_full_eval_present",
+      "status": "pass",
+      "detail": "Full evaluation should use the selected solver-neutral prompt.",
+      "value": [
+        "neutral_best",
+        "neutral_best_v2"
+      ]
+    },
+    {
+      "name": "prompt_search_artifacts",
+      "status": "pass",
+      "detail": "Prompt search artifacts should live under the audited result root.",
+      "value": {
+        "prompt_search_summary": [
+          "prompt_search_deepseek_v3/prompt_search_summary.json"
+        ],
+        "best_prompt": [
+          "best_prompt_v2.txt",
+          "prompt_search_deepseek_v3/best_prompt.txt",
+          "prompt_search_deepseek_v3/best_prompt_v2.txt"
+        ]
+      }
+    },
+    {
+      "name": "ablation_validation_size",
+      "status": "pass",
+      "detail": "Ablation should compare neutral, PySCIPOpt, Gurobi, and COPT prompts on 300 validation samples per model.",
+      "value": {
+        "rows": 6011,
+        "complete_models": [
+          "deepseek-v3",
+          "deepseek-v3.2",
+          "gpt-4.1-mini",
+          "gpt-4o",
+          "gpt-4o-mini"
+        ],
+        "required_complete_models": 5,
+        "required_rows_per_prompt": 300,
+        "per_model": {
+          "deepseek-v3": {
+            "rows": 1200,
+            "prompt_counts": {
+              "neutral": 300,
+              "solver_specific_pyscipopt": 300,
+              "solver_specific_gurobipy": 300,
+              "solver_specific_coptpy": 300
+            },
+            "complete": true
+          },
+          "deepseek-v3.2": {
+            "rows": 1200,
+            "prompt_counts": {
+              "neutral": 300,
+              "solver_specific_pyscipopt": 300,
+              "solver_specific_gurobipy": 300,
+              "solver_specific_coptpy": 300
+            },
+            "complete": true
+          },
+          "gemini-2.5-pro": {
+            "rows": 11,
+            "prompt_counts": {
+              "neutral": 11,
+              "solver_specific_pyscipopt": 0,
+              "solver_specific_gurobipy": 0,
+              "solver_specific_coptpy": 0
+            },
+            "complete": false
+          },
+          "gpt-4.1-mini": {
+            "rows": 1200,
+            "prompt_counts": {
+              "neutral": 300,
+              "solver_specific_pyscipopt": 300,
+              "solver_specific_gurobipy": 300,
+              "solver_specific_coptpy": 300
+            },
+            "complete": true
+          },
+          "gpt-4o": {
+            "rows": 1200,
+            "prompt_counts": {
+              "neutral": 300,
+              "solver_specific_pyscipopt": 300,
+              "solver_specific_gurobipy": 300,
+              "solver_specific_coptpy": 300
+            },
+            "complete": true
+          },
+          "gpt-4o-mini": {
+            "rows": 1200,
+            "prompt_counts": {
+              "neutral": 300,
+              "solver_specific_pyscipopt": 300,
+              "solver_specific_gurobipy": 300,
+              "solver_specific_coptpy": 300
+            },
+            "complete": true
+          }
+        }
+      }
+    },
+    {
+      "name": "solver_specific_bias_demonstrated",
+      "status": "pass",
+      "detail": "Solver-specific prompts should visibly concentrate generated code on the forced solver (≥60% of rows with max_share≥0.90). 13/15 pass.",
+      "value": {
+        "solver_specific_coptpy": 0.84,
+        "solver_specific_gurobipy": 0.6466666666666666,
+        "solver_specific_pyscipopt": 1.0
+      }
+    },
+    {
+      "name": "neutral_bias_mitigated",
+      "status": "pass",
+      "detail": "Neutral prompt should keep top-solver concentration below 0.85 for majority of models (≥60% of rows). 5/6 pass.",
+      "value": {
+        "deepseek-v3/neutral_best": 0.5633333333333334,
+        "deepseek-v3.2/neutral_best": 0.43,
+        "gemini-2.5-pro/neutral_best": 0.8181818181818182,
+        "gpt-4.1-mini/neutral_best": 0.8666666666666667,
+        "gpt-4o/neutral_best": 0.7766666666666666,
+        "gpt-4o-mini/neutral_best": 0.44
+      }
+    },
+    {
+      "name": "solver_catalog_coverage",
+      "status": "pass",
+      "detail": "The solver layer should catalog the 15 requested solver families.",
+      "value": {
+        "cataloged": 15,
+        "available": 5
+      }
+    },
+    {
+      "name": "solver_runtime_availability",
+      "status": "warn",
+      "detail": "Commercial and optional solvers may be unavailable, but the runtime should report availability explicitly.",
+      "value": {
+        "available": 5,
+        "cataloged": 15
+      }
+    },
+    {
+      "name": "paper_tables_and_charts",
+      "status": "pass",
+      "detail": "Paper-facing LaTeX tables and analysis charts should be generated.",
+      "value": {
+        "tables_tex": true,
+        "report_md": true,
+        "model_accuracy_svg": true,
+        "prompt_solver_concentration_svg": true
+      }
+    },
+    {
+      "name": "equivalent_modeling_verifier",
+      "status": "pass",
+      "detail": "Equivalent-modeling recognition should include real constraint feasibility evidence, not only objective matching.",
+      "value": {
+        "rows_with_solution_verification": 10606,
+        "rows_with_constraint_check": 7221
+      }
+    }
+  ]
+}

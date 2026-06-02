@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Environment variables (never commit API keys)
+.env
+.env.local
+
+# Test artifacts
+/tmp/
+.pytest_cache/
+
+# Large result JSONL files (keep reports and summaries only)
+results/*/full_eval/*/results.jsonl
+results/*/ablation_validation/*/*/results.jsonl
+results/*/prompt_search_*/round*/*/results.jsonl
+results/*/prompt_search_*/ablation_prompts/*/results.jsonl
+
+# Old run logs
+results/*.log
