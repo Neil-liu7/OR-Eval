@@ -1,0 +1,42 @@
+{
+  "n": 1,
+  "accuracy": 0.0,
+  "acc_5pct": 0.0,
+  "acc_1pct": 0.0,
+  "acc_1e-4": 0.0,
+  "executable_rate": 0.0,
+  "solve_rate": 0.0,
+  "objective_evaluable_rate": 0.0,
+  "variable_output_rate": 0.0,
+  "constraint_checked_rate": 0.0,
+  "mean_gap": null,
+  "avg_latency": 29.028605937957764,
+  "avg_tokens": 4451.0,
+  "solver_distribution": {
+    "counts": {
+      "pulp": 1
+    },
+    "shares": {
+      "pulp": 1.0
+    },
+    "max_share": 1.0,
+    "entropy": -0.0,
+    "uniformity": -0.0
+  },
+  "failure_distribution": {
+    "counts": {
+      "syntax_error": 1
+    },
+    "shares": {
+      "syntax_error": 1.0
+    }
+  },
+  "verification_distribution": {
+    "counts": {
+      "not_executable": 1
+    },
+    "shares": {
+      "not_executable": 1.0
+    }
+  }
+}

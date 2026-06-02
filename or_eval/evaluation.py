@@ -215,57 +215,20 @@ def _evaluate_one(
     response = client.generate(prompt)
     code = extract_code_block(response.text)
     execution = execute_code(code, timeout=timeout, memory_limit_mb=memory_limit_mb) if code else None
-    pred = execution.objective_value if execution and execution.success else None
-    solve_success = bool(
-        execution
-        and execution.success
-        and pred is not None
-        and execution.solver_status not in {"infeasible", "unbounded", "timeout", "error"}
+    return _build_result_row(
+        model=client.model,
+        prompt_spec=prompt_spec,
+        problem=problem,
+        code=code,
+        execution=execution,
+        run_metadata=run_metadata,
+        raw_response=response.text,
+        api_error=response.error,
+        latency=response.latency,
+        tokens_prompt=response.tokens_prompt,
+        tokens_completion=response.tokens_completion,
+        tokens_total=response.tokens_total,
     )
-    flags = tolerance_flags(pred, problem.answer)
-    gap = compute_optimality_gap(pred, problem.answer)
-    availability = run_metadata.get("solver_availability") or detect_available_solvers()
-    solver = execution.solver if execution else "unknown"
-    row = {
-        "run_key": _run_key(client.model, prompt_spec.id, problem),
-        "schema_version": RESULT_SCHEMA_VERSION,
-        "model": client.model,
-        "dataset": problem.dataset,
-        "problem_id": problem.id,
-        "prompt_id": prompt_spec.id,
-        "prompt_type": prompt_spec.prompt_type,
-        "prompt_metadata": prompt_spec.metadata or {},
-        "question": problem.question,
-        "answer": problem.answer,
-        "raw_response": response.text,
-        "code": code,
-        "api_error": response.error,
-        "latency": response.latency,
-        "tokens_prompt": response.tokens_prompt,
-        "tokens_completion": response.tokens_completion,
-        "tokens_total": response.tokens_total,
-        "executable": bool(execution and execution.success),
-        "solver": solver,
-        "solver_available": solver_available(solver, availability),
-        "solver_availability_state": solver_availability_state(solver, availability),
-        "solver_status": execution.solver_status if execution else "no_code",
-        "solve_success": solve_success,
-        "execution": execution.to_dict() if execution else None,
-        "predicted": pred,
-        "objective_extraction": execution.objective_extraction if execution else None,
-        "variable_values": execution.variable_values if execution else None,
-        "gap": gap,
-        "prompt_hash": run_metadata.get("prompt_hash"),
-        "config_hash": run_metadata.get("config_hash"),
-        "solver_env_hash": run_metadata.get("solver_env_hash"),
-        "run_metadata": run_metadata,
-        **flags,
-    }
-    row["correct"] = row["acc_5pct"]
-    row["failure_type"] = classify_failure(row)
-    row["verification_status"] = verification_status(row)
-    row["solution_verification"] = solution_verification_record(row)
-    return row
 
 
 def _row_from_local_execution(
@@ -276,11 +239,46 @@ def _row_from_local_execution(
     run_metadata: dict,
 ) -> dict:
     execution = execute_code(code, timeout=30, memory_limit_mb=2048)
-    pred = execution.objective_value if execution.success else None
-    solve_success = bool(execution.success and pred is not None and execution.solver_status not in {"infeasible", "unbounded", "timeout", "error"})
+    return _build_result_row(
+        model=model,
+        prompt_spec=prompt_spec,
+        problem=problem,
+        code=code,
+        execution=execution,
+        run_metadata=run_metadata,
+        raw_response=f"```python\n{code}\n```",
+        api_error=None,
+        latency=0.0,
+        tokens_prompt=0,
+        tokens_completion=0,
+        tokens_total=0,
+    )
+
+
+def _build_result_row(
+    model: str,
+    prompt_spec: PromptSpec,
+    problem: BenchmarkProblem,
+    code: str,
+    execution,
+    run_metadata: dict,
+    raw_response: str,
+    api_error: str | None,
+    latency: float,
+    tokens_prompt: int | None,
+    tokens_completion: int | None,
+    tokens_total: int | None,
+) -> dict:
+    pred = execution.objective_value if execution and execution.success else None
+    solve_success = bool(
+        execution
+        and execution.success
+        and pred is not None
+        and execution.solver_status not in {"infeasible", "unbounded", "timeout", "error"}
+    )
     flags = tolerance_flags(pred, problem.answer)
-    solver = execution.solver
     availability = run_metadata.get("solver_availability") or detect_available_solvers()
+    solver = execution.solver if execution else "unknown"
     row = {
         "run_key": _run_key(model, prompt_spec.id, problem),
         "schema_version": RESULT_SCHEMA_VERSION,
@@ -292,23 +290,23 @@ def _row_from_local_execution(
         "prompt_metadata": prompt_spec.metadata or {},
         "question": problem.question,
         "answer": problem.answer,
-        "raw_response": f"```python\n{code}\n```",
+        "raw_response": raw_response,
         "code": code,
-        "api_error": None,
-        "latency": 0.0,
-        "tokens_prompt": 0,
-        "tokens_completion": 0,
-        "tokens_total": 0,
-        "executable": execution.success,
+        "api_error": api_error,
+        "latency": latency,
+        "tokens_prompt": tokens_prompt,
+        "tokens_completion": tokens_completion,
+        "tokens_total": tokens_total,
+        "executable": bool(execution and execution.success),
         "solver": solver,
         "solver_available": solver_available(solver, availability),
         "solver_availability_state": solver_availability_state(solver, availability),
-        "solver_status": execution.solver_status,
+        "solver_status": execution.solver_status if execution else "no_code",
         "solve_success": solve_success,
-        "execution": execution.to_dict(),
+        "execution": execution.to_dict() if execution else None,
         "predicted": pred,
-        "objective_extraction": execution.objective_extraction,
-        "variable_values": execution.variable_values,
+        "objective_extraction": execution.objective_extraction if execution else None,
+        "variable_values": execution.variable_values if execution else None,
         "gap": compute_optimality_gap(pred, problem.answer),
         "prompt_hash": run_metadata.get("prompt_hash"),
         "config_hash": run_metadata.get("config_hash"),

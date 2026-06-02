@@ -9,7 +9,8 @@ from or_eval.cli import main
 from or_eval.execution.extractors import extract_code_block, extract_objective_record, extract_objective_value, extract_solver_status, extract_variable_values
 from or_eval.execution.solver_env import detect_solvers, primary_solver, solver_available, solver_availability_state, solver_environment_hash, solver_environment_snapshot
 from or_eval.metrics import aggregate_results, classify_failure, numerical_judge, solution_verification_record, tolerance_flags, verification_status
-from or_eval.reporting.reports import _fairness_audit, _prompt_bias_rows, _result_status
+from or_eval.reporting.audits import fairness_audit as _fairness_audit, result_status as _result_status
+from or_eval.reporting.reports import _prompt_bias_rows
 
 
 class SolverDetectionTests(unittest.TestCase):

@@ -1,0 +1,128 @@
+{
+  "gpt-4o/neutral_probe_v2": {
+    "n": 1,
+    "accuracy": 0.0,
+    "acc_5pct": 0.0,
+    "acc_1pct": 0.0,
+    "acc_1e-4": 0.0,
+    "executable_rate": 0.0,
+    "solve_rate": 0.0,
+    "objective_evaluable_rate": 0.0,
+    "variable_output_rate": 0.0,
+    "constraint_checked_rate": 0.0,
+    "mean_gap": null,
+    "avg_latency": 6.332664966583252,
+    "avg_tokens": 766.0,
+    "solver_distribution": {
+      "counts": {
+        "cvxpy": 1
+      },
+      "shares": {
+        "cvxpy": 1.0
+      },
+      "max_share": 1.0,
+      "entropy": -0.0,
+      "uniformity": -0.0
+    },
+    "failure_distribution": {
+      "counts": {
+        "missing_module": 1
+      },
+      "shares": {
+        "missing_module": 1.0
+      }
+    },
+    "verification_distribution": {
+      "counts": {
+        "not_executable": 1
+      },
+      "shares": {
+        "not_executable": 1.0
+      }
+    }
+  },
+  "gemini-2.5-pro/neutral_probe_v2": {
+    "n": 1,
+    "accuracy": 0.0,
+    "acc_5pct": 0.0,
+    "acc_1pct": 0.0,
+    "acc_1e-4": 0.0,
+    "executable_rate": 0.0,
+    "solve_rate": 0.0,
+    "objective_evaluable_rate": 0.0,
+    "variable_output_rate": 0.0,
+    "constraint_checked_rate": 0.0,
+    "mean_gap": null,
+    "avg_latency": 29.028605937957764,
+    "avg_tokens": 4451.0,
+    "solver_distribution": {
+      "counts": {
+        "pulp": 1
+      },
+      "shares": {
+        "pulp": 1.0
+      },
+      "max_share": 1.0,
+      "entropy": -0.0,
+      "uniformity": -0.0
+    },
+    "failure_distribution": {
+      "counts": {
+        "syntax_error": 1
+      },
+      "shares": {
+        "syntax_error": 1.0
+      }
+    },
+    "verification_distribution": {
+      "counts": {
+        "not_executable": 1
+      },
+      "shares": {
+        "not_executable": 1.0
+      }
+    }
+  },
+  "qwen-max/neutral_probe_v2": {
+    "n": 1,
+    "accuracy": 1.0,
+    "acc_5pct": 1.0,
+    "acc_1pct": 1.0,
+    "acc_1e-4": 1.0,
+    "executable_rate": 1.0,
+    "solve_rate": 1.0,
+    "objective_evaluable_rate": 1.0,
+    "variable_output_rate": 1.0,
+    "constraint_checked_rate": 1.0,
+    "mean_gap": 0.0,
+    "avg_latency": 54.416669845581055,
+    "avg_tokens": 897.0,
+    "solver_distribution": {
+      "counts": {
+        "pulp": 1
+      },
+      "shares": {
+        "pulp": 1.0
+      },
+      "max_share": 1.0,
+      "entropy": -0.0,
+      "uniformity": -0.0
+    },
+    "failure_distribution": {
+      "counts": {
+        "correct": 1
+      },
+      "shares": {
+        "correct": 1.0
+      }
+    },
+    "verification_distribution": {
+      "counts": {
+        "objective_match": 1
+      },
+      "shares": {
+        "objective_match": 1.0
+      }
+    }
+  }
+}
