@@ -1,0 +1,86 @@
+{
+  "n": 300,
+  "accuracy": 0.5333333333333333,
+  "acc_5pct": 0.5333333333333333,
+  "acc_1pct": 0.5166666666666667,
+  "acc_1e-4": 0.4766666666666667,
+  "executable_rate": 0.6966666666666667,
+  "solve_rate": 0.66,
+  "objective_evaluable_rate": 0.6933333333333334,
+  "variable_output_rate": 0.6533333333333333,
+  "constraint_checked_rate": 0.66,
+  "mean_gap": 5041.2711189991805,
+  "avg_latency": 27.954631443023683,
+  "avg_tokens": 1444.7,
+  "solver_distribution": {
+    "counts": {
+      "coptpy": 2,
+      "cvxpy": 3,
+      "mip+pulp": 1,
+      "mip+pulp+scipy.optimize": 1,
+      "mip+scipy.optimize": 1,
+      "ortools": 22,
+      "pulp": 129,
+      "pulp+scipy.optimize": 4,
+      "scipy.optimize": 123,
+      "unknown": 14
+    },
+    "shares": {
+      "coptpy": 0.006666666666666667,
+      "cvxpy": 0.01,
+      "mip+pulp": 0.0033333333333333335,
+      "mip+pulp+scipy.optimize": 0.0033333333333333335,
+      "mip+scipy.optimize": 0.0033333333333333335,
+      "ortools": 0.07333333333333333,
+      "pulp": 0.43,
+      "pulp+scipy.optimize": 0.013333333333333334,
+      "scipy.optimize": 0.41,
+      "unknown": 0.04666666666666667
+    },
+    "max_share": 0.43,
+    "entropy": 1.2571440708776564,
+    "uniformity": 0.5459707329395567
+  },
+  "failure_distribution": {
+    "counts": {
+      "correct": 160,
+      "exec_no_solve": 3,
+      "infeasible_unbounded_misclassification": 8,
+      "missing_module": 5,
+      "name_error": 13,
+      "runtime_error": 45,
+      "syntax_error": 27,
+      "timeout": 1,
+      "wrong_numeric": 38
+    },
+    "shares": {
+      "correct": 0.5333333333333333,
+      "exec_no_solve": 0.01,
+      "infeasible_unbounded_misclassification": 0.02666666666666667,
+      "missing_module": 0.016666666666666666,
+      "name_error": 0.043333333333333335,
+      "runtime_error": 0.15,
+      "syntax_error": 0.09,
+      "timeout": 0.0033333333333333335,
+      "wrong_numeric": 0.12666666666666668
+    }
+  },
+  "verification_distribution": {
+    "counts": {
+      "executed_no_verified_solution": 10,
+      "missing_objective": 1,
+      "not_executable": 91,
+      "objective_match": 160,
+      "objective_mismatch": 2,
+      "objective_mismatch_with_variables": 36
+    },
+    "shares": {
+      "executed_no_verified_solution": 0.03333333333333333,
+      "missing_objective": 0.0033333333333333335,
+      "not_executable": 0.30333333333333334,
+      "objective_match": 0.5333333333333333,
+      "objective_mismatch": 0.006666666666666667,
+      "objective_mismatch_with_variables": 0.12
+    }
+  }
+}

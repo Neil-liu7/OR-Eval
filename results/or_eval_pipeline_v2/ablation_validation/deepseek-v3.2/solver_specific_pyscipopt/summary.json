@@ -1,0 +1,64 @@
+{
+  "n": 300,
+  "accuracy": 0.6266666666666667,
+  "acc_5pct": 0.6266666666666667,
+  "acc_1pct": 0.6,
+  "acc_1e-4": 0.5533333333333333,
+  "executable_rate": 0.77,
+  "solve_rate": 0.7633333333333333,
+  "objective_evaluable_rate": 0.7666666666666667,
+  "variable_output_rate": 0.0,
+  "constraint_checked_rate": 0.7633333333333333,
+  "mean_gap": 6.401949616127012e+16,
+  "avg_latency": 18.889772770404814,
+  "avg_tokens": 942.9933333333333,
+  "solver_distribution": {
+    "counts": {
+      "mip+pyscipopt": 1,
+      "pyscipopt": 299
+    },
+    "shares": {
+      "mip+pyscipopt": 0.0033333333333333335,
+      "pyscipopt": 0.9966666666666667
+    },
+    "max_share": 0.9966666666666667,
+    "entropy": 0.022340379843483554,
+    "uniformity": 0.03223035521176948
+  },
+  "failure_distribution": {
+    "counts": {
+      "correct": 188,
+      "exec_no_solve": 2,
+      "name_error": 11,
+      "runtime_error": 32,
+      "syntax_error": 25,
+      "timeout": 1,
+      "wrong_numeric": 41
+    },
+    "shares": {
+      "correct": 0.6266666666666667,
+      "exec_no_solve": 0.006666666666666667,
+      "name_error": 0.03666666666666667,
+      "runtime_error": 0.10666666666666667,
+      "syntax_error": 0.08333333333333333,
+      "timeout": 0.0033333333333333335,
+      "wrong_numeric": 0.13666666666666666
+    }
+  },
+  "verification_distribution": {
+    "counts": {
+      "executed_no_verified_solution": 1,
+      "missing_objective": 1,
+      "not_executable": 69,
+      "objective_match": 188,
+      "objective_mismatch": 41
+    },
+    "shares": {
+      "executed_no_verified_solution": 0.0033333333333333335,
+      "missing_objective": 0.0033333333333333335,
+      "not_executable": 0.23,
+      "objective_match": 0.6266666666666667,
+      "objective_mismatch": 0.13666666666666666
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "n": 300,
+  "accuracy": 0.6166666666666667,
+  "acc_5pct": 0.6166666666666667,
+  "acc_1pct": 0.5633333333333334,
+  "acc_1e-4": 0.5033333333333333,
+  "executable_rate": 0.79,
+  "solve_rate": 0.7666666666666667,
+  "mean_gap": 81.50636776619605,
+  "avg_latency": 15.071586018403371,
+  "avg_tokens": 952.77,
+  "solver_distribution": {
+    "counts": {
+      "coptpy": 2,
+      "cvxpy": 12,
+      "docplex": 3,
+      "gurobipy": 1,
+      "ortools": 2,
+      "pulp": 172,
+      "pulp+scipy.optimize": 1,
+      "pyomo": 6,
+      "scipy.optimize": 80,
+      "unknown": 21
+    },
+    "shares": {
+      "coptpy": 0.006666666666666667,
+      "cvxpy": 0.04,
+      "docplex": 0.01,
+      "gurobipy": 0.0033333333333333335,
+      "ortools": 0.006666666666666667,
+      "pulp": 0.5733333333333334,
+      "pulp+scipy.optimize": 0.0033333333333333335,
+      "pyomo": 0.02,
+      "scipy.optimize": 0.26666666666666666,
+      "unknown": 0.07
+    },
+    "max_share": 0.5733333333333334,
+    "entropy": 1.2154357607259185,
+    "uniformity": 0.5278570439911475
+  }
+}

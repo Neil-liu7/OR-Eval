@@ -1,0 +1,23 @@
+{
+  "n": 300,
+  "accuracy": 0.71,
+  "acc_5pct": 0.71,
+  "acc_1pct": 0.7033333333333334,
+  "acc_1e-4": 0.6633333333333333,
+  "executable_rate": 0.84,
+  "solve_rate": 0.8333333333333334,
+  "mean_gap": 22.411930102390862,
+  "avg_latency": 14.876896845499674,
+  "avg_tokens": 898.1033333333334,
+  "solver_distribution": {
+    "counts": {
+      "pyscipopt": 300
+    },
+    "shares": {
+      "pyscipopt": 1.0
+    },
+    "max_share": 1.0,
+    "entropy": -0.0,
+    "uniformity": -0.0
+  }
+}

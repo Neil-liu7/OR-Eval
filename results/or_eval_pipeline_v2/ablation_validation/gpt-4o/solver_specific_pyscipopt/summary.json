@@ -1,0 +1,56 @@
+{
+  "n": 300,
+  "accuracy": 0.02,
+  "acc_5pct": 0.02,
+  "acc_1pct": 0.02,
+  "acc_1e-4": 0.016666666666666666,
+  "executable_rate": 0.03333333333333333,
+  "solve_rate": 0.03333333333333333,
+  "objective_evaluable_rate": 0.03333333333333333,
+  "variable_output_rate": 0.0,
+  "constraint_checked_rate": 0.03333333333333333,
+  "mean_gap": 1.6048953445771192,
+  "avg_latency": 7.897244936625163,
+  "avg_tokens": 787.0769230769231,
+  "solver_distribution": {
+    "counts": {
+      "pyscipopt": 13,
+      "unknown": 287
+    },
+    "shares": {
+      "pyscipopt": 0.043333333333333335,
+      "unknown": 0.9566666666666667
+    },
+    "max_share": 0.9566666666666667,
+    "entropy": 0.1783966827561636,
+    "uniformity": 0.25737200952335887
+  },
+  "failure_distribution": {
+    "counts": {
+      "api_error": 287,
+      "correct": 6,
+      "runtime_error": 2,
+      "syntax_error": 1,
+      "wrong_numeric": 4
+    },
+    "shares": {
+      "api_error": 0.9566666666666667,
+      "correct": 0.02,
+      "runtime_error": 0.006666666666666667,
+      "syntax_error": 0.0033333333333333335,
+      "wrong_numeric": 0.013333333333333334
+    }
+  },
+  "verification_distribution": {
+    "counts": {
+      "not_executable": 290,
+      "objective_match": 6,
+      "objective_mismatch": 4
+    },
+    "shares": {
+      "not_executable": 0.9666666666666667,
+      "objective_match": 0.02,
+      "objective_mismatch": 0.013333333333333334
+    }
+  }
+}

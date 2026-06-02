@@ -28,10 +28,7 @@ env/
 .pytest_cache/
 
 # Large result JSONL files (keep reports and summaries only)
-results/*/full_eval/*/results.jsonl
-results/*/ablation_validation/*/*/results.jsonl
-results/*/prompt_search_*/round*/*/results.jsonl
-results/*/prompt_search_*/ablation_prompts/*/results.jsonl
+results/**/results.jsonl
 
 # Old run logs
 results/*.log

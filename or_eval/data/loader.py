@@ -17,7 +17,11 @@ DATASET_FILES = {
     "OptMATH_Bench": "OptMATH_Bench_166.jsonl",
 }
 
-DEFAULT_DATA_DIR = Path(__file__).resolve().parents[3] / "OPTEngine" / "SIRL" / "test_data"
+_PROJECT_ROOT = Path(__file__).resolve().parents[2]
+_EXTERNAL_DATA_DIR = _PROJECT_ROOT.parent / "OPTEngine" / "SIRL" / "test_data"
+_LOCAL_DATA_DIR = _PROJECT_ROOT / "data"
+
+DEFAULT_DATA_DIR = _EXTERNAL_DATA_DIR if _EXTERNAL_DATA_DIR.exists() else _LOCAL_DATA_DIR
 
 
 @dataclass(frozen=True)

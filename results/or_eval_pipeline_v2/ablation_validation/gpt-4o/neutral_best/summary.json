@@ -1,0 +1,60 @@
+{
+  "n": 300,
+  "accuracy": 0.09666666666666666,
+  "acc_5pct": 0.09666666666666666,
+  "acc_1pct": 0.09333333333333334,
+  "acc_1e-4": 0.09333333333333334,
+  "executable_rate": 0.1,
+  "solve_rate": 0.09666666666666666,
+  "objective_evaluable_rate": 0.1,
+  "variable_output_rate": 0.09666666666666666,
+  "constraint_checked_rate": 0.09666666666666666,
+  "mean_gap": 0.0008410428931875506,
+  "avg_latency": 8.195366263389587,
+  "avg_tokens": 843.6417910447761,
+  "solver_distribution": {
+    "counts": {
+      "cvxpy": 35,
+      "ortools": 1,
+      "pulp": 31,
+      "unknown": 233
+    },
+    "shares": {
+      "cvxpy": 0.11666666666666667,
+      "ortools": 0.0033333333333333335,
+      "pulp": 0.10333333333333333,
+      "unknown": 0.7766666666666666
+    },
+    "max_share": 0.7766666666666666,
+    "entropy": 0.7005066574162769,
+    "uniformity": 0.5053087403820834
+  },
+  "failure_distribution": {
+    "counts": {
+      "api_error": 233,
+      "correct": 29,
+      "exec_no_solve": 1,
+      "missing_module": 35,
+      "runtime_error": 2
+    },
+    "shares": {
+      "api_error": 0.7766666666666666,
+      "correct": 0.09666666666666666,
+      "exec_no_solve": 0.0033333333333333335,
+      "missing_module": 0.11666666666666667,
+      "runtime_error": 0.006666666666666667
+    }
+  },
+  "verification_distribution": {
+    "counts": {
+      "executed_no_verified_solution": 1,
+      "not_executable": 270,
+      "objective_match": 29
+    },
+    "shares": {
+      "executed_no_verified_solution": 0.0033333333333333335,
+      "not_executable": 0.9,
+      "objective_match": 0.09666666666666666
+    }
+  }
+}

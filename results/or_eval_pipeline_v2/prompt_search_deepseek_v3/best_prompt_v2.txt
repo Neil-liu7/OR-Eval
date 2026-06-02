@@ -1,0 +1,16 @@
+Carefully translate the natural language optimization problem into decision variables, objective, and constraints, then solve it with Python.
+You may use packages such as scipy.optimize, cvxpy, pulp, pyomo, gurobipy, pyscipopt, coptpy, ortools, highspy, or another suitable solver.
+Inside the code, define the data from the question explicitly before creating the model.
+
+Return only one fenced Python block.
+The program must be self-contained and executable.
+It must print the final optimal objective value exactly as:
+OBJECTIVE_VALUE: <number>
+When practical, also print decision variable values as one JSON object:
+VARIABLE_VALUES: {"name": value}
+If the model proves infeasible or unbounded, print OBJECTIVE_VALUE: INFEASIBLE or OBJECTIVE_VALUE: UNBOUNDED.
+Also print a short SOLVER_STATUS line when available.
+
+Problem:
+{question}
+Pay close attention to units, integer requirements, and whether the task asks to minimize or maximize.

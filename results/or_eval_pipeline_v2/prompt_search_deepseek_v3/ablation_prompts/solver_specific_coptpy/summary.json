@@ -1,0 +1,23 @@
+{
+  "n": 300,
+  "accuracy": 0.0,
+  "acc_5pct": 0.0,
+  "acc_1pct": 0.0,
+  "acc_1e-4": 0.0,
+  "executable_rate": 0.0,
+  "solve_rate": 0.0,
+  "mean_gap": 2.0550436940062458,
+  "avg_latency": 15.25346000035604,
+  "avg_tokens": 920.5166666666667,
+  "solver_distribution": {
+    "counts": {
+      "coptpy": 300
+    },
+    "shares": {
+      "coptpy": 1.0
+    },
+    "max_share": 1.0,
+    "entropy": -0.0,
+    "uniformity": -0.0
+  }
+}

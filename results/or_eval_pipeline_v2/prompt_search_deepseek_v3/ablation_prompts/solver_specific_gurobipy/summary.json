@@ -1,0 +1,23 @@
+{
+  "n": 300,
+  "accuracy": 0.7266666666666667,
+  "acc_5pct": 0.7266666666666667,
+  "acc_1pct": 0.6933333333333334,
+  "acc_1e-4": 0.65,
+  "executable_rate": 0.8766666666666667,
+  "solve_rate": 0.8666666666666667,
+  "mean_gap": 44065.1642377188,
+  "avg_latency": 15.325655355453492,
+  "avg_tokens": 906.0766666666667,
+  "solver_distribution": {
+    "counts": {
+      "gurobipy": 300
+    },
+    "shares": {
+      "gurobipy": 1.0
+    },
+    "max_share": 1.0,
+    "entropy": -0.0,
+    "uniformity": -0.0
+  }
+}

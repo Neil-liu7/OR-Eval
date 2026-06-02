@@ -1,0 +1,70 @@
+{
+  "n": 300,
+  "accuracy": 0.41333333333333333,
+  "acc_5pct": 0.41333333333333333,
+  "acc_1pct": 0.3933333333333333,
+  "acc_1e-4": 0.36333333333333334,
+  "executable_rate": 0.6966666666666667,
+  "solve_rate": 0.64,
+  "objective_evaluable_rate": 0.6966666666666667,
+  "variable_output_rate": 0.5733333333333334,
+  "constraint_checked_rate": 0.64,
+  "mean_gap": 30882056.886357207,
+  "avg_latency": 6.8537300745646155,
+  "avg_tokens": 1111.8166666666666,
+  "solver_distribution": {
+    "counts": {
+      "coptpy": 2,
+      "cvxpy": 58,
+      "ortools": 1,
+      "pulp": 106,
+      "pulp+scipy.optimize": 1,
+      "scipy.optimize": 132
+    },
+    "shares": {
+      "coptpy": 0.006666666666666667,
+      "cvxpy": 0.19333333333333333,
+      "ortools": 0.0033333333333333335,
+      "pulp": 0.35333333333333333,
+      "pulp+scipy.optimize": 0.0033333333333333335,
+      "scipy.optimize": 0.44
+    },
+    "max_share": 0.44,
+    "entropy": 1.1179611855558935,
+    "uniformity": 0.6239460177305749
+  },
+  "failure_distribution": {
+    "counts": {
+      "correct": 124,
+      "exec_no_solve": 2,
+      "infeasible_unbounded_misclassification": 15,
+      "missing_module": 61,
+      "runtime_error": 30,
+      "wrong_numeric": 68
+    },
+    "shares": {
+      "correct": 0.41333333333333333,
+      "exec_no_solve": 0.006666666666666667,
+      "infeasible_unbounded_misclassification": 0.05,
+      "missing_module": 0.20333333333333334,
+      "runtime_error": 0.1,
+      "wrong_numeric": 0.22666666666666666
+    }
+  },
+  "verification_distribution": {
+    "counts": {
+      "executed_no_verified_solution": 17,
+      "not_executable": 91,
+      "objective_match": 124,
+      "objective_mismatch": 19,
+      "objective_mismatch_with_variables": 49
+    },
+    "shares": {
+      "executed_no_verified_solution": 0.056666666666666664,
+      "not_executable": 0.30333333333333334,
+      "objective_match": 0.41333333333333333,
+      "objective_mismatch": 0.06333333333333334,
+      "objective_mismatch_with_variables": 0.16333333333333333
+    }
+  }
+}

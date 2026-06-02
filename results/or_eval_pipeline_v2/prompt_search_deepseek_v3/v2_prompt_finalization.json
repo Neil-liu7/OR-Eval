@@ -1,0 +1,8 @@
+{
+  "selected_prompt_file": "../../best_prompt_v2.txt",
+  "derived_from_search": "prompt_search_summary.json",
+  "base_search_best_prompt_id": "neutral_grid_careful_list_status_parse_first_refine_scale_care",
+  "v2_change": "Adds the VARIABLE_VALUES output contract used by the v2 result schema.",
+  "status": "archived_for_v2_reproducibility",
+  "note": "The original grid/refine search artifacts are preserved in this directory; the v2 selected prompt is the searched finalist plus variable-solution evidence output."
+}
