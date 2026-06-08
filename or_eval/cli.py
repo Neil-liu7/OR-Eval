@@ -22,6 +22,34 @@ def main():
     """OR-Eval: unified, solver-neutral OR LLM evaluation."""
 
 
+@main.command("tasks")
+@click.option("--verbose", "-v", is_flag=True, help="Show full task metadata.")
+def tasks_cmd(verbose: bool):
+    """Show registered task definitions (built-in + YAML-configured)."""
+    from or_eval.tasks import list_tasks
+
+    tasks = list_tasks()
+    if verbose:
+        output = {
+            name: {
+                "dataset_file": cfg.dataset_file,
+                "problem_type": cfg.problem_type,
+                "difficulty": cfg.difficulty,
+                "capabilities": cfg.capabilities,
+                "evaluation_mode": cfg.evaluation_mode,
+                "description": cfg.description,
+                "source": cfg.source,
+            }
+            for name, cfg in tasks.items()
+        }
+    else:
+        output = {
+            name: {"type": cfg.problem_type, "difficulty": cfg.difficulty, "description": cfg.description}
+            for name, cfg in tasks.items()
+        }
+    click.echo(json.dumps(output, indent=2, ensure_ascii=False))
+
+
 @main.command("data-info")
 @click.option("--data-dir", type=click.Path(path_type=Path), default=DEFAULT_DATA_DIR)
 def data_info(data_dir: Path):
@@ -133,7 +161,10 @@ def search_prompts_cmd(model, config, data_dir, output_dir, per_dataset, seed, c
 @click.option("--prompt-id", default="neutral_default", show_default=True)
 @click.option("--limit-per-dataset", type=int, default=None)
 @click.option("--concurrency", type=int, default=4, show_default=True)
-def evaluate_cmd(models, datasets, config, data_dir, output_dir, prompt_file, prompt_id, limit_per_dataset, concurrency):
+@click.option("--mode", type=click.Choice(["single_pass", "self_debug", "reflexion"]), default="single_pass", show_default=True, help="Evaluation mode.")
+@click.option("--max-turns", type=int, default=3, show_default=True, help="Max repair turns for multi-turn modes.")
+@click.option("--few-shot", type=int, default=0, show_default=True, help="Number of few-shot examples (0 = zero-shot).")
+def evaluate_cmd(models, datasets, config, data_dir, output_dir, prompt_file, prompt_id, limit_per_dataset, concurrency, mode, max_turns, few_shot):
     """Run full model evaluation with JSONL resume."""
     from or_eval.evaluation import run_model_evaluation
 
@@ -153,6 +184,9 @@ def evaluate_cmd(models, datasets, config, data_dir, output_dir, prompt_file, pr
         timeout=cfg.get("execution", {}).get("timeout", 30),
         memory_limit_mb=cfg.get("execution", {}).get("memory_limit_mb", 2048),
         max_tokens=cfg.get("api", {}).get("max_tokens", 4096),
+        evaluation_mode=mode,
+        max_turns=max_turns,
+        few_shot=few_shot,
     )
     click.echo(json.dumps(summary, indent=2, ensure_ascii=False))
 
@@ -205,6 +239,83 @@ def report_cmd(results_dir, output_dir):
 
     report = generate_report(results_dir, output_dir)
     click.echo(f"Report written to {report['output_dir']}")
+
+
+@main.command("statistics")
+@click.option("--results-dir", type=click.Path(path_type=Path), default=DEFAULT_RESULTS_DIR)
+@click.option("--output-dir", type=click.Path(path_type=Path), default=None)
+def statistics_cmd(results_dir: Path, output_dir: Path | None):
+    """Run publication-quality statistical analyses (CI, significance, item analysis)."""
+    from or_eval.metrics.statistics import (
+        bootstrap_ci,
+        cross_dataset_rank_stability,
+        extraction_confidence_analysis,
+        item_discrimination,
+        pairwise_significance,
+    )
+    from or_eval.reporting.reports import collect_result_rows
+
+    output_dir = output_dir or results_dir / "report" / "statistics"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    rows = collect_result_rows(results_dir / "full_eval")
+    if not rows:
+        rows = collect_result_rows(results_dir)
+    if not rows:
+        raise click.ClickException("No result rows found.")
+
+    models = sorted({str(r.get("model")) for r in rows if r.get("model")})
+    model_ci = {}
+    for model in models:
+        model_rows = [r for r in rows if r.get("model") == model]
+        correct = [bool(r.get("acc_5pct")) for r in model_rows]
+        model_ci[model] = bootstrap_ci(correct)
+
+    significance_matrix = {}
+    for i, ma in enumerate(models):
+        for mb in models[i + 1:]:
+            rows_a = {r["problem_id"]: bool(r.get("acc_5pct")) for r in rows if r.get("model") == ma}
+            rows_b = {r["problem_id"]: bool(r.get("acc_5pct")) for r in rows if r.get("model") == mb}
+            common = sorted(set(rows_a) & set(rows_b))
+            if common:
+                sig = pairwise_significance(
+                    [rows_a[p] for p in common],
+                    [rows_b[p] for p in common],
+                )
+                significance_matrix[f"{ma}_vs_{mb}"] = sig
+
+    rank_stability = cross_dataset_rank_stability(rows)
+    confidence_analysis = extraction_confidence_analysis(rows)
+    items = item_discrimination(rows)
+
+    ablation_dir = results_dir / "ablation_validation"
+    if not ablation_dir.exists():
+        ablation_dir = results_dir / "ablation"
+    ablation_rows = collect_result_rows(ablation_dir) if ablation_dir.exists() else []
+
+    sensitivity = None
+    if ablation_rows:
+        from or_eval.metrics.sensitivity import full_methodology_sensitivity
+        sensitivity = full_methodology_sensitivity(rows, ablation_rows)
+
+    report = {
+        "model_confidence_intervals": model_ci,
+        "pairwise_significance": significance_matrix,
+        "rank_stability": rank_stability,
+        "extraction_confidence": confidence_analysis,
+        "top_discriminating_items": items[:20] if items else [],
+        "bottom_discriminating_items": items[-20:] if items else [],
+        "methodology_sensitivity": sensitivity,
+    }
+    (output_dir / "statistical_analysis.json").write_text(
+        json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8"
+    )
+    click.echo(f"Statistical analysis → {output_dir / 'statistical_analysis.json'}")
+    click.echo(f"Models: {len(models)}, Problems: {len(set(r.get('problem_id') for r in rows))}")
+    for model, ci in model_ci.items():
+        click.echo(f"  {model}: {ci['estimate']:.3f} [{ci['ci_lower']:.3f}, {ci['ci_upper']:.3f}]")
+    if sensitivity:
+        headline = sensitivity.get("headline_findings", {})
+        click.echo(f"\nMethodology sensitivity: {headline.get('conclusion', 'N/A')}")
 
 
 @main.command("fairness-smoke")
@@ -314,9 +425,11 @@ def _resolve_models(cli_models: str, cfg: dict) -> list[str | dict]:
     If the config has a models list with dicts (provider, api_key_env, etc.),
     those entries are used for matching CLI model names. CLI names not in config
     are passed through as plain strings (using auto provider detection).
+    model_overrides from config (e.g. per-model max_tokens) are applied.
     """
     cli_names = _split(cli_models)
     config_models = cfg.get("models", [])
+    overrides = cfg.get("model_overrides", {})
     config_by_name: dict[str, dict] = {}
     for entry in config_models:
         if isinstance(entry, dict):
@@ -328,10 +441,14 @@ def _resolve_models(cli_models: str, cfg: dict) -> list[str | dict]:
 
     resolved: list[str | dict] = []
     for name in cli_names:
-        if name in config_by_name:
-            resolved.append(config_by_name[name])
-        else:
-            resolved.append(name)
+        entry = config_by_name.get(name, name)
+        override = overrides.get(name)
+        if override and isinstance(override, dict):
+            if isinstance(entry, str):
+                entry = {"name": entry, **override}
+            else:
+                entry = {**entry, **override}
+        resolved.append(entry)
     return resolved
 
 

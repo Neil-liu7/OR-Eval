@@ -6,8 +6,8 @@
   "schema_version": "or-eval-result-v2",
   "framework_blockers": [],
   "result_blockers": [],
-  "n": 10606,
-  "objective_evaluable_rate": 0.7245898547991703,
-  "variable_output_rate": 0.6730152743729965,
+  "n": 19928,
+  "objective_evaluable_rate": 0.6892814130871137,
+  "variable_output_rate": 0.6479827378562826,
   "message": "Framework and results satisfy the strict OR-Eval fairness protocol."
 }

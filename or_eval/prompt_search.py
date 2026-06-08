@@ -7,7 +7,7 @@ from pathlib import Path
 from or_eval.data import BenchmarkProblem, load_datasets, validation_split
 from or_eval.evaluation import _evaluate_problem_set, _run_metadata
 from or_eval.execution.solver_env import solver_environment_hash, solver_environment_snapshot
-from or_eval.inference import GeminiStyleClient
+from or_eval.inference import create_client
 from or_eval.metrics import aggregate_results
 from or_eval.prompts.neutral import PromptSpec, neutral_prompt_candidates, refine_prompt, solver_specific_prompts
 
@@ -27,7 +27,7 @@ def search_prompts(
     max_tokens: int = 4096,
 ) -> dict:
     output_dir.mkdir(parents=True, exist_ok=True)
-    client = GeminiStyleClient(model=model, api_url=api_url, api_key=api_key, max_tokens=max_tokens, temperature=0)
+    client = create_client(model=model, api_url=api_url, api_key=api_key, max_tokens=max_tokens, temperature=0)
     val_problems = validation_split(data_dir=data_dir, per_dataset=per_dataset, seed=seed)
     solver_env = solver_environment_snapshot()
     solver_env_digest = solver_environment_hash(solver_env)
@@ -85,7 +85,7 @@ def search_prompts(
 
 
 def _score_specs(
-    client: GeminiStyleClient,
+    client,
     problems: list[BenchmarkProblem],
     specs: list[PromptSpec],
     output_dir: Path,

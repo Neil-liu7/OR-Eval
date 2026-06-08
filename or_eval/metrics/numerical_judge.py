@@ -156,19 +156,37 @@ def aggregate_results(results: list[dict]) -> dict[str, Any]:
         1 for r in results
         if (r.get("solution_verification") or {}).get("constraint_feasibility") not in {None, "not_checked"}
     )
+    high_conf_rows = [
+        r for r in results
+        if (r.get("objective_extraction") or {}).get("confidence") == "high"
+    ]
+    high_conf_accuracy = (
+        sum(1 for r in high_conf_rows if r.get("acc_5pct")) / len(high_conf_rows)
+        if high_conf_rows else None
+    )
     gaps = [r["gap"] for r in results if r.get("gap") is not None and _objective_evaluable(r)]
     latencies = [r["latency"] for r in results if r.get("latency") is not None]
     tokens = [r["tokens_total"] for r in results if r.get("tokens_total") is not None]
+    sorted_gaps = sorted(gaps)
+    median_gap = sorted_gaps[len(sorted_gaps) // 2] if sorted_gaps else None
+    env_excluded = [r for r in results if r.get("failure_type") != "missing_module"]
+    env_corrected_accuracy = (
+        sum(1 for r in env_excluded if r.get("acc_5pct")) / len(env_excluded)
+        if env_excluded else None
+    )
     metrics = {
         "n": n,
         "accuracy": flags["acc_5pct"],
         **flags,
+        "high_confidence_accuracy": high_conf_accuracy,
+        "env_corrected_accuracy": env_corrected_accuracy,
         "executable_rate": executable / n,
         "solve_rate": solved / n,
         "objective_evaluable_rate": objective_evaluable / n,
         "variable_output_rate": variable_outputs / n,
         "constraint_checked_rate": constraint_checked / n,
         "mean_gap": sum(gaps) / len(gaps) if gaps else None,
+        "median_gap": median_gap,
         "avg_latency": sum(latencies) / len(latencies) if latencies else None,
         "avg_tokens": sum(tokens) / len(tokens) if tokens else None,
         "solver_distribution": solver_distribution(results),

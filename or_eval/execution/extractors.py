@@ -25,10 +25,20 @@ def extract_code_block(text: str) -> str:
     """Return the most likely Python code from an LLM response."""
     if not text:
         return ""
+    # Standard: closed fenced block
     match = re.search(r"```(?:python|py)?\s*\n(.*?)```", text, re.DOTALL | re.IGNORECASE)
     if match:
         return _strip_code(match.group(1))
-    return _strip_code(text)
+    # Fallback: unclosed fenced block (truncated response) — take from last opening fence
+    unclosed = list(re.finditer(r"```(?:python|py)?\s*\n", text, re.IGNORECASE))
+    if unclosed:
+        code = text[unclosed[-1].end():]
+        if _looks_like_code(code):
+            return _strip_code(code)
+    # No fenced block at all — only use raw text if it looks like code
+    if _looks_like_code(text):
+        return _strip_code(text)
+    return ""
 
 
 def extract_objective_value(text: str) -> float | str | None:
@@ -111,9 +121,14 @@ def extract_solver_status(text: str) -> str:
 
 def _strip_code(code: str) -> str:
     code = code.strip()
-    # Some models prefix a language tag even without fenced markdown.
     code = re.sub(r"^\s*(python|py)\s*\n", "", code, flags=re.IGNORECASE)
     return code.strip()
+
+
+def _looks_like_code(text: str) -> bool:
+    """Heuristic: does this text look like Python code rather than prose?"""
+    first_line = text.lstrip().split("\n", 1)[0]
+    return bool(re.match(r"^(import |from |def |class |#|@|\w+\s*=)", first_line))
 
 
 def _coerce_number(value: str) -> float | str | None:

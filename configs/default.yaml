@@ -6,15 +6,28 @@ api:
   max_tokens: 4096
   temperature: 0
 
-# Models can be simple strings (use default provider) or dicts with provider config.
-# All models below route through the eBill proxy by default.
-# To use OpenAI/Anthropic directly, set provider and api_key_env explicitly.
+# Per-model max_tokens override for thinking/reasoning models
+model_overrides:
+  gemini-2.5-pro:
+    max_tokens: 16384
+  o3-mini:
+    max_tokens: 16384
+  o4-mini:
+    max_tokens: 16384
+  deepseek-r1:
+    max_tokens: 16384
+
 models:
   - deepseek-v3
   - deepseek-v3.2
+  - gpt-4o
   - gpt-4o-mini
+  - gpt-4.1-mini
+  - gpt-4.1
+  - o4-mini
   - gemini-2.5-pro
-  - o3-mini
+  - qwen-max
+  - qwen3-235b-a22b
 
 datasets:
   - NL4OPT

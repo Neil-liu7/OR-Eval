@@ -1,0 +1,86 @@
+{
+  "n": 1961,
+  "accuracy": 0.6935237123916369,
+  "acc_5pct": 0.6935237123916369,
+  "acc_1pct": 0.6715961244263131,
+  "acc_1e-4": 0.6420193778684344,
+  "high_confidence_accuracy": 0.8695652173913043,
+  "executable_rate": 0.7955124936257012,
+  "solve_rate": 0.7705252422233554,
+  "objective_evaluable_rate": 0.7955124936257012,
+  "variable_output_rate": 0.7526772055073941,
+  "constraint_checked_rate": 0.7705252422233554,
+  "mean_gap": 709.3477052731754,
+  "median_gap": 0.0,
+  "avg_latency": 5.802539742400244,
+  "avg_tokens": 1084.0917899031106,
+  "solver_distribution": {
+    "counts": {
+      "coptpy": 3,
+      "cvxpy": 278,
+      "mip+pulp+pyomo+scipy.optimize": 1,
+      "mip+pulp+scipy.optimize": 1,
+      "mip+scipy.optimize": 1,
+      "ortools": 21,
+      "pulp": 1330,
+      "pulp+scipy.optimize": 11,
+      "pyomo": 20,
+      "scipy.optimize": 278,
+      "unknown": 17
+    },
+    "shares": {
+      "coptpy": 0.0015298317185109638,
+      "cvxpy": 0.1417644059153493,
+      "mip+pulp+pyomo+scipy.optimize": 0.0005099439061703213,
+      "mip+pulp+scipy.optimize": 0.0005099439061703213,
+      "mip+scipy.optimize": 0.0005099439061703213,
+      "ortools": 0.010708822029576747,
+      "pulp": 0.6782253952065272,
+      "pulp+scipy.optimize": 0.0056093829678735335,
+      "pyomo": 0.010198878123406425,
+      "scipy.optimize": 0.1417644059153493,
+      "unknown": 0.008669046404895462
+    },
+    "max_share": 0.6782253952065272,
+    "entropy": 1.0043374234385587,
+    "uniformity": 0.41884123749344804
+  },
+  "failure_distribution": {
+    "counts": {
+      "correct": 1360,
+      "exec_no_solve": 12,
+      "infeasible_unbounded_misclassification": 37,
+      "missing_module": 320,
+      "runtime_error": 75,
+      "syntax_error": 2,
+      "timeout": 4,
+      "wrong_numeric": 151
+    },
+    "shares": {
+      "correct": 0.6935237123916369,
+      "exec_no_solve": 0.006119326874043855,
+      "infeasible_unbounded_misclassification": 0.018867924528301886,
+      "missing_module": 0.1631820499745028,
+      "runtime_error": 0.0382457929627741,
+      "syntax_error": 0.0010198878123406426,
+      "timeout": 0.002039775624681285,
+      "wrong_numeric": 0.07700152983171851
+    }
+  },
+  "verification_distribution": {
+    "counts": {
+      "executed_no_verified_solution": 49,
+      "not_executable": 401,
+      "objective_match": 1360,
+      "objective_mismatch": 9,
+      "objective_mismatch_with_variables": 142
+    },
+    "shares": {
+      "executed_no_verified_solution": 0.024987251402345742,
+      "not_executable": 0.20448750637429883,
+      "objective_match": 0.6935237123916369,
+      "objective_mismatch": 0.004589495155532891,
+      "objective_mismatch_with_variables": 0.07241203467618562
+    }
+  }
+}

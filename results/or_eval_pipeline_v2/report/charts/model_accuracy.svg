@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="380" viewBox="0 0 900 380">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="540" viewBox="0 0 900 540">
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="24" y="32" font-family="Arial, sans-serif" font-size="20" font-weight="700">Full Eval Accuracy by Model</text>
-<text x="230" y="366" font-family="Arial, sans-serif" font-size="12" fill="#555">accuracy</text>
+<text x="230" y="526" font-family="Arial, sans-serif" font-size="12" fill="#555">accuracy</text>
 <text x="24" y="75" font-family="Arial, sans-serif" font-size="12" fill="#222">deepseek-v3</text>
 <rect x="230" y="56" width="630" height="28" fill="#edf2f2"/>
 <rect x="230" y="56" width="418" height="28" fill="#2f6f73"/>
@@ -12,22 +12,38 @@
 <text x="596" y="115" font-family="Arial, sans-serif" font-size="12" fill="#222">0.569</text>
 <text x="24" y="155" font-family="Arial, sans-serif" font-size="12" fill="#222">gemini-2.5-pro</text>
 <rect x="230" y="136" width="630" height="28" fill="#edf2f2"/>
-<rect x="230" y="136" width="224" height="28" fill="#2f6f73"/>
-<text x="462" y="155" font-family="Arial, sans-serif" font-size="12" fill="#222">0.356</text>
-<text x="24" y="195" font-family="Arial, sans-serif" font-size="12" fill="#222">gpt-4.1-mini</text>
+<rect x="230" y="136" width="138" height="28" fill="#2f6f73"/>
+<text x="376" y="155" font-family="Arial, sans-serif" font-size="12" fill="#222">0.220</text>
+<text x="24" y="195" font-family="Arial, sans-serif" font-size="12" fill="#222">gpt-4.1</text>
 <rect x="230" y="176" width="630" height="28" fill="#edf2f2"/>
-<rect x="230" y="176" width="465" height="28" fill="#2f6f73"/>
-<text x="703" y="195" font-family="Arial, sans-serif" font-size="12" fill="#222">0.739</text>
-<text x="24" y="235" font-family="Arial, sans-serif" font-size="12" fill="#222">gpt-4o</text>
+<rect x="230" y="176" width="436" height="28" fill="#2f6f73"/>
+<text x="674" y="195" font-family="Arial, sans-serif" font-size="12" fill="#222">0.694</text>
+<text x="24" y="235" font-family="Arial, sans-serif" font-size="12" fill="#222">gpt-4.1-mini</text>
 <rect x="230" y="216" width="630" height="28" fill="#edf2f2"/>
-<rect x="230" y="216" width="250" height="28" fill="#2f6f73"/>
-<text x="488" y="235" font-family="Arial, sans-serif" font-size="12" fill="#222">0.398</text>
-<text x="24" y="275" font-family="Arial, sans-serif" font-size="12" fill="#222">gpt-4o-mini</text>
+<rect x="230" y="216" width="465" height="28" fill="#2f6f73"/>
+<text x="703" y="235" font-family="Arial, sans-serif" font-size="12" fill="#222">0.739</text>
+<text x="24" y="275" font-family="Arial, sans-serif" font-size="12" fill="#222">gpt-4o</text>
 <rect x="230" y="256" width="630" height="28" fill="#edf2f2"/>
-<rect x="230" y="256" width="318" height="28" fill="#2f6f73"/>
-<text x="556" y="275" font-family="Arial, sans-serif" font-size="12" fill="#222">0.505</text>
-<text x="24" y="315" font-family="Arial, sans-serif" font-size="12" fill="#222">o3-mini</text>
+<rect x="230" y="256" width="250" height="28" fill="#2f6f73"/>
+<text x="488" y="275" font-family="Arial, sans-serif" font-size="12" fill="#222">0.398</text>
+<text x="24" y="315" font-family="Arial, sans-serif" font-size="12" fill="#222">gpt-4o-mini</text>
 <rect x="230" y="296" width="630" height="28" fill="#edf2f2"/>
-<rect x="230" y="296" width="546" height="28" fill="#b24b3f"/>
-<text x="784" y="315" font-family="Arial, sans-serif" font-size="12" fill="#222">0.868</text>
+<rect x="230" y="296" width="318" height="28" fill="#2f6f73"/>
+<text x="556" y="315" font-family="Arial, sans-serif" font-size="12" fill="#222">0.505</text>
+<text x="24" y="355" font-family="Arial, sans-serif" font-size="12" fill="#222">o3-mini</text>
+<rect x="230" y="336" width="630" height="28" fill="#edf2f2"/>
+<rect x="230" y="336" width="546" height="28" fill="#b24b3f"/>
+<text x="784" y="355" font-family="Arial, sans-serif" font-size="12" fill="#222">0.868</text>
+<text x="24" y="395" font-family="Arial, sans-serif" font-size="12" fill="#222">o4-mini</text>
+<rect x="230" y="376" width="630" height="28" fill="#edf2f2"/>
+<rect x="230" y="376" width="490" height="28" fill="#2f6f73"/>
+<text x="728" y="395" font-family="Arial, sans-serif" font-size="12" fill="#222">0.779</text>
+<text x="24" y="435" font-family="Arial, sans-serif" font-size="12" fill="#222">qwen-max</text>
+<rect x="230" y="416" width="630" height="28" fill="#edf2f2"/>
+<rect x="230" y="416" width="201" height="28" fill="#2f6f73"/>
+<text x="439" y="435" font-family="Arial, sans-serif" font-size="12" fill="#222">0.320</text>
+<text x="24" y="475" font-family="Arial, sans-serif" font-size="12" fill="#222">qwen3-235b-a22b</text>
+<rect x="230" y="456" width="630" height="28" fill="#edf2f2"/>
+<rect x="230" y="456" width="447" height="28" fill="#2f6f73"/>
+<text x="685" y="475" font-family="Arial, sans-serif" font-size="12" fill="#222">0.711</text>
 </svg>

@@ -1,310 +1,100 @@
 {
-  "gpt-4o/neutral_best": {
+  "gpt-4.1/neutral_best": {
     "n": 300,
-    "accuracy": 0.09666666666666666,
-    "acc_5pct": 0.09666666666666666,
-    "acc_1pct": 0.09333333333333334,
-    "acc_1e-4": 0.09333333333333334,
-    "executable_rate": 0.1,
-    "solve_rate": 0.09666666666666666,
-    "objective_evaluable_rate": 0.1,
-    "variable_output_rate": 0.09666666666666666,
-    "constraint_checked_rate": 0.09666666666666666,
-    "mean_gap": 0.0008410428931875506,
-    "avg_latency": 8.195366263389587,
-    "avg_tokens": 843.6417910447761,
-    "solver_distribution": {
-      "counts": {
-        "cvxpy": 35,
-        "ortools": 1,
-        "pulp": 31,
-        "unknown": 233
-      },
-      "shares": {
-        "cvxpy": 0.11666666666666667,
-        "ortools": 0.0033333333333333335,
-        "pulp": 0.10333333333333333,
-        "unknown": 0.7766666666666666
-      },
-      "max_share": 0.7766666666666666,
-      "entropy": 0.7005066574162769,
-      "uniformity": 0.5053087403820834
-    },
-    "failure_distribution": {
-      "counts": {
-        "api_error": 233,
-        "correct": 29,
-        "exec_no_solve": 1,
-        "missing_module": 35,
-        "runtime_error": 2
-      },
-      "shares": {
-        "api_error": 0.7766666666666666,
-        "correct": 0.09666666666666666,
-        "exec_no_solve": 0.0033333333333333335,
-        "missing_module": 0.11666666666666667,
-        "runtime_error": 0.006666666666666667
-      }
-    },
-    "verification_distribution": {
-      "counts": {
-        "executed_no_verified_solution": 1,
-        "not_executable": 270,
-        "objective_match": 29
-      },
-      "shares": {
-        "executed_no_verified_solution": 0.0033333333333333335,
-        "not_executable": 0.9,
-        "objective_match": 0.09666666666666666
-      }
-    }
-  },
-  "gpt-4o/solver_specific_pyscipopt": {
-    "n": 300,
-    "accuracy": 0.02,
-    "acc_5pct": 0.02,
-    "acc_1pct": 0.02,
-    "acc_1e-4": 0.016666666666666666,
-    "executable_rate": 0.03333333333333333,
-    "solve_rate": 0.03333333333333333,
-    "objective_evaluable_rate": 0.03333333333333333,
-    "variable_output_rate": 0.0,
-    "constraint_checked_rate": 0.03333333333333333,
-    "mean_gap": 1.6048953445771192,
-    "avg_latency": 7.897244936625163,
-    "avg_tokens": 787.0769230769231,
-    "solver_distribution": {
-      "counts": {
-        "pyscipopt": 13,
-        "unknown": 287
-      },
-      "shares": {
-        "pyscipopt": 0.043333333333333335,
-        "unknown": 0.9566666666666667
-      },
-      "max_share": 0.9566666666666667,
-      "entropy": 0.1783966827561636,
-      "uniformity": 0.25737200952335887
-    },
-    "failure_distribution": {
-      "counts": {
-        "api_error": 287,
-        "correct": 6,
-        "runtime_error": 2,
-        "syntax_error": 1,
-        "wrong_numeric": 4
-      },
-      "shares": {
-        "api_error": 0.9566666666666667,
-        "correct": 0.02,
-        "runtime_error": 0.006666666666666667,
-        "syntax_error": 0.0033333333333333335,
-        "wrong_numeric": 0.013333333333333334
-      }
-    },
-    "verification_distribution": {
-      "counts": {
-        "not_executable": 290,
-        "objective_match": 6,
-        "objective_mismatch": 4
-      },
-      "shares": {
-        "not_executable": 0.9666666666666667,
-        "objective_match": 0.02,
-        "objective_mismatch": 0.013333333333333334
-      }
-    }
-  },
-  "gpt-4o/solver_specific_gurobipy": {
-    "n": 300,
-    "accuracy": 0.03666666666666667,
-    "acc_5pct": 0.03666666666666667,
-    "acc_1pct": 0.03333333333333333,
-    "acc_1e-4": 0.02666666666666667,
-    "executable_rate": 0.05333333333333334,
-    "solve_rate": 0.05,
-    "objective_evaluable_rate": 0.05333333333333334,
-    "variable_output_rate": 0.0,
-    "constraint_checked_rate": 0.05,
-    "mean_gap": 0.23750659587430573,
-    "avg_latency": 9.664391222794851,
-    "avg_tokens": 851.6842105263158,
-    "solver_distribution": {
-      "counts": {
-        "gurobipy": 19,
-        "unknown": 281
-      },
-      "shares": {
-        "gurobipy": 0.06333333333333334,
-        "unknown": 0.9366666666666666
-      },
-      "max_share": 0.9366666666666666,
-      "entropy": 0.23604246569971798,
-      "uniformity": 0.34053729470418637
-    },
-    "failure_distribution": {
-      "counts": {
-        "api_error": 281,
-        "correct": 11,
-        "infeasible_unbounded_misclassification": 1,
-        "runtime_error": 2,
-        "timeout": 1,
-        "wrong_numeric": 4
-      },
-      "shares": {
-        "api_error": 0.9366666666666666,
-        "correct": 0.03666666666666667,
-        "infeasible_unbounded_misclassification": 0.0033333333333333335,
-        "runtime_error": 0.006666666666666667,
-        "timeout": 0.0033333333333333335,
-        "wrong_numeric": 0.013333333333333334
-      }
-    },
-    "verification_distribution": {
-      "counts": {
-        "executed_no_verified_solution": 1,
-        "not_executable": 284,
-        "objective_match": 11,
-        "objective_mismatch": 4
-      },
-      "shares": {
-        "executed_no_verified_solution": 0.0033333333333333335,
-        "not_executable": 0.9466666666666667,
-        "objective_match": 0.03666666666666667,
-        "objective_mismatch": 0.013333333333333334
-      }
-    }
-  },
-  "gpt-4o/solver_specific_coptpy": {
-    "n": 300,
-    "accuracy": 0.0,
-    "acc_5pct": 0.0,
-    "acc_1pct": 0.0,
-    "acc_1e-4": 0.0,
-    "executable_rate": 0.0,
-    "solve_rate": 0.0,
-    "objective_evaluable_rate": 0.0,
-    "variable_output_rate": 0.0,
-    "constraint_checked_rate": 0.0,
-    "mean_gap": null,
-    "avg_latency": 8.724931070009868,
-    "avg_tokens": 849.0833333333334,
-    "solver_distribution": {
-      "counts": {
-        "coptpy": 12,
-        "unknown": 288
-      },
-      "shares": {
-        "coptpy": 0.04,
-        "unknown": 0.96
-      },
-      "max_share": 0.96,
-      "entropy": 0.167944147734173,
-      "uniformity": 0.24229218908241482
-    },
-    "failure_distribution": {
-      "counts": {
-        "api_error": 288,
-        "missing_module": 12
-      },
-      "shares": {
-        "api_error": 0.96,
-        "missing_module": 0.04
-      }
-    },
-    "verification_distribution": {
-      "counts": {
-        "not_executable": 300
-      },
-      "shares": {
-        "not_executable": 1.0
-      }
-    }
-  },
-  "gpt-4o-mini/neutral_best": {
-    "n": 300,
-    "accuracy": 0.41333333333333333,
-    "acc_5pct": 0.41333333333333333,
-    "acc_1pct": 0.3933333333333333,
-    "acc_1e-4": 0.36333333333333334,
-    "executable_rate": 0.6966666666666667,
-    "solve_rate": 0.64,
-    "objective_evaluable_rate": 0.6966666666666667,
-    "variable_output_rate": 0.5733333333333334,
-    "constraint_checked_rate": 0.64,
-    "mean_gap": 30882056.886357207,
-    "avg_latency": 6.8537300745646155,
-    "avg_tokens": 1111.8166666666666,
+    "accuracy": 0.6133333333333333,
+    "acc_5pct": 0.6133333333333333,
+    "acc_1pct": 0.5866666666666667,
+    "acc_1e-4": 0.55,
+    "high_confidence_accuracy": 0.8440366972477065,
+    "executable_rate": 0.7266666666666667,
+    "solve_rate": 0.7066666666666667,
+    "objective_evaluable_rate": 0.7266666666666667,
+    "variable_output_rate": 0.6866666666666666,
+    "constraint_checked_rate": 0.7066666666666667,
+    "mean_gap": 5024.799256523749,
+    "median_gap": 0.0,
+    "avg_latency": 6.801014060974121,
+    "avg_tokens": 1296.3866666666668,
     "solver_distribution": {
       "counts": {
         "coptpy": 2,
-        "cvxpy": 58,
-        "ortools": 1,
-        "pulp": 106,
-        "pulp+scipy.optimize": 1,
-        "scipy.optimize": 132
+        "cvxpy": 56,
+        "mip+pulp": 1,
+        "ortools": 5,
+        "pulp": 182,
+        "pulp+scipy.optimize": 4,
+        "pyomo": 5,
+        "scipy.optimize": 40,
+        "unknown": 5
       },
       "shares": {
         "coptpy": 0.006666666666666667,
-        "cvxpy": 0.19333333333333333,
-        "ortools": 0.0033333333333333335,
-        "pulp": 0.35333333333333333,
-        "pulp+scipy.optimize": 0.0033333333333333335,
-        "scipy.optimize": 0.44
+        "cvxpy": 0.18666666666666668,
+        "mip+pulp": 0.0033333333333333335,
+        "ortools": 0.016666666666666666,
+        "pulp": 0.6066666666666667,
+        "pulp+scipy.optimize": 0.013333333333333334,
+        "pyomo": 0.016666666666666666,
+        "scipy.optimize": 0.13333333333333333,
+        "unknown": 0.016666666666666666
       },
-      "max_share": 0.44,
-      "entropy": 1.1179611855558935,
-      "uniformity": 0.6239460177305749
+      "max_share": 0.6066666666666667,
+      "entropy": 1.1998587067034894,
+      "uniformity": 0.5460792306256307
     },
     "failure_distribution": {
       "counts": {
-        "correct": 124,
+        "correct": 184,
         "exec_no_solve": 2,
-        "infeasible_unbounded_misclassification": 15,
-        "missing_module": 61,
-        "runtime_error": 30,
-        "wrong_numeric": 68
+        "infeasible_unbounded_misclassification": 4,
+        "missing_module": 69,
+        "runtime_error": 11,
+        "timeout": 2,
+        "wrong_numeric": 28
       },
       "shares": {
-        "correct": 0.41333333333333333,
+        "correct": 0.6133333333333333,
         "exec_no_solve": 0.006666666666666667,
-        "infeasible_unbounded_misclassification": 0.05,
-        "missing_module": 0.20333333333333334,
-        "runtime_error": 0.1,
-        "wrong_numeric": 0.22666666666666666
+        "infeasible_unbounded_misclassification": 0.013333333333333334,
+        "missing_module": 0.23,
+        "runtime_error": 0.03666666666666667,
+        "timeout": 0.006666666666666667,
+        "wrong_numeric": 0.09333333333333334
       }
     },
     "verification_distribution": {
       "counts": {
-        "executed_no_verified_solution": 17,
-        "not_executable": 91,
-        "objective_match": 124,
-        "objective_mismatch": 19,
-        "objective_mismatch_with_variables": 49
+        "executed_no_verified_solution": 6,
+        "not_executable": 82,
+        "objective_match": 184,
+        "objective_mismatch": 1,
+        "objective_mismatch_with_variables": 27
       },
       "shares": {
-        "executed_no_verified_solution": 0.056666666666666664,
-        "not_executable": 0.30333333333333334,
-        "objective_match": 0.41333333333333333,
-        "objective_mismatch": 0.06333333333333334,
-        "objective_mismatch_with_variables": 0.16333333333333333
+        "executed_no_verified_solution": 0.02,
+        "not_executable": 0.2733333333333333,
+        "objective_match": 0.6133333333333333,
+        "objective_mismatch": 0.0033333333333333335,
+        "objective_mismatch_with_variables": 0.09
       }
     }
   },
-  "gpt-4o-mini/solver_specific_pyscipopt": {
+  "gpt-4.1/solver_specific_pyscipopt": {
     "n": 300,
-    "accuracy": 0.5233333333333333,
-    "acc_5pct": 0.5233333333333333,
-    "acc_1pct": 0.51,
-    "acc_1e-4": 0.48,
-    "executable_rate": 0.69,
-    "solve_rate": 0.6833333333333333,
-    "objective_evaluable_rate": 0.69,
+    "accuracy": 0.73,
+    "acc_5pct": 0.73,
+    "acc_1pct": 0.7066666666666667,
+    "acc_1e-4": 0.6633333333333333,
+    "high_confidence_accuracy": 0.8202247191011236,
+    "executable_rate": 0.8533333333333334,
+    "solve_rate": 0.8433333333333334,
+    "objective_evaluable_rate": 0.8533333333333334,
     "variable_output_rate": 0.0,
-    "constraint_checked_rate": 0.6833333333333333,
-    "mean_gap": 5.174093346076991,
-    "avg_latency": 5.695304872989655,
-    "avg_tokens": 815.9033333333333,
+    "constraint_checked_rate": 0.8433333333333334,
+    "mean_gap": 4210.487684484353,
+    "median_gap": 0.0,
+    "avg_latency": 4.769669116338094,
+    "avg_tokens": 840.6266666666667,
     "solver_distribution": {
       "counts": {
         "pyscipopt": 300
@@ -318,287 +108,53 @@
     },
     "failure_distribution": {
       "counts": {
-        "correct": 157,
-        "infeasible_unbounded_misclassification": 2,
+        "correct": 219,
+        "infeasible_unbounded_misclassification": 3,
         "name_error": 1,
-        "runtime_error": 91,
+        "runtime_error": 42,
         "syntax_error": 1,
-        "wrong_numeric": 48
+        "wrong_numeric": 34
       },
       "shares": {
-        "correct": 0.5233333333333333,
-        "infeasible_unbounded_misclassification": 0.006666666666666667,
+        "correct": 0.73,
+        "infeasible_unbounded_misclassification": 0.01,
         "name_error": 0.0033333333333333335,
-        "runtime_error": 0.30333333333333334,
+        "runtime_error": 0.14,
         "syntax_error": 0.0033333333333333335,
-        "wrong_numeric": 0.16
+        "wrong_numeric": 0.11333333333333333
       }
     },
     "verification_distribution": {
       "counts": {
-        "executed_no_verified_solution": 2,
-        "not_executable": 93,
-        "objective_match": 157,
-        "objective_mismatch": 48
+        "executed_no_verified_solution": 3,
+        "not_executable": 44,
+        "objective_match": 219,
+        "objective_mismatch": 34
       },
       "shares": {
-        "executed_no_verified_solution": 0.006666666666666667,
-        "not_executable": 0.31,
-        "objective_match": 0.5233333333333333,
-        "objective_mismatch": 0.16
+        "executed_no_verified_solution": 0.01,
+        "not_executable": 0.14666666666666667,
+        "objective_match": 0.73,
+        "objective_mismatch": 0.11333333333333333
       }
     }
   },
-  "gpt-4o-mini/solver_specific_gurobipy": {
+  "gpt-4.1/solver_specific_gurobipy": {
     "n": 300,
-    "accuracy": 0.49,
-    "acc_5pct": 0.49,
-    "acc_1pct": 0.48,
-    "acc_1e-4": 0.45666666666666667,
-    "executable_rate": 0.54,
-    "solve_rate": 0.54,
-    "objective_evaluable_rate": 0.54,
+    "accuracy": 0.7433333333333333,
+    "acc_5pct": 0.7433333333333333,
+    "acc_1pct": 0.6933333333333334,
+    "acc_1e-4": 0.64,
+    "high_confidence_accuracy": 0.8228782287822878,
+    "executable_rate": 0.8933333333333333,
+    "solve_rate": 0.8933333333333333,
+    "objective_evaluable_rate": 0.8933333333333333,
     "variable_output_rate": 0.0,
-    "constraint_checked_rate": 0.54,
-    "mean_gap": 8.6614790681627,
-    "avg_latency": 78.39805677016577,
-    "avg_tokens": 587.7989690721649,
-    "solver_distribution": {
-      "counts": {
-        "gurobipy": 194,
-        "unknown": 106
-      },
-      "shares": {
-        "gurobipy": 0.6466666666666666,
-        "unknown": 0.35333333333333333
-      },
-      "max_share": 0.6466666666666666,
-      "entropy": 0.6494857185423186,
-      "uniformity": 0.9370098252692082
-    },
-    "failure_distribution": {
-      "counts": {
-        "api_error": 106,
-        "correct": 147,
-        "name_error": 3,
-        "runtime_error": 28,
-        "syntax_error": 1,
-        "wrong_numeric": 15
-      },
-      "shares": {
-        "api_error": 0.35333333333333333,
-        "correct": 0.49,
-        "name_error": 0.01,
-        "runtime_error": 0.09333333333333334,
-        "syntax_error": 0.0033333333333333335,
-        "wrong_numeric": 0.05
-      }
-    },
-    "verification_distribution": {
-      "counts": {
-        "not_executable": 138,
-        "objective_match": 147,
-        "objective_mismatch": 15
-      },
-      "shares": {
-        "not_executable": 0.46,
-        "objective_match": 0.49,
-        "objective_mismatch": 0.05
-      }
-    }
-  },
-  "gpt-4o-mini/solver_specific_coptpy": {
-    "n": 300,
-    "accuracy": 0.0,
-    "acc_5pct": 0.0,
-    "acc_1pct": 0.0,
-    "acc_1e-4": 0.0,
-    "executable_rate": 0.0,
-    "solve_rate": 0.0,
-    "objective_evaluable_rate": 0.0,
-    "variable_output_rate": 0.0,
-    "constraint_checked_rate": 0.0,
-    "mean_gap": null,
-    "avg_latency": 7.132373263835907,
-    "avg_tokens": 851.0357142857143,
-    "solver_distribution": {
-      "counts": {
-        "coptpy": 252,
-        "unknown": 48
-      },
-      "shares": {
-        "coptpy": 0.84,
-        "unknown": 0.16
-      },
-      "max_share": 0.84,
-      "entropy": 0.439669879401343,
-      "uniformity": 0.6343095546405662
-    },
-    "failure_distribution": {
-      "counts": {
-        "api_error": 48,
-        "missing_module": 251,
-        "syntax_error": 1
-      },
-      "shares": {
-        "api_error": 0.16,
-        "missing_module": 0.8366666666666667,
-        "syntax_error": 0.0033333333333333335
-      }
-    },
-    "verification_distribution": {
-      "counts": {
-        "not_executable": 300
-      },
-      "shares": {
-        "not_executable": 1.0
-      }
-    }
-  },
-  "gpt-4.1-mini/neutral_best": {
-    "n": 300,
-    "accuracy": 0.6533333333333333,
-    "acc_5pct": 0.6533333333333333,
-    "acc_1pct": 0.6233333333333333,
-    "acc_1e-4": 0.5766666666666667,
-    "executable_rate": 0.8333333333333334,
-    "solve_rate": 0.81,
-    "objective_evaluable_rate": 0.8333333333333334,
-    "variable_output_rate": 0.8066666666666666,
-    "constraint_checked_rate": 0.81,
-    "mean_gap": 5.587412731961117,
-    "avg_latency": 15.169744172890981,
-    "avg_tokens": 1369.3566666666666,
-    "solver_distribution": {
-      "counts": {
-        "coptpy": 2,
-        "cvxpy": 29,
-        "cvxpy+mip": 1,
-        "cvxpy+pulp": 1,
-        "cvxpy+scipy.optimize": 1,
-        "ortools": 1,
-        "pulp": 260,
-        "pulp+scipy.optimize": 1,
-        "scipy.optimize": 4
-      },
-      "shares": {
-        "coptpy": 0.006666666666666667,
-        "cvxpy": 0.09666666666666666,
-        "cvxpy+mip": 0.0033333333333333335,
-        "cvxpy+pulp": 0.0033333333333333335,
-        "cvxpy+scipy.optimize": 0.0033333333333333335,
-        "ortools": 0.0033333333333333335,
-        "pulp": 0.8666666666666667,
-        "pulp+scipy.optimize": 0.0033333333333333335,
-        "scipy.optimize": 0.013333333333333334
-      },
-      "max_share": 0.8666666666666667,
-      "entropy": 0.5359148915253862,
-      "uniformity": 0.24390537819993646
-    },
-    "failure_distribution": {
-      "counts": {
-        "correct": 196,
-        "exec_no_solve": 3,
-        "infeasible_unbounded_misclassification": 4,
-        "missing_module": 34,
-        "runtime_error": 14,
-        "syntax_error": 2,
-        "wrong_numeric": 47
-      },
-      "shares": {
-        "correct": 0.6533333333333333,
-        "exec_no_solve": 0.01,
-        "infeasible_unbounded_misclassification": 0.013333333333333334,
-        "missing_module": 0.11333333333333333,
-        "runtime_error": 0.04666666666666667,
-        "syntax_error": 0.006666666666666667,
-        "wrong_numeric": 0.15666666666666668
-      }
-    },
-    "verification_distribution": {
-      "counts": {
-        "executed_no_verified_solution": 7,
-        "not_executable": 50,
-        "objective_match": 196,
-        "objective_mismatch": 1,
-        "objective_mismatch_with_variables": 46
-      },
-      "shares": {
-        "executed_no_verified_solution": 0.023333333333333334,
-        "not_executable": 0.16666666666666666,
-        "objective_match": 0.6533333333333333,
-        "objective_mismatch": 0.0033333333333333335,
-        "objective_mismatch_with_variables": 0.15333333333333332
-      }
-    }
-  },
-  "gpt-4.1-mini/solver_specific_pyscipopt": {
-    "n": 300,
-    "accuracy": 0.6766666666666666,
-    "acc_5pct": 0.6766666666666666,
-    "acc_1pct": 0.66,
-    "acc_1e-4": 0.61,
-    "executable_rate": 0.8233333333333334,
-    "solve_rate": 0.8233333333333334,
-    "objective_evaluable_rate": 0.8233333333333334,
-    "variable_output_rate": 0.0,
-    "constraint_checked_rate": 0.8233333333333334,
-    "mean_gap": 5.025450704665658,
-    "avg_latency": 10.063168999354044,
-    "avg_tokens": 911.5233333333333,
-    "solver_distribution": {
-      "counts": {
-        "mip+pyscipopt": 1,
-        "pyscipopt": 299
-      },
-      "shares": {
-        "mip+pyscipopt": 0.0033333333333333335,
-        "pyscipopt": 0.9966666666666667
-      },
-      "max_share": 0.9966666666666667,
-      "entropy": 0.022340379843483554,
-      "uniformity": 0.03223035521176948
-    },
-    "failure_distribution": {
-      "counts": {
-        "correct": 203,
-        "runtime_error": 53,
-        "wrong_numeric": 44
-      },
-      "shares": {
-        "correct": 0.6766666666666666,
-        "runtime_error": 0.17666666666666667,
-        "wrong_numeric": 0.14666666666666667
-      }
-    },
-    "verification_distribution": {
-      "counts": {
-        "not_executable": 53,
-        "objective_match": 203,
-        "objective_mismatch": 44
-      },
-      "shares": {
-        "not_executable": 0.17666666666666667,
-        "objective_match": 0.6766666666666666,
-        "objective_mismatch": 0.14666666666666667
-      }
-    }
-  },
-  "gpt-4.1-mini/solver_specific_gurobipy": {
-    "n": 300,
-    "accuracy": 0.72,
-    "acc_5pct": 0.72,
-    "acc_1pct": 0.68,
-    "acc_1e-4": 0.62,
-    "executable_rate": 0.8833333333333333,
-    "solve_rate": 0.87,
-    "objective_evaluable_rate": 0.8833333333333333,
-    "variable_output_rate": 0.0,
-    "constraint_checked_rate": 0.87,
-    "mean_gap": 46150.41588297368,
-    "avg_latency": 9.47924102862676,
-    "avg_tokens": 890.3766666666667,
+    "constraint_checked_rate": 0.8933333333333333,
+    "mean_gap": 283477.5711307082,
+    "median_gap": 0.0,
+    "avg_latency": 4.832445828914643,
+    "avg_tokens": 850.98,
     "solver_distribution": {
       "counts": {
         "gurobipy": 300
@@ -612,61 +168,541 @@
     },
     "failure_distribution": {
       "counts": {
-        "correct": 216,
-        "infeasible_unbounded_misclassification": 4,
-        "runtime_error": 33,
+        "correct": 223,
+        "runtime_error": 30,
         "timeout": 2,
         "wrong_numeric": 45
       },
       "shares": {
-        "correct": 0.72,
-        "infeasible_unbounded_misclassification": 0.013333333333333334,
-        "runtime_error": 0.11,
+        "correct": 0.7433333333333333,
+        "runtime_error": 0.1,
         "timeout": 0.006666666666666667,
         "wrong_numeric": 0.15
       }
     },
     "verification_distribution": {
       "counts": {
-        "executed_no_verified_solution": 4,
-        "not_executable": 35,
-        "objective_match": 216,
+        "not_executable": 32,
+        "objective_match": 223,
         "objective_mismatch": 45
       },
       "shares": {
-        "executed_no_verified_solution": 0.013333333333333334,
-        "not_executable": 0.11666666666666667,
-        "objective_match": 0.72,
+        "not_executable": 0.10666666666666667,
+        "objective_match": 0.7433333333333333,
         "objective_mismatch": 0.15
       }
     }
   },
-  "gpt-4.1-mini/solver_specific_coptpy": {
+  "gpt-4.1/solver_specific_coptpy": {
     "n": 300,
     "accuracy": 0.0,
     "acc_5pct": 0.0,
     "acc_1pct": 0.0,
     "acc_1e-4": 0.0,
+    "high_confidence_accuracy": null,
     "executable_rate": 0.0,
     "solve_rate": 0.0,
     "objective_evaluable_rate": 0.0,
     "variable_output_rate": 0.0,
     "constraint_checked_rate": 0.0,
     "mean_gap": null,
-    "avg_latency": 9.614205377896626,
-    "avg_tokens": 885.5966666666667,
+    "median_gap": null,
+    "avg_latency": 5.12440719683965,
+    "avg_tokens": 877.6666666666666,
     "solver_distribution": {
       "counts": {
-        "coptpy": 299,
-        "coptpy+mip": 1
+        "coptpy": 300
       },
       "shares": {
-        "coptpy": 0.9966666666666667,
-        "coptpy+mip": 0.0033333333333333335
+        "coptpy": 1.0
       },
-      "max_share": 0.9966666666666667,
-      "entropy": 0.022340379843483554,
-      "uniformity": 0.03223035521176948
+      "max_share": 1.0,
+      "entropy": -0.0,
+      "uniformity": -0.0
+    },
+    "failure_distribution": {
+      "counts": {
+        "missing_module": 299,
+        "syntax_error": 1
+      },
+      "shares": {
+        "missing_module": 0.9966666666666667,
+        "syntax_error": 0.0033333333333333335
+      }
+    },
+    "verification_distribution": {
+      "counts": {
+        "not_executable": 300
+      },
+      "shares": {
+        "not_executable": 1.0
+      }
+    }
+  },
+  "o4-mini/neutral_best": {
+    "n": 300,
+    "accuracy": 0.7466666666666667,
+    "acc_5pct": 0.7466666666666667,
+    "acc_1pct": 0.7233333333333334,
+    "acc_1e-4": 0.6533333333333333,
+    "high_confidence_accuracy": 0.8517110266159695,
+    "executable_rate": 0.8733333333333333,
+    "solve_rate": 0.8566666666666667,
+    "objective_evaluable_rate": 0.8733333333333333,
+    "variable_output_rate": 0.8533333333333334,
+    "constraint_checked_rate": 0.8566666666666667,
+    "mean_gap": 4.08088954602627,
+    "median_gap": 0.0,
+    "avg_latency": 16.579511137008666,
+    "avg_tokens": 3084.2633333333333,
+    "solver_distribution": {
+      "counts": {
+        "cvxpy": 9,
+        "gurobipy": 1,
+        "ortools": 2,
+        "pulp": 244,
+        "scipy.optimize": 8,
+        "unknown": 36
+      },
+      "shares": {
+        "cvxpy": 0.03,
+        "gurobipy": 0.0033333333333333335,
+        "ortools": 0.006666666666666667,
+        "pulp": 0.8133333333333334,
+        "scipy.optimize": 0.02666666666666667,
+        "unknown": 0.12
+      },
+      "max_share": 0.8133333333333334,
+      "entropy": 0.6767405525010485,
+      "uniformity": 0.37769609376899743
+    },
+    "failure_distribution": {
+      "counts": {
+        "correct": 224,
+        "exec_no_solve": 3,
+        "infeasible_unbounded_misclassification": 2,
+        "missing_module": 9,
+        "no_code": 26,
+        "runtime_error": 3,
+        "wrong_numeric": 33
+      },
+      "shares": {
+        "correct": 0.7466666666666667,
+        "exec_no_solve": 0.01,
+        "infeasible_unbounded_misclassification": 0.006666666666666667,
+        "missing_module": 0.03,
+        "no_code": 0.08666666666666667,
+        "runtime_error": 0.01,
+        "wrong_numeric": 0.11
+      }
+    },
+    "verification_distribution": {
+      "counts": {
+        "executed_no_verified_solution": 5,
+        "not_executable": 38,
+        "objective_match": 224,
+        "objective_mismatch": 1,
+        "objective_mismatch_with_variables": 32
+      },
+      "shares": {
+        "executed_no_verified_solution": 0.016666666666666666,
+        "not_executable": 0.12666666666666668,
+        "objective_match": 0.7466666666666667,
+        "objective_mismatch": 0.0033333333333333335,
+        "objective_mismatch_with_variables": 0.10666666666666667
+      }
+    }
+  },
+  "o4-mini/solver_specific_pyscipopt": {
+    "n": 300,
+    "accuracy": 0.67,
+    "acc_5pct": 0.67,
+    "acc_1pct": 0.65,
+    "acc_1e-4": 0.6166666666666667,
+    "high_confidence_accuracy": 0.8626609442060086,
+    "executable_rate": 0.77,
+    "solve_rate": 0.77,
+    "objective_evaluable_rate": 0.77,
+    "variable_output_rate": 0.0,
+    "constraint_checked_rate": 0.77,
+    "mean_gap": 1278.57607803855,
+    "median_gap": 0.0,
+    "avg_latency": 16.05456771771113,
+    "avg_tokens": 2729.943333333333,
+    "solver_distribution": {
+      "counts": {
+        "pyscipopt": 258,
+        "unknown": 42
+      },
+      "shares": {
+        "pyscipopt": 0.86,
+        "unknown": 0.14
+      },
+      "max_share": 0.86,
+      "entropy": 0.40496348506393853,
+      "uniformity": 0.584238811642856
+    },
+    "failure_distribution": {
+      "counts": {
+        "correct": 201,
+        "no_code": 42,
+        "runtime_error": 27,
+        "wrong_numeric": 30
+      },
+      "shares": {
+        "correct": 0.67,
+        "no_code": 0.14,
+        "runtime_error": 0.09,
+        "wrong_numeric": 0.1
+      }
+    },
+    "verification_distribution": {
+      "counts": {
+        "not_executable": 69,
+        "objective_match": 201,
+        "objective_mismatch": 30
+      },
+      "shares": {
+        "not_executable": 0.23,
+        "objective_match": 0.67,
+        "objective_mismatch": 0.1
+      }
+    }
+  },
+  "o4-mini/solver_specific_gurobipy": {
+    "n": 300,
+    "accuracy": 0.7,
+    "acc_5pct": 0.7,
+    "acc_1pct": 0.6633333333333333,
+    "acc_1e-4": 0.6033333333333334,
+    "high_confidence_accuracy": 0.8467741935483871,
+    "executable_rate": 0.8166666666666667,
+    "solve_rate": 0.8166666666666667,
+    "objective_evaluable_rate": 0.8166666666666667,
+    "variable_output_rate": 0.0,
+    "constraint_checked_rate": 0.8166666666666667,
+    "mean_gap": 185861.04760591837,
+    "median_gap": 0.0,
+    "avg_latency": 16.425437320073446,
+    "avg_tokens": 2749.2966666666666,
+    "solver_distribution": {
+      "counts": {
+        "gurobipy": 255,
+        "unknown": 45
+      },
+      "shares": {
+        "gurobipy": 0.85,
+        "unknown": 0.15
+      },
+      "max_share": 0.85,
+      "entropy": 0.42270908780599087,
+      "uniformity": 0.6098403047164005
+    },
+    "failure_distribution": {
+      "counts": {
+        "correct": 210,
+        "no_code": 45,
+        "runtime_error": 9,
+        "timeout": 1,
+        "wrong_numeric": 35
+      },
+      "shares": {
+        "correct": 0.7,
+        "no_code": 0.15,
+        "runtime_error": 0.03,
+        "timeout": 0.0033333333333333335,
+        "wrong_numeric": 0.11666666666666667
+      }
+    },
+    "verification_distribution": {
+      "counts": {
+        "not_executable": 55,
+        "objective_match": 210,
+        "objective_mismatch": 35
+      },
+      "shares": {
+        "not_executable": 0.18333333333333332,
+        "objective_match": 0.7,
+        "objective_mismatch": 0.11666666666666667
+      }
+    }
+  },
+  "o4-mini/solver_specific_coptpy": {
+    "n": 300,
+    "accuracy": 0.0033333333333333335,
+    "acc_5pct": 0.0033333333333333335,
+    "acc_1pct": 0.0033333333333333335,
+    "acc_1e-4": 0.0,
+    "high_confidence_accuracy": 1.0,
+    "executable_rate": 0.0033333333333333335,
+    "solve_rate": 0.0033333333333333335,
+    "objective_evaluable_rate": 0.0033333333333333335,
+    "variable_output_rate": 0.0,
+    "constraint_checked_rate": 0.0033333333333333335,
+    "mean_gap": 9.796488235555687e-06,
+    "median_gap": 9.796488235555687e-06,
+    "avg_latency": 19.2108269294103,
+    "avg_tokens": 3155.3633333333332,
+    "solver_distribution": {
+      "counts": {
+        "coptpy": 236,
+        "coptpy+mip": 1,
+        "unknown": 63
+      },
+      "shares": {
+        "coptpy": 0.7866666666666666,
+        "coptpy+mip": 0.0033333333333333335,
+        "unknown": 0.21
+      },
+      "max_share": 0.7866666666666666,
+      "entropy": 0.535509828827166,
+      "uniformity": 0.48744205244270966
+    },
+    "failure_distribution": {
+      "counts": {
+        "correct": 1,
+        "missing_module": 236,
+        "no_code": 62,
+        "syntax_error": 1
+      },
+      "shares": {
+        "correct": 0.0033333333333333335,
+        "missing_module": 0.7866666666666666,
+        "no_code": 0.20666666666666667,
+        "syntax_error": 0.0033333333333333335
+      }
+    },
+    "verification_distribution": {
+      "counts": {
+        "not_executable": 299,
+        "objective_match": 1
+      },
+      "shares": {
+        "not_executable": 0.9966666666666667,
+        "objective_match": 0.0033333333333333335
+      }
+    }
+  },
+  "qwen-max/neutral_best": {
+    "n": 300,
+    "accuracy": 0.25,
+    "acc_5pct": 0.25,
+    "acc_1pct": 0.24333333333333335,
+    "acc_1e-4": 0.23,
+    "high_confidence_accuracy": 0.6944444444444444,
+    "executable_rate": 0.3566666666666667,
+    "solve_rate": 0.31666666666666665,
+    "objective_evaluable_rate": 0.3566666666666667,
+    "variable_output_rate": 0.2866666666666667,
+    "constraint_checked_rate": 0.31666666666666665,
+    "mean_gap": 63.415067658282695,
+    "median_gap": 0.0,
+    "avg_latency": 18.464568253358205,
+    "avg_tokens": 1235.65,
+    "solver_distribution": {
+      "counts": {
+        "coptpy": 2,
+        "cvxpy": 171,
+        "gurobipy": 4,
+        "ortools": 8,
+        "pulp": 101,
+        "pyomo": 1,
+        "scipy.optimize": 12,
+        "unknown": 1
+      },
+      "shares": {
+        "coptpy": 0.006666666666666667,
+        "cvxpy": 0.57,
+        "gurobipy": 0.013333333333333334,
+        "ortools": 0.02666666666666667,
+        "pulp": 0.33666666666666667,
+        "pyomo": 0.0033333333333333335,
+        "scipy.optimize": 0.04,
+        "unknown": 0.0033333333333333335
+      },
+      "max_share": 0.57,
+      "entropy": 1.0413240603248137,
+      "uniformity": 0.5007710192629895
+    },
+    "failure_distribution": {
+      "counts": {
+        "correct": 75,
+        "infeasible_unbounded_misclassification": 12,
+        "missing_module": 170,
+        "name_error": 1,
+        "runtime_error": 18,
+        "syntax_error": 4,
+        "wrong_numeric": 20
+      },
+      "shares": {
+        "correct": 0.25,
+        "infeasible_unbounded_misclassification": 0.04,
+        "missing_module": 0.5666666666666667,
+        "name_error": 0.0033333333333333335,
+        "runtime_error": 0.06,
+        "syntax_error": 0.013333333333333334,
+        "wrong_numeric": 0.06666666666666667
+      }
+    },
+    "verification_distribution": {
+      "counts": {
+        "executed_no_verified_solution": 12,
+        "not_executable": 193,
+        "objective_match": 75,
+        "objective_mismatch": 4,
+        "objective_mismatch_with_variables": 16
+      },
+      "shares": {
+        "executed_no_verified_solution": 0.04,
+        "not_executable": 0.6433333333333333,
+        "objective_match": 0.25,
+        "objective_mismatch": 0.013333333333333334,
+        "objective_mismatch_with_variables": 0.05333333333333334
+      }
+    }
+  },
+  "qwen-max/solver_specific_pyscipopt": {
+    "n": 300,
+    "accuracy": 0.5866666666666667,
+    "acc_5pct": 0.5866666666666667,
+    "acc_1pct": 0.55,
+    "acc_1e-4": 0.5166666666666667,
+    "high_confidence_accuracy": 0.7096774193548387,
+    "executable_rate": 0.73,
+    "solve_rate": 0.73,
+    "objective_evaluable_rate": 0.73,
+    "variable_output_rate": 0.0,
+    "constraint_checked_rate": 0.73,
+    "mean_gap": 0.4157307878766307,
+    "median_gap": 0.0,
+    "avg_latency": 15.058062094847362,
+    "avg_tokens": 888.42,
+    "solver_distribution": {
+      "counts": {
+        "pyscipopt": 300
+      },
+      "shares": {
+        "pyscipopt": 1.0
+      },
+      "max_share": 1.0,
+      "entropy": -0.0,
+      "uniformity": -0.0
+    },
+    "failure_distribution": {
+      "counts": {
+        "correct": 176,
+        "runtime_error": 79,
+        "timeout": 2,
+        "wrong_numeric": 43
+      },
+      "shares": {
+        "correct": 0.5866666666666667,
+        "runtime_error": 0.2633333333333333,
+        "timeout": 0.006666666666666667,
+        "wrong_numeric": 0.14333333333333334
+      }
+    },
+    "verification_distribution": {
+      "counts": {
+        "not_executable": 81,
+        "objective_match": 176,
+        "objective_mismatch": 43
+      },
+      "shares": {
+        "not_executable": 0.27,
+        "objective_match": 0.5866666666666667,
+        "objective_mismatch": 0.14333333333333334
+      }
+    }
+  },
+  "qwen-max/solver_specific_gurobipy": {
+    "n": 300,
+    "accuracy": 0.62,
+    "acc_5pct": 0.62,
+    "acc_1pct": 0.5866666666666667,
+    "acc_1e-4": 0.55,
+    "high_confidence_accuracy": 0.7072243346007605,
+    "executable_rate": 0.7866666666666666,
+    "solve_rate": 0.78,
+    "objective_evaluable_rate": 0.7866666666666666,
+    "variable_output_rate": 0.0,
+    "constraint_checked_rate": 0.78,
+    "mean_gap": 0.7343096492380533,
+    "median_gap": 0.0,
+    "avg_latency": 14.991950692335765,
+    "avg_tokens": 889.53,
+    "solver_distribution": {
+      "counts": {
+        "gurobipy": 300
+      },
+      "shares": {
+        "gurobipy": 1.0
+      },
+      "max_share": 1.0,
+      "entropy": -0.0,
+      "uniformity": -0.0
+    },
+    "failure_distribution": {
+      "counts": {
+        "correct": 186,
+        "infeasible_unbounded_misclassification": 2,
+        "name_error": 1,
+        "runtime_error": 60,
+        "syntax_error": 1,
+        "timeout": 2,
+        "wrong_numeric": 48
+      },
+      "shares": {
+        "correct": 0.62,
+        "infeasible_unbounded_misclassification": 0.006666666666666667,
+        "name_error": 0.0033333333333333335,
+        "runtime_error": 0.2,
+        "syntax_error": 0.0033333333333333335,
+        "timeout": 0.006666666666666667,
+        "wrong_numeric": 0.16
+      }
+    },
+    "verification_distribution": {
+      "counts": {
+        "executed_no_verified_solution": 2,
+        "not_executable": 64,
+        "objective_match": 186,
+        "objective_mismatch": 48
+      },
+      "shares": {
+        "executed_no_verified_solution": 0.006666666666666667,
+        "not_executable": 0.21333333333333335,
+        "objective_match": 0.62,
+        "objective_mismatch": 0.16
+      }
+    }
+  },
+  "qwen-max/solver_specific_coptpy": {
+    "n": 300,
+    "accuracy": 0.0,
+    "acc_5pct": 0.0,
+    "acc_1pct": 0.0,
+    "acc_1e-4": 0.0,
+    "high_confidence_accuracy": null,
+    "executable_rate": 0.0,
+    "solve_rate": 0.0,
+    "objective_evaluable_rate": 0.0,
+    "variable_output_rate": 0.0,
+    "constraint_checked_rate": 0.0,
+    "mean_gap": null,
+    "median_gap": null,
+    "avg_latency": 19.52977989435196,
+    "avg_tokens": 895.19,
+    "solver_distribution": {
+      "counts": {
+        "coptpy": 300
+      },
+      "shares": {
+        "coptpy": 1.0
+      },
+      "max_share": 1.0,
+      "entropy": -0.0,
+      "uniformity": -0.0
     },
     "failure_distribution": {
       "counts": {
@@ -674,6 +710,516 @@
       },
       "shares": {
         "missing_module": 1.0
+      }
+    },
+    "verification_distribution": {
+      "counts": {
+        "not_executable": 300
+      },
+      "shares": {
+        "not_executable": 1.0
+      }
+    }
+  },
+  "qwen3-235b-a22b/neutral_best": {
+    "n": 300,
+    "accuracy": 0.6033333333333334,
+    "acc_5pct": 0.6033333333333334,
+    "acc_1pct": 0.5733333333333334,
+    "acc_1e-4": 0.53,
+    "high_confidence_accuracy": 0.793859649122807,
+    "executable_rate": 0.76,
+    "solve_rate": 0.72,
+    "objective_evaluable_rate": 0.7566666666666667,
+    "variable_output_rate": 0.7133333333333334,
+    "constraint_checked_rate": 0.72,
+    "mean_gap": 4621.06932225814,
+    "median_gap": 0.0,
+    "avg_latency": 27.742579182783764,
+    "avg_tokens": 1807.37,
+    "solver_distribution": {
+      "counts": {
+        "coptpy": 1,
+        "coptpy+cvxpy+gurobipy+highspy+mip+ortools+pulp+pyomo+pyscipopt+scipy.optimize": 1,
+        "coptpy+ortools": 1,
+        "cvxpy": 30,
+        "cvxpy+highspy+ortools+pyomo+scipy.optimize": 1,
+        "cvxpy+mip": 1,
+        "cvxpy+mip+ortools": 1,
+        "cvxpy+mip+ortools+scipy.optimize": 1,
+        "cvxpy+mip+pulp": 2,
+        "cvxpy+ortools": 1,
+        "cvxpy+pulp": 1,
+        "cvxpy+pulp+scipy.optimize": 2,
+        "cvxpy+pyomo+scipy.optimize": 1,
+        "cvxpy+scipy.optimize": 1,
+        "mip+ortools": 2,
+        "ortools": 36,
+        "pulp": 189,
+        "scipy.optimize": 21,
+        "unknown": 7
+      },
+      "shares": {
+        "coptpy": 0.0033333333333333335,
+        "coptpy+cvxpy+gurobipy+highspy+mip+ortools+pulp+pyomo+pyscipopt+scipy.optimize": 0.0033333333333333335,
+        "coptpy+ortools": 0.0033333333333333335,
+        "cvxpy": 0.1,
+        "cvxpy+highspy+ortools+pyomo+scipy.optimize": 0.0033333333333333335,
+        "cvxpy+mip": 0.0033333333333333335,
+        "cvxpy+mip+ortools": 0.0033333333333333335,
+        "cvxpy+mip+ortools+scipy.optimize": 0.0033333333333333335,
+        "cvxpy+mip+pulp": 0.006666666666666667,
+        "cvxpy+ortools": 0.0033333333333333335,
+        "cvxpy+pulp": 0.0033333333333333335,
+        "cvxpy+pulp+scipy.optimize": 0.006666666666666667,
+        "cvxpy+pyomo+scipy.optimize": 0.0033333333333333335,
+        "cvxpy+scipy.optimize": 0.0033333333333333335,
+        "mip+ortools": 0.006666666666666667,
+        "ortools": 0.12,
+        "pulp": 0.63,
+        "scipy.optimize": 0.07,
+        "unknown": 0.023333333333333334
+      },
+      "max_share": 0.63,
+      "entropy": 1.358955759991215,
+      "uniformity": 0.46153300156892035
+    },
+    "failure_distribution": {
+      "counts": {
+        "correct": 181,
+        "exec_no_solve": 3,
+        "infeasible_unbounded_misclassification": 9,
+        "missing_module": 35,
+        "runtime_error": 22,
+        "syntax_error": 15,
+        "wrong_numeric": 35
+      },
+      "shares": {
+        "correct": 0.6033333333333334,
+        "exec_no_solve": 0.01,
+        "infeasible_unbounded_misclassification": 0.03,
+        "missing_module": 0.11666666666666667,
+        "runtime_error": 0.07333333333333333,
+        "syntax_error": 0.05,
+        "wrong_numeric": 0.11666666666666667
+      }
+    },
+    "verification_distribution": {
+      "counts": {
+        "executed_no_verified_solution": 11,
+        "missing_objective": 1,
+        "not_executable": 72,
+        "objective_match": 181,
+        "objective_mismatch": 1,
+        "objective_mismatch_with_variables": 34
+      },
+      "shares": {
+        "executed_no_verified_solution": 0.03666666666666667,
+        "missing_objective": 0.0033333333333333335,
+        "not_executable": 0.24,
+        "objective_match": 0.6033333333333334,
+        "objective_mismatch": 0.0033333333333333335,
+        "objective_mismatch_with_variables": 0.11333333333333333
+      }
+    }
+  },
+  "qwen3-235b-a22b/solver_specific_pyscipopt": {
+    "n": 300,
+    "accuracy": 0.6866666666666666,
+    "acc_5pct": 0.6866666666666666,
+    "acc_1pct": 0.64,
+    "acc_1e-4": 0.58,
+    "high_confidence_accuracy": 0.789272030651341,
+    "executable_rate": 0.8266666666666667,
+    "solve_rate": 0.8266666666666667,
+    "objective_evaluable_rate": 0.8266666666666667,
+    "variable_output_rate": 0.0,
+    "constraint_checked_rate": 0.8266666666666667,
+    "mean_gap": 4030.4906794538115,
+    "median_gap": 0.0,
+    "avg_latency": 17.489765220483143,
+    "avg_tokens": 1190.7266666666667,
+    "solver_distribution": {
+      "counts": {
+        "mip+pyscipopt": 4,
+        "pyscipopt": 296
+      },
+      "shares": {
+        "mip+pyscipopt": 0.013333333333333334,
+        "pyscipopt": 0.9866666666666667
+      },
+      "max_share": 0.9866666666666667,
+      "entropy": 0.07081055490819625,
+      "uniformity": 0.10215803640865039
+    },
+    "failure_distribution": {
+      "counts": {
+        "correct": 206,
+        "runtime_error": 43,
+        "syntax_error": 7,
+        "timeout": 2,
+        "wrong_numeric": 42
+      },
+      "shares": {
+        "correct": 0.6866666666666666,
+        "runtime_error": 0.14333333333333334,
+        "syntax_error": 0.023333333333333334,
+        "timeout": 0.006666666666666667,
+        "wrong_numeric": 0.14
+      }
+    },
+    "verification_distribution": {
+      "counts": {
+        "not_executable": 52,
+        "objective_match": 206,
+        "objective_mismatch": 42
+      },
+      "shares": {
+        "not_executable": 0.17333333333333334,
+        "objective_match": 0.6866666666666666,
+        "objective_mismatch": 0.14
+      }
+    }
+  },
+  "qwen3-235b-a22b/solver_specific_gurobipy": {
+    "n": 300,
+    "accuracy": 0.7066666666666667,
+    "acc_5pct": 0.7066666666666667,
+    "acc_1pct": 0.67,
+    "acc_1e-4": 0.6133333333333333,
+    "high_confidence_accuracy": 0.7851851851851852,
+    "executable_rate": 0.8666666666666667,
+    "solve_rate": 0.86,
+    "objective_evaluable_rate": 0.8666666666666667,
+    "variable_output_rate": 0.0,
+    "constraint_checked_rate": 0.86,
+    "mean_gap": 1928.2903680115214,
+    "median_gap": 0.0,
+    "avg_latency": 17.32280412276586,
+    "avg_tokens": 1182.33,
+    "solver_distribution": {
+      "counts": {
+        "gurobipy": 299,
+        "gurobipy+mip": 1
+      },
+      "shares": {
+        "gurobipy": 0.9966666666666667,
+        "gurobipy+mip": 0.0033333333333333335
+      },
+      "max_share": 0.9966666666666667,
+      "entropy": 0.022340379843483554,
+      "uniformity": 0.03223035521176948
+    },
+    "failure_distribution": {
+      "counts": {
+        "correct": 212,
+        "infeasible_unbounded_misclassification": 2,
+        "name_error": 1,
+        "runtime_error": 29,
+        "syntax_error": 8,
+        "timeout": 2,
+        "wrong_numeric": 46
+      },
+      "shares": {
+        "correct": 0.7066666666666667,
+        "infeasible_unbounded_misclassification": 0.006666666666666667,
+        "name_error": 0.0033333333333333335,
+        "runtime_error": 0.09666666666666666,
+        "syntax_error": 0.02666666666666667,
+        "timeout": 0.006666666666666667,
+        "wrong_numeric": 0.15333333333333332
+      }
+    },
+    "verification_distribution": {
+      "counts": {
+        "executed_no_verified_solution": 2,
+        "not_executable": 40,
+        "objective_match": 212,
+        "objective_mismatch": 46
+      },
+      "shares": {
+        "executed_no_verified_solution": 0.006666666666666667,
+        "not_executable": 0.13333333333333333,
+        "objective_match": 0.7066666666666667,
+        "objective_mismatch": 0.15333333333333332
+      }
+    }
+  },
+  "qwen3-235b-a22b/solver_specific_coptpy": {
+    "n": 300,
+    "accuracy": 0.0,
+    "acc_5pct": 0.0,
+    "acc_1pct": 0.0,
+    "acc_1e-4": 0.0,
+    "high_confidence_accuracy": null,
+    "executable_rate": 0.0,
+    "solve_rate": 0.0,
+    "objective_evaluable_rate": 0.0,
+    "variable_output_rate": 0.0,
+    "constraint_checked_rate": 0.0,
+    "mean_gap": null,
+    "median_gap": null,
+    "avg_latency": 18.88544358253479,
+    "avg_tokens": 1252.5766666666666,
+    "solver_distribution": {
+      "counts": {
+        "coptpy": 300
+      },
+      "shares": {
+        "coptpy": 1.0
+      },
+      "max_share": 1.0,
+      "entropy": -0.0,
+      "uniformity": -0.0
+    },
+    "failure_distribution": {
+      "counts": {
+        "missing_module": 293,
+        "syntax_error": 7
+      },
+      "shares": {
+        "missing_module": 0.9766666666666667,
+        "syntax_error": 0.023333333333333334
+      }
+    },
+    "verification_distribution": {
+      "counts": {
+        "not_executable": 300
+      },
+      "shares": {
+        "not_executable": 1.0
+      }
+    }
+  },
+  "gemini-2.5-pro/neutral_best": {
+    "n": 300,
+    "accuracy": 0.15333333333333332,
+    "acc_5pct": 0.15333333333333332,
+    "acc_1pct": 0.13666666666666666,
+    "acc_1e-4": 0.12666666666666668,
+    "high_confidence_accuracy": 0.92,
+    "executable_rate": 0.16666666666666666,
+    "solve_rate": 0.16333333333333333,
+    "objective_evaluable_rate": 0.16666666666666666,
+    "variable_output_rate": 0.16333333333333333,
+    "constraint_checked_rate": 0.16333333333333333,
+    "mean_gap": 0.006954803060023802,
+    "median_gap": 0.0,
+    "avg_latency": 29.944183812141418,
+    "avg_tokens": 4531.57,
+    "solver_distribution": {
+      "counts": {
+        "cvxpy": 16,
+        "mip": 4,
+        "mip+ortools": 1,
+        "ortools": 28,
+        "pulp": 130,
+        "pyscipopt": 1,
+        "scipy.optimize": 5,
+        "unknown": 115
+      },
+      "shares": {
+        "cvxpy": 0.05333333333333334,
+        "mip": 0.013333333333333334,
+        "mip+ortools": 0.0033333333333333335,
+        "ortools": 0.09333333333333334,
+        "pulp": 0.43333333333333335,
+        "pyscipopt": 0.0033333333333333335,
+        "scipy.optimize": 0.016666666666666666,
+        "unknown": 0.38333333333333336
+      },
+      "max_share": 0.43333333333333335,
+      "entropy": 1.2714418540948953,
+      "uniformity": 0.6114342858937916
+    },
+    "failure_distribution": {
+      "counts": {
+        "correct": 46,
+        "infeasible_unbounded_misclassification": 1,
+        "runtime_error": 2,
+        "syntax_error": 248,
+        "wrong_numeric": 3
+      },
+      "shares": {
+        "correct": 0.15333333333333332,
+        "infeasible_unbounded_misclassification": 0.0033333333333333335,
+        "runtime_error": 0.006666666666666667,
+        "syntax_error": 0.8266666666666667,
+        "wrong_numeric": 0.01
+      }
+    },
+    "verification_distribution": {
+      "counts": {
+        "executed_no_verified_solution": 1,
+        "not_executable": 250,
+        "objective_match": 46,
+        "objective_mismatch_with_variables": 3
+      },
+      "shares": {
+        "executed_no_verified_solution": 0.0033333333333333335,
+        "not_executable": 0.8333333333333334,
+        "objective_match": 0.15333333333333332,
+        "objective_mismatch_with_variables": 0.01
+      }
+    }
+  },
+  "gemini-2.5-pro/solver_specific_pyscipopt": {
+    "n": 300,
+    "accuracy": 0.31333333333333335,
+    "acc_5pct": 0.31333333333333335,
+    "acc_1pct": 0.2966666666666667,
+    "acc_1e-4": 0.27666666666666667,
+    "high_confidence_accuracy": 0.9494949494949495,
+    "executable_rate": 0.33,
+    "solve_rate": 0.33,
+    "objective_evaluable_rate": 0.33,
+    "variable_output_rate": 0.0,
+    "constraint_checked_rate": 0.33,
+    "mean_gap": 0.2464278374208616,
+    "median_gap": 0.0,
+    "avg_latency": 27.079931219418842,
+    "avg_tokens": 4134.626666666667,
+    "solver_distribution": {
+      "counts": {
+        "mip+pyscipopt": 1,
+        "pyscipopt": 293,
+        "unknown": 6
+      },
+      "shares": {
+        "mip+pyscipopt": 0.0033333333333333335,
+        "pyscipopt": 0.9766666666666667,
+        "unknown": 0.02
+      },
+      "max_share": 0.9766666666666667,
+      "entropy": 0.12031203713163754,
+      "uniformity": 0.1095127356326011
+    },
+    "failure_distribution": {
+      "counts": {
+        "correct": 94,
+        "runtime_error": 6,
+        "syntax_error": 195,
+        "wrong_numeric": 5
+      },
+      "shares": {
+        "correct": 0.31333333333333335,
+        "runtime_error": 0.02,
+        "syntax_error": 0.65,
+        "wrong_numeric": 0.016666666666666666
+      }
+    },
+    "verification_distribution": {
+      "counts": {
+        "not_executable": 201,
+        "objective_match": 94,
+        "objective_mismatch": 5
+      },
+      "shares": {
+        "not_executable": 0.67,
+        "objective_match": 0.31333333333333335,
+        "objective_mismatch": 0.016666666666666666
+      }
+    }
+  },
+  "gemini-2.5-pro/solver_specific_gurobipy": {
+    "n": 300,
+    "accuracy": 0.3,
+    "acc_5pct": 0.3,
+    "acc_1pct": 0.27666666666666667,
+    "acc_1e-4": 0.25333333333333335,
+    "high_confidence_accuracy": 0.9473684210526315,
+    "executable_rate": 0.32,
+    "solve_rate": 0.32,
+    "objective_evaluable_rate": 0.32,
+    "variable_output_rate": 0.0,
+    "constraint_checked_rate": 0.32,
+    "mean_gap": 0.02764506708667626,
+    "median_gap": 0.0,
+    "avg_latency": 27.38767642577489,
+    "avg_tokens": 4134.71,
+    "solver_distribution": {
+      "counts": {
+        "gurobipy": 282,
+        "mip": 2,
+        "unknown": 16
+      },
+      "shares": {
+        "gurobipy": 0.94,
+        "mip": 0.006666666666666667,
+        "unknown": 0.05333333333333334
+      },
+      "max_share": 0.94,
+      "entropy": 0.24789744825118637,
+      "uniformity": 0.22564598157892632
+    },
+    "failure_distribution": {
+      "counts": {
+        "correct": 90,
+        "runtime_error": 2,
+        "syntax_error": 202,
+        "wrong_numeric": 6
+      },
+      "shares": {
+        "correct": 0.3,
+        "runtime_error": 0.006666666666666667,
+        "syntax_error": 0.6733333333333333,
+        "wrong_numeric": 0.02
+      }
+    },
+    "verification_distribution": {
+      "counts": {
+        "not_executable": 204,
+        "objective_match": 90,
+        "objective_mismatch": 6
+      },
+      "shares": {
+        "not_executable": 0.68,
+        "objective_match": 0.3,
+        "objective_mismatch": 0.02
+      }
+    }
+  },
+  "gemini-2.5-pro/solver_specific_coptpy": {
+    "n": 300,
+    "accuracy": 0.0,
+    "acc_5pct": 0.0,
+    "acc_1pct": 0.0,
+    "acc_1e-4": 0.0,
+    "high_confidence_accuracy": null,
+    "executable_rate": 0.0,
+    "solve_rate": 0.0,
+    "objective_evaluable_rate": 0.0,
+    "variable_output_rate": 0.0,
+    "constraint_checked_rate": 0.0,
+    "mean_gap": null,
+    "median_gap": null,
+    "avg_latency": 27.759917697111767,
+    "avg_tokens": 4150.613333333334,
+    "solver_distribution": {
+      "counts": {
+        "coptpy": 278,
+        "coptpy+mip": 3,
+        "mip": 2,
+        "unknown": 17
+      },
+      "shares": {
+        "coptpy": 0.9266666666666666,
+        "coptpy+mip": 0.01,
+        "mip": 0.006666666666666667,
+        "unknown": 0.056666666666666664
+      },
+      "max_share": 0.9266666666666666,
+      "entropy": 0.3126977157159444,
+      "uniformity": 0.22556372188034993
+    },
+    "failure_distribution": {
+      "counts": {
+        "missing_module": 97,
+        "syntax_error": 203
+      },
+      "shares": {
+        "missing_module": 0.3233333333333333,
+        "syntax_error": 0.6766666666666666
       }
     },
     "verification_distribution": {

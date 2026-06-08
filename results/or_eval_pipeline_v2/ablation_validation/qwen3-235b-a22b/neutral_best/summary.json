@@ -1,0 +1,102 @@
+{
+  "n": 300,
+  "accuracy": 0.6033333333333334,
+  "acc_5pct": 0.6033333333333334,
+  "acc_1pct": 0.5733333333333334,
+  "acc_1e-4": 0.53,
+  "high_confidence_accuracy": 0.793859649122807,
+  "executable_rate": 0.76,
+  "solve_rate": 0.72,
+  "objective_evaluable_rate": 0.7566666666666667,
+  "variable_output_rate": 0.7133333333333334,
+  "constraint_checked_rate": 0.72,
+  "mean_gap": 4621.06932225814,
+  "median_gap": 0.0,
+  "avg_latency": 27.742579182783764,
+  "avg_tokens": 1807.37,
+  "solver_distribution": {
+    "counts": {
+      "coptpy": 1,
+      "coptpy+cvxpy+gurobipy+highspy+mip+ortools+pulp+pyomo+pyscipopt+scipy.optimize": 1,
+      "coptpy+ortools": 1,
+      "cvxpy": 30,
+      "cvxpy+highspy+ortools+pyomo+scipy.optimize": 1,
+      "cvxpy+mip": 1,
+      "cvxpy+mip+ortools": 1,
+      "cvxpy+mip+ortools+scipy.optimize": 1,
+      "cvxpy+mip+pulp": 2,
+      "cvxpy+ortools": 1,
+      "cvxpy+pulp": 1,
+      "cvxpy+pulp+scipy.optimize": 2,
+      "cvxpy+pyomo+scipy.optimize": 1,
+      "cvxpy+scipy.optimize": 1,
+      "mip+ortools": 2,
+      "ortools": 36,
+      "pulp": 189,
+      "scipy.optimize": 21,
+      "unknown": 7
+    },
+    "shares": {
+      "coptpy": 0.0033333333333333335,
+      "coptpy+cvxpy+gurobipy+highspy+mip+ortools+pulp+pyomo+pyscipopt+scipy.optimize": 0.0033333333333333335,
+      "coptpy+ortools": 0.0033333333333333335,
+      "cvxpy": 0.1,
+      "cvxpy+highspy+ortools+pyomo+scipy.optimize": 0.0033333333333333335,
+      "cvxpy+mip": 0.0033333333333333335,
+      "cvxpy+mip+ortools": 0.0033333333333333335,
+      "cvxpy+mip+ortools+scipy.optimize": 0.0033333333333333335,
+      "cvxpy+mip+pulp": 0.006666666666666667,
+      "cvxpy+ortools": 0.0033333333333333335,
+      "cvxpy+pulp": 0.0033333333333333335,
+      "cvxpy+pulp+scipy.optimize": 0.006666666666666667,
+      "cvxpy+pyomo+scipy.optimize": 0.0033333333333333335,
+      "cvxpy+scipy.optimize": 0.0033333333333333335,
+      "mip+ortools": 0.006666666666666667,
+      "ortools": 0.12,
+      "pulp": 0.63,
+      "scipy.optimize": 0.07,
+      "unknown": 0.023333333333333334
+    },
+    "max_share": 0.63,
+    "entropy": 1.358955759991215,
+    "uniformity": 0.46153300156892035
+  },
+  "failure_distribution": {
+    "counts": {
+      "correct": 181,
+      "exec_no_solve": 3,
+      "infeasible_unbounded_misclassification": 9,
+      "missing_module": 35,
+      "runtime_error": 22,
+      "syntax_error": 15,
+      "wrong_numeric": 35
+    },
+    "shares": {
+      "correct": 0.6033333333333334,
+      "exec_no_solve": 0.01,
+      "infeasible_unbounded_misclassification": 0.03,
+      "missing_module": 0.11666666666666667,
+      "runtime_error": 0.07333333333333333,
+      "syntax_error": 0.05,
+      "wrong_numeric": 0.11666666666666667
+    }
+  },
+  "verification_distribution": {
+    "counts": {
+      "executed_no_verified_solution": 11,
+      "missing_objective": 1,
+      "not_executable": 72,
+      "objective_match": 181,
+      "objective_mismatch": 1,
+      "objective_mismatch_with_variables": 34
+    },
+    "shares": {
+      "executed_no_verified_solution": 0.03666666666666667,
+      "missing_objective": 0.0033333333333333335,
+      "not_executable": 0.24,
+      "objective_match": 0.6033333333333334,
+      "objective_mismatch": 0.0033333333333333335,
+      "objective_mismatch_with_variables": 0.11333333333333333
+    }
+  }
+}

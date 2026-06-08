@@ -1,0 +1,78 @@
+{
+  "n": 300,
+  "accuracy": 0.25,
+  "acc_5pct": 0.25,
+  "acc_1pct": 0.24333333333333335,
+  "acc_1e-4": 0.23,
+  "high_confidence_accuracy": 0.6944444444444444,
+  "executable_rate": 0.3566666666666667,
+  "solve_rate": 0.31666666666666665,
+  "objective_evaluable_rate": 0.3566666666666667,
+  "variable_output_rate": 0.2866666666666667,
+  "constraint_checked_rate": 0.31666666666666665,
+  "mean_gap": 63.415067658282695,
+  "median_gap": 0.0,
+  "avg_latency": 18.464568253358205,
+  "avg_tokens": 1235.65,
+  "solver_distribution": {
+    "counts": {
+      "coptpy": 2,
+      "cvxpy": 171,
+      "gurobipy": 4,
+      "ortools": 8,
+      "pulp": 101,
+      "pyomo": 1,
+      "scipy.optimize": 12,
+      "unknown": 1
+    },
+    "shares": {
+      "coptpy": 0.006666666666666667,
+      "cvxpy": 0.57,
+      "gurobipy": 0.013333333333333334,
+      "ortools": 0.02666666666666667,
+      "pulp": 0.33666666666666667,
+      "pyomo": 0.0033333333333333335,
+      "scipy.optimize": 0.04,
+      "unknown": 0.0033333333333333335
+    },
+    "max_share": 0.57,
+    "entropy": 1.0413240603248137,
+    "uniformity": 0.5007710192629895
+  },
+  "failure_distribution": {
+    "counts": {
+      "correct": 75,
+      "infeasible_unbounded_misclassification": 12,
+      "missing_module": 170,
+      "name_error": 1,
+      "runtime_error": 18,
+      "syntax_error": 4,
+      "wrong_numeric": 20
+    },
+    "shares": {
+      "correct": 0.25,
+      "infeasible_unbounded_misclassification": 0.04,
+      "missing_module": 0.5666666666666667,
+      "name_error": 0.0033333333333333335,
+      "runtime_error": 0.06,
+      "syntax_error": 0.013333333333333334,
+      "wrong_numeric": 0.06666666666666667
+    }
+  },
+  "verification_distribution": {
+    "counts": {
+      "executed_no_verified_solution": 12,
+      "not_executable": 193,
+      "objective_match": 75,
+      "objective_mismatch": 4,
+      "objective_mismatch_with_variables": 16
+    },
+    "shares": {
+      "executed_no_verified_solution": 0.04,
+      "not_executable": 0.6433333333333333,
+      "objective_match": 0.25,
+      "objective_mismatch": 0.013333333333333334,
+      "objective_mismatch_with_variables": 0.05333333333333334
+    }
+  }
+}

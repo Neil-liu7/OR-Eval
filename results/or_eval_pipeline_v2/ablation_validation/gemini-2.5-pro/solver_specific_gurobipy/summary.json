@@ -1,0 +1,58 @@
+{
+  "n": 300,
+  "accuracy": 0.3,
+  "acc_5pct": 0.3,
+  "acc_1pct": 0.27666666666666667,
+  "acc_1e-4": 0.25333333333333335,
+  "high_confidence_accuracy": 0.9473684210526315,
+  "executable_rate": 0.32,
+  "solve_rate": 0.32,
+  "objective_evaluable_rate": 0.32,
+  "variable_output_rate": 0.0,
+  "constraint_checked_rate": 0.32,
+  "mean_gap": 0.02764506708667626,
+  "median_gap": 0.0,
+  "avg_latency": 27.38767642577489,
+  "avg_tokens": 4134.71,
+  "solver_distribution": {
+    "counts": {
+      "gurobipy": 282,
+      "mip": 2,
+      "unknown": 16
+    },
+    "shares": {
+      "gurobipy": 0.94,
+      "mip": 0.006666666666666667,
+      "unknown": 0.05333333333333334
+    },
+    "max_share": 0.94,
+    "entropy": 0.24789744825118637,
+    "uniformity": 0.22564598157892632
+  },
+  "failure_distribution": {
+    "counts": {
+      "correct": 90,
+      "runtime_error": 2,
+      "syntax_error": 202,
+      "wrong_numeric": 6
+    },
+    "shares": {
+      "correct": 0.3,
+      "runtime_error": 0.006666666666666667,
+      "syntax_error": 0.6733333333333333,
+      "wrong_numeric": 0.02
+    }
+  },
+  "verification_distribution": {
+    "counts": {
+      "not_executable": 204,
+      "objective_match": 90,
+      "objective_mismatch": 6
+    },
+    "shares": {
+      "not_executable": 0.68,
+      "objective_match": 0.3,
+      "objective_mismatch": 0.02
+    }
+  }
+}

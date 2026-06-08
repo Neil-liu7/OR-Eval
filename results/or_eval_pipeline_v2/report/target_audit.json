@@ -15,13 +15,18 @@
           "OptMATH_Bench",
           "OptiBench"
         ],
-        "rows": 10606,
+        "rows": 19928,
         "complete_models": [
           "deepseek-v3",
           "deepseek-v3.2",
+          "gemini-2.5-pro",
+          "gpt-4.1",
           "gpt-4.1-mini",
           "gpt-4o",
-          "gpt-4o-mini"
+          "gpt-4o-mini",
+          "o4-mini",
+          "qwen-max",
+          "qwen3-235b-a22b"
         ]
       }
     },
@@ -34,20 +39,29 @@
           "deepseek-v3",
           "deepseek-v3.2",
           "gemini-2.5-pro",
+          "gpt-4.1",
           "gpt-4.1-mini",
           "gpt-4o",
           "gpt-4o-mini",
-          "o3-mini"
+          "o3-mini",
+          "o4-mini",
+          "qwen-max",
+          "qwen3-235b-a22b"
         ],
         "complete_models": [
           "deepseek-v3",
           "deepseek-v3.2",
+          "gemini-2.5-pro",
+          "gpt-4.1",
           "gpt-4.1-mini",
           "gpt-4o",
-          "gpt-4o-mini"
+          "gpt-4o-mini",
+          "o4-mini",
+          "qwen-max",
+          "qwen3-235b-a22b"
         ],
-        "complete_model_count": 5,
-        "rows": 10606,
+        "complete_model_count": 10,
+        "rows": 19928,
         "required_rows_per_model": 1961,
         "per_model": {
           "deepseek-v3": {
@@ -75,12 +89,28 @@
             "complete": true
           },
           "gemini-2.5-pro": {
-            "rows": 483,
+            "rows": 1961,
             "datasets": [
+              "IndustryOR",
+              "MAMO_ComplexLP",
               "MAMO_EasyLP",
-              "NL4OPT"
+              "NL4OPT",
+              "OptMATH_Bench",
+              "OptiBench"
             ],
-            "complete": false
+            "complete": true
+          },
+          "gpt-4.1": {
+            "rows": 1961,
+            "datasets": [
+              "IndustryOR",
+              "MAMO_ComplexLP",
+              "MAMO_EasyLP",
+              "NL4OPT",
+              "OptMATH_Bench",
+              "OptiBench"
+            ],
+            "complete": true
           },
           "gpt-4.1-mini": {
             "rows": 1961,
@@ -125,6 +155,42 @@
               "NL4OPT"
             ],
             "complete": false
+          },
+          "o4-mini": {
+            "rows": 1961,
+            "datasets": [
+              "IndustryOR",
+              "MAMO_ComplexLP",
+              "MAMO_EasyLP",
+              "NL4OPT",
+              "OptMATH_Bench",
+              "OptiBench"
+            ],
+            "complete": true
+          },
+          "qwen-max": {
+            "rows": 1961,
+            "datasets": [
+              "IndustryOR",
+              "MAMO_ComplexLP",
+              "MAMO_EasyLP",
+              "NL4OPT",
+              "OptMATH_Bench",
+              "OptiBench"
+            ],
+            "complete": true
+          },
+          "qwen3-235b-a22b": {
+            "rows": 1961,
+            "datasets": [
+              "IndustryOR",
+              "MAMO_ComplexLP",
+              "MAMO_EasyLP",
+              "NL4OPT",
+              "OptMATH_Bench",
+              "OptiBench"
+            ],
+            "complete": true
           }
         }
       }
@@ -158,13 +224,18 @@
       "status": "pass",
       "detail": "Ablation should compare neutral, PySCIPOpt, Gurobi, and COPT prompts on 300 validation samples per model.",
       "value": {
-        "rows": 6011,
+        "rows": 12000,
         "complete_models": [
           "deepseek-v3",
           "deepseek-v3.2",
+          "gemini-2.5-pro",
+          "gpt-4.1",
           "gpt-4.1-mini",
           "gpt-4o",
-          "gpt-4o-mini"
+          "gpt-4o-mini",
+          "o4-mini",
+          "qwen-max",
+          "qwen3-235b-a22b"
         ],
         "required_complete_models": 5,
         "required_rows_per_prompt": 300,
@@ -190,14 +261,24 @@
             "complete": true
           },
           "gemini-2.5-pro": {
-            "rows": 11,
+            "rows": 1200,
             "prompt_counts": {
-              "neutral": 11,
-              "solver_specific_pyscipopt": 0,
-              "solver_specific_gurobipy": 0,
-              "solver_specific_coptpy": 0
+              "neutral": 300,
+              "solver_specific_pyscipopt": 300,
+              "solver_specific_gurobipy": 300,
+              "solver_specific_coptpy": 300
             },
-            "complete": false
+            "complete": true
+          },
+          "gpt-4.1": {
+            "rows": 1200,
+            "prompt_counts": {
+              "neutral": 300,
+              "solver_specific_pyscipopt": 300,
+              "solver_specific_gurobipy": 300,
+              "solver_specific_coptpy": 300
+            },
+            "complete": true
           },
           "gpt-4.1-mini": {
             "rows": 1200,
@@ -228,6 +309,36 @@
               "solver_specific_coptpy": 300
             },
             "complete": true
+          },
+          "o4-mini": {
+            "rows": 1200,
+            "prompt_counts": {
+              "neutral": 300,
+              "solver_specific_pyscipopt": 300,
+              "solver_specific_gurobipy": 300,
+              "solver_specific_coptpy": 300
+            },
+            "complete": true
+          },
+          "qwen-max": {
+            "rows": 1200,
+            "prompt_counts": {
+              "neutral": 300,
+              "solver_specific_pyscipopt": 300,
+              "solver_specific_gurobipy": 300,
+              "solver_specific_coptpy": 300
+            },
+            "complete": true
+          },
+          "qwen3-235b-a22b": {
+            "rows": 1200,
+            "prompt_counts": {
+              "neutral": 300,
+              "solver_specific_pyscipopt": 300,
+              "solver_specific_gurobipy": 300,
+              "solver_specific_coptpy": 300
+            },
+            "complete": true
           }
         }
       }
@@ -235,24 +346,28 @@
     {
       "name": "solver_specific_bias_demonstrated",
       "status": "pass",
-      "detail": "Solver-specific prompts should visibly concentrate generated code on the forced solver (≥60% of rows with max_share≥0.90). 13/15 pass.",
+      "detail": "Solver-specific prompts should visibly concentrate generated code on the forced solver (≥60% of rows with max_share≥0.90). 25/30 pass.",
       "value": {
-        "solver_specific_coptpy": 0.84,
-        "solver_specific_gurobipy": 0.6466666666666666,
-        "solver_specific_pyscipopt": 1.0
+        "solver_specific_coptpy": 1.0,
+        "solver_specific_gurobipy": 0.9966666666666667,
+        "solver_specific_pyscipopt": 0.9866666666666667
       }
     },
     {
       "name": "neutral_bias_mitigated",
       "status": "pass",
-      "detail": "Neutral prompt should keep top-solver concentration below 0.85 for majority of models (≥60% of rows). 5/6 pass.",
+      "detail": "Neutral prompt should keep top-solver concentration below 0.85 for majority of models (≥60% of rows). 9/10 pass.",
       "value": {
         "deepseek-v3/neutral_best": 0.5633333333333334,
         "deepseek-v3.2/neutral_best": 0.43,
-        "gemini-2.5-pro/neutral_best": 0.8181818181818182,
+        "gemini-2.5-pro/neutral_best": 0.43333333333333335,
+        "gpt-4.1/neutral_best": 0.6066666666666667,
         "gpt-4.1-mini/neutral_best": 0.8666666666666667,
         "gpt-4o/neutral_best": 0.7766666666666666,
-        "gpt-4o-mini/neutral_best": 0.44
+        "gpt-4o-mini/neutral_best": 0.44,
+        "o4-mini/neutral_best": 0.8133333333333334,
+        "qwen-max/neutral_best": 0.57,
+        "qwen3-235b-a22b/neutral_best": 0.63
       }
     },
     {
@@ -289,8 +404,8 @@
       "status": "pass",
       "detail": "Equivalent-modeling recognition should include real constraint feasibility evidence, not only objective matching.",
       "value": {
-        "rows_with_solution_verification": 10606,
-        "rows_with_constraint_check": 7221
+        "rows_with_solution_verification": 19928,
+        "rows_with_constraint_check": 13079
       }
     }
   ]

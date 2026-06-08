@@ -1,0 +1,82 @@
+{
+  "n": 1961,
+  "accuracy": 0.7791942886282509,
+  "acc_5pct": 0.7791942886282509,
+  "acc_1pct": 0.7572667006629271,
+  "acc_1e-4": 0.7027027027027027,
+  "high_confidence_accuracy": 0.8603603603603603,
+  "executable_rate": 0.9056603773584906,
+  "solve_rate": 0.8878123406425293,
+  "objective_evaluable_rate": 0.9051504334523203,
+  "variable_output_rate": 0.8852626211116777,
+  "constraint_checked_rate": 0.8878123406425293,
+  "mean_gap": 4.545165534417535,
+  "median_gap": 0.0,
+  "avg_latency": 15.251753508345562,
+  "avg_tokens": 2737.072921978582,
+  "solver_distribution": {
+    "counts": {
+      "coptpy": 1,
+      "cvxpy": 18,
+      "ortools": 1,
+      "pulp": 1668,
+      "scipy.optimize": 78,
+      "unknown": 195
+    },
+    "shares": {
+      "coptpy": 0.0005099439061703213,
+      "cvxpy": 0.009178990311065782,
+      "ortools": 0.0005099439061703213,
+      "pulp": 0.8505864354920959,
+      "scipy.optimize": 0.03977562468128506,
+      "unknown": 0.09943906170321265
+    },
+    "max_share": 0.8505864354920959,
+    "entropy": 0.54622170465008,
+    "uniformity": 0.3048521378181465
+  },
+  "failure_distribution": {
+    "counts": {
+      "correct": 1528,
+      "exec_no_solve": 14,
+      "infeasible_unbounded_misclassification": 21,
+      "missing_module": 19,
+      "name_error": 2,
+      "no_code": 145,
+      "runtime_error": 16,
+      "syntax_error": 2,
+      "timeout": 1,
+      "wrong_numeric": 213
+    },
+    "shares": {
+      "correct": 0.7791942886282509,
+      "exec_no_solve": 0.0071392146863844975,
+      "infeasible_unbounded_misclassification": 0.010708822029576747,
+      "missing_module": 0.009688934217236104,
+      "name_error": 0.0010198878123406426,
+      "no_code": 0.07394186639469659,
+      "runtime_error": 0.00815910249872514,
+      "syntax_error": 0.0010198878123406426,
+      "timeout": 0.0005099439061703213,
+      "wrong_numeric": 0.10861805201427843
+    }
+  },
+  "verification_distribution": {
+    "counts": {
+      "executed_no_verified_solution": 34,
+      "missing_objective": 1,
+      "not_executable": 185,
+      "objective_match": 1528,
+      "objective_mismatch": 1,
+      "objective_mismatch_with_variables": 212
+    },
+    "shares": {
+      "executed_no_verified_solution": 0.017338092809790925,
+      "missing_objective": 0.0005099439061703213,
+      "not_executable": 0.09433962264150944,
+      "objective_match": 0.7791942886282509,
+      "objective_mismatch": 0.0005099439061703213,
+      "objective_mismatch_with_variables": 0.10810810810810811
+    }
+  }
+}

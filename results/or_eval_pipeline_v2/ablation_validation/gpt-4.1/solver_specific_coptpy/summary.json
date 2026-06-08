@@ -1,0 +1,46 @@
+{
+  "n": 300,
+  "accuracy": 0.0,
+  "acc_5pct": 0.0,
+  "acc_1pct": 0.0,
+  "acc_1e-4": 0.0,
+  "high_confidence_accuracy": null,
+  "executable_rate": 0.0,
+  "solve_rate": 0.0,
+  "objective_evaluable_rate": 0.0,
+  "variable_output_rate": 0.0,
+  "constraint_checked_rate": 0.0,
+  "mean_gap": null,
+  "median_gap": null,
+  "avg_latency": 5.12440719683965,
+  "avg_tokens": 877.6666666666666,
+  "solver_distribution": {
+    "counts": {
+      "coptpy": 300
+    },
+    "shares": {
+      "coptpy": 1.0
+    },
+    "max_share": 1.0,
+    "entropy": -0.0,
+    "uniformity": -0.0
+  },
+  "failure_distribution": {
+    "counts": {
+      "missing_module": 299,
+      "syntax_error": 1
+    },
+    "shares": {
+      "missing_module": 0.9966666666666667,
+      "syntax_error": 0.0033333333333333335
+    }
+  },
+  "verification_distribution": {
+    "counts": {
+      "not_executable": 300
+    },
+    "shares": {
+      "not_executable": 1.0
+    }
+  }
+}

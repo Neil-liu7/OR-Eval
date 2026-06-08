@@ -1,0 +1,84 @@
+{
+  "n": 1961,
+  "accuracy": 0.32024477307496174,
+  "acc_5pct": 0.32024477307496174,
+  "acc_1pct": 0.31514533401325856,
+  "acc_1e-4": 0.30494645588985214,
+  "high_confidence_accuracy": 0.8092783505154639,
+  "executable_rate": 0.3957164711881693,
+  "solve_rate": 0.36970933197348294,
+  "objective_evaluable_rate": 0.39520652728199895,
+  "variable_output_rate": 0.352371239163692,
+  "constraint_checked_rate": 0.36970933197348294,
+  "mean_gap": 5.130118780221513,
+  "median_gap": 0.0,
+  "avg_latency": 15.425803933442703,
+  "avg_tokens": 1059.7343192248852,
+  "solver_distribution": {
+    "counts": {
+      "coptpy": 3,
+      "cvxpy": 1077,
+      "gurobipy": 9,
+      "ortools": 35,
+      "pulp": 763,
+      "pyomo": 7,
+      "scipy.optimize": 64,
+      "unknown": 3
+    },
+    "shares": {
+      "coptpy": 0.0015298317185109638,
+      "cvxpy": 0.549209586945436,
+      "gurobipy": 0.004589495155532891,
+      "ortools": 0.017848036715961243,
+      "pulp": 0.38908720040795514,
+      "pyomo": 0.0035696073431922487,
+      "scipy.optimize": 0.03263640999490056,
+      "unknown": 0.0015298317185109638
+    },
+    "max_share": 0.549209586945436,
+    "entropy": 0.9446135535670541,
+    "uniformity": 0.4542630964292301
+  },
+  "failure_distribution": {
+    "counts": {
+      "correct": 628,
+      "exec_no_solve": 4,
+      "infeasible_unbounded_misclassification": 47,
+      "missing_module": 1074,
+      "name_error": 4,
+      "runtime_error": 86,
+      "syntax_error": 17,
+      "timeout": 4,
+      "wrong_numeric": 97
+    },
+    "shares": {
+      "correct": 0.32024477307496174,
+      "exec_no_solve": 0.002039775624681285,
+      "infeasible_unbounded_misclassification": 0.0239673635900051,
+      "missing_module": 0.547679755226925,
+      "name_error": 0.002039775624681285,
+      "runtime_error": 0.04385517593064763,
+      "syntax_error": 0.008669046404895462,
+      "timeout": 0.002039775624681285,
+      "wrong_numeric": 0.049464558898521166
+    }
+  },
+  "verification_distribution": {
+    "counts": {
+      "executed_no_verified_solution": 50,
+      "missing_objective": 1,
+      "not_executable": 1185,
+      "objective_match": 628,
+      "objective_mismatch": 11,
+      "objective_mismatch_with_variables": 86
+    },
+    "shares": {
+      "executed_no_verified_solution": 0.025497195308516064,
+      "missing_objective": 0.0005099439061703213,
+      "not_executable": 0.6042835288118307,
+      "objective_match": 0.32024477307496174,
+      "objective_mismatch": 0.0056093829678735335,
+      "objective_mismatch_with_variables": 0.04385517593064763
+    }
+  }
+}

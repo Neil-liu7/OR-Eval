@@ -1,93 +1,477 @@
 {
-  "gpt-4.1-mini/neutral_best_v2": {
+  "gpt-4.1/neutral_best_v2": {
     "n": 1961,
-    "accuracy": 0.7394186639469659,
-    "acc_5pct": 0.7394186639469659,
-    "acc_1pct": 0.7154513003569607,
-    "acc_1e-4": 0.6797552269250382,
-    "executable_rate": 0.8704742478327384,
-    "solve_rate": 0.8424273329933707,
-    "objective_evaluable_rate": 0.8704742478327384,
-    "variable_output_rate": 0.8419173890872004,
-    "constraint_checked_rate": 0.8424273329933707,
-    "mean_gap": 3.34686527350381,
-    "avg_latency": 10.588431289887804,
-    "avg_tokens": 1109.9535951045384,
+    "accuracy": 0.6935237123916369,
+    "acc_5pct": 0.6935237123916369,
+    "acc_1pct": 0.6715961244263131,
+    "acc_1e-4": 0.6420193778684344,
+    "high_confidence_accuracy": 0.8695652173913043,
+    "executable_rate": 0.7955124936257012,
+    "solve_rate": 0.7705252422233554,
+    "objective_evaluable_rate": 0.7955124936257012,
+    "variable_output_rate": 0.7526772055073941,
+    "constraint_checked_rate": 0.7705252422233554,
+    "mean_gap": 709.3477052731754,
+    "median_gap": 0.0,
+    "avg_latency": 5.802539742400244,
+    "avg_tokens": 1084.0917899031106,
     "solver_distribution": {
       "counts": {
         "coptpy": 3,
-        "cvxpy": 135,
-        "cvxpy+mip": 5,
-        "cvxpy+mip+pulp": 1,
-        "cvxpy+mip+pulp+scipy.optimize": 1,
-        "cvxpy+mosek": 2,
-        "cvxpy+pulp": 2,
-        "cvxpy+pulp+scipy.optimize": 1,
-        "cvxpy+pyomo+scipy.optimize": 1,
-        "cvxpy+scipy.optimize": 1,
+        "cvxpy": 278,
+        "mip+pulp+pyomo+scipy.optimize": 1,
         "mip+pulp+scipy.optimize": 1,
-        "ortools": 1,
-        "pulp": 1762,
-        "scipy.optimize": 42,
-        "unknown": 3
+        "mip+scipy.optimize": 1,
+        "ortools": 21,
+        "pulp": 1330,
+        "pulp+scipy.optimize": 11,
+        "pyomo": 20,
+        "scipy.optimize": 278,
+        "unknown": 17
       },
       "shares": {
         "coptpy": 0.0015298317185109638,
-        "cvxpy": 0.06884242733299337,
-        "cvxpy+mip": 0.0025497195308516064,
-        "cvxpy+mip+pulp": 0.0005099439061703213,
-        "cvxpy+mip+pulp+scipy.optimize": 0.0005099439061703213,
-        "cvxpy+mosek": 0.0010198878123406426,
-        "cvxpy+pulp": 0.0010198878123406426,
-        "cvxpy+pulp+scipy.optimize": 0.0005099439061703213,
-        "cvxpy+pyomo+scipy.optimize": 0.0005099439061703213,
-        "cvxpy+scipy.optimize": 0.0005099439061703213,
+        "cvxpy": 0.1417644059153493,
+        "mip+pulp+pyomo+scipy.optimize": 0.0005099439061703213,
         "mip+pulp+scipy.optimize": 0.0005099439061703213,
-        "ortools": 0.0005099439061703213,
-        "pulp": 0.898521162672106,
-        "scipy.optimize": 0.021417644059153494,
-        "unknown": 0.0015298317185109638
+        "mip+scipy.optimize": 0.0005099439061703213,
+        "ortools": 0.010708822029576747,
+        "pulp": 0.6782253952065272,
+        "pulp+scipy.optimize": 0.0056093829678735335,
+        "pyomo": 0.010198878123406425,
+        "scipy.optimize": 0.1417644059153493,
+        "unknown": 0.008669046404895462
       },
-      "max_share": 0.898521162672106,
-      "entropy": 0.4388566695825369,
-      "uniformity": 0.16205632724382907
+      "max_share": 0.6782253952065272,
+      "entropy": 1.0043374234385587,
+      "uniformity": 0.41884123749344804
     },
     "failure_distribution": {
       "counts": {
-        "correct": 1450,
+        "correct": 1360,
         "exec_no_solve": 12,
-        "infeasible_unbounded_misclassification": 43,
-        "missing_module": 153,
-        "runtime_error": 95,
-        "syntax_error": 5,
-        "timeout": 1,
-        "wrong_numeric": 202
+        "infeasible_unbounded_misclassification": 37,
+        "missing_module": 320,
+        "runtime_error": 75,
+        "syntax_error": 2,
+        "timeout": 4,
+        "wrong_numeric": 151
       },
       "shares": {
-        "correct": 0.7394186639469659,
+        "correct": 0.6935237123916369,
         "exec_no_solve": 0.006119326874043855,
-        "infeasible_unbounded_misclassification": 0.021927587965323816,
-        "missing_module": 0.07802141764405915,
-        "runtime_error": 0.04844467108618052,
-        "syntax_error": 0.0025497195308516064,
-        "timeout": 0.0005099439061703213,
-        "wrong_numeric": 0.10300866904640489
+        "infeasible_unbounded_misclassification": 0.018867924528301886,
+        "missing_module": 0.1631820499745028,
+        "runtime_error": 0.0382457929627741,
+        "syntax_error": 0.0010198878123406426,
+        "timeout": 0.002039775624681285,
+        "wrong_numeric": 0.07700152983171851
       }
     },
     "verification_distribution": {
       "counts": {
-        "executed_no_verified_solution": 55,
-        "not_executable": 254,
-        "objective_match": 1450,
-        "objective_mismatch": 1,
-        "objective_mismatch_with_variables": 201
+        "executed_no_verified_solution": 49,
+        "not_executable": 401,
+        "objective_match": 1360,
+        "objective_mismatch": 9,
+        "objective_mismatch_with_variables": 142
       },
       "shares": {
-        "executed_no_verified_solution": 0.02804691483936767,
-        "not_executable": 0.1295257521672616,
-        "objective_match": 0.7394186639469659,
+        "executed_no_verified_solution": 0.024987251402345742,
+        "not_executable": 0.20448750637429883,
+        "objective_match": 0.6935237123916369,
+        "objective_mismatch": 0.004589495155532891,
+        "objective_mismatch_with_variables": 0.07241203467618562
+      }
+    }
+  },
+  "o4-mini/neutral_best_v2": {
+    "n": 1961,
+    "accuracy": 0.7791942886282509,
+    "acc_5pct": 0.7791942886282509,
+    "acc_1pct": 0.7572667006629271,
+    "acc_1e-4": 0.7027027027027027,
+    "high_confidence_accuracy": 0.8603603603603603,
+    "executable_rate": 0.9056603773584906,
+    "solve_rate": 0.8878123406425293,
+    "objective_evaluable_rate": 0.9051504334523203,
+    "variable_output_rate": 0.8852626211116777,
+    "constraint_checked_rate": 0.8878123406425293,
+    "mean_gap": 4.545165534417535,
+    "median_gap": 0.0,
+    "avg_latency": 15.251753508345562,
+    "avg_tokens": 2737.072921978582,
+    "solver_distribution": {
+      "counts": {
+        "coptpy": 1,
+        "cvxpy": 18,
+        "ortools": 1,
+        "pulp": 1668,
+        "scipy.optimize": 78,
+        "unknown": 195
+      },
+      "shares": {
+        "coptpy": 0.0005099439061703213,
+        "cvxpy": 0.009178990311065782,
+        "ortools": 0.0005099439061703213,
+        "pulp": 0.8505864354920959,
+        "scipy.optimize": 0.03977562468128506,
+        "unknown": 0.09943906170321265
+      },
+      "max_share": 0.8505864354920959,
+      "entropy": 0.54622170465008,
+      "uniformity": 0.3048521378181465
+    },
+    "failure_distribution": {
+      "counts": {
+        "correct": 1528,
+        "exec_no_solve": 14,
+        "infeasible_unbounded_misclassification": 21,
+        "missing_module": 19,
+        "name_error": 2,
+        "no_code": 145,
+        "runtime_error": 16,
+        "syntax_error": 2,
+        "timeout": 1,
+        "wrong_numeric": 213
+      },
+      "shares": {
+        "correct": 0.7791942886282509,
+        "exec_no_solve": 0.0071392146863844975,
+        "infeasible_unbounded_misclassification": 0.010708822029576747,
+        "missing_module": 0.009688934217236104,
+        "name_error": 0.0010198878123406426,
+        "no_code": 0.07394186639469659,
+        "runtime_error": 0.00815910249872514,
+        "syntax_error": 0.0010198878123406426,
+        "timeout": 0.0005099439061703213,
+        "wrong_numeric": 0.10861805201427843
+      }
+    },
+    "verification_distribution": {
+      "counts": {
+        "executed_no_verified_solution": 34,
+        "missing_objective": 1,
+        "not_executable": 185,
+        "objective_match": 1528,
+        "objective_mismatch": 1,
+        "objective_mismatch_with_variables": 212
+      },
+      "shares": {
+        "executed_no_verified_solution": 0.017338092809790925,
+        "missing_objective": 0.0005099439061703213,
+        "not_executable": 0.09433962264150944,
+        "objective_match": 0.7791942886282509,
         "objective_mismatch": 0.0005099439061703213,
-        "objective_mismatch_with_variables": 0.10249872514023457
+        "objective_mismatch_with_variables": 0.10810810810810811
+      }
+    }
+  },
+  "qwen-max/neutral_best_v2": {
+    "n": 1961,
+    "accuracy": 0.32024477307496174,
+    "acc_5pct": 0.32024477307496174,
+    "acc_1pct": 0.31514533401325856,
+    "acc_1e-4": 0.30494645588985214,
+    "high_confidence_accuracy": 0.8092783505154639,
+    "executable_rate": 0.3957164711881693,
+    "solve_rate": 0.36970933197348294,
+    "objective_evaluable_rate": 0.39520652728199895,
+    "variable_output_rate": 0.352371239163692,
+    "constraint_checked_rate": 0.36970933197348294,
+    "mean_gap": 5.130118780221513,
+    "median_gap": 0.0,
+    "avg_latency": 15.425803933442703,
+    "avg_tokens": 1059.7343192248852,
+    "solver_distribution": {
+      "counts": {
+        "coptpy": 3,
+        "cvxpy": 1077,
+        "gurobipy": 9,
+        "ortools": 35,
+        "pulp": 763,
+        "pyomo": 7,
+        "scipy.optimize": 64,
+        "unknown": 3
+      },
+      "shares": {
+        "coptpy": 0.0015298317185109638,
+        "cvxpy": 0.549209586945436,
+        "gurobipy": 0.004589495155532891,
+        "ortools": 0.017848036715961243,
+        "pulp": 0.38908720040795514,
+        "pyomo": 0.0035696073431922487,
+        "scipy.optimize": 0.03263640999490056,
+        "unknown": 0.0015298317185109638
+      },
+      "max_share": 0.549209586945436,
+      "entropy": 0.9446135535670541,
+      "uniformity": 0.4542630964292301
+    },
+    "failure_distribution": {
+      "counts": {
+        "correct": 628,
+        "exec_no_solve": 4,
+        "infeasible_unbounded_misclassification": 47,
+        "missing_module": 1074,
+        "name_error": 4,
+        "runtime_error": 86,
+        "syntax_error": 17,
+        "timeout": 4,
+        "wrong_numeric": 97
+      },
+      "shares": {
+        "correct": 0.32024477307496174,
+        "exec_no_solve": 0.002039775624681285,
+        "infeasible_unbounded_misclassification": 0.0239673635900051,
+        "missing_module": 0.547679755226925,
+        "name_error": 0.002039775624681285,
+        "runtime_error": 0.04385517593064763,
+        "syntax_error": 0.008669046404895462,
+        "timeout": 0.002039775624681285,
+        "wrong_numeric": 0.049464558898521166
+      }
+    },
+    "verification_distribution": {
+      "counts": {
+        "executed_no_verified_solution": 50,
+        "missing_objective": 1,
+        "not_executable": 1185,
+        "objective_match": 628,
+        "objective_mismatch": 11,
+        "objective_mismatch_with_variables": 86
+      },
+      "shares": {
+        "executed_no_verified_solution": 0.025497195308516064,
+        "missing_objective": 0.0005099439061703213,
+        "not_executable": 0.6042835288118307,
+        "objective_match": 0.32024477307496174,
+        "objective_mismatch": 0.0056093829678735335,
+        "objective_mismatch_with_variables": 0.04385517593064763
+      }
+    }
+  },
+  "qwen3-235b-a22b/neutral_best_v2": {
+    "n": 1961,
+    "accuracy": 0.7108618052014278,
+    "acc_5pct": 0.7108618052014278,
+    "acc_1pct": 0.6863844977052524,
+    "acc_1e-4": 0.6425293217746048,
+    "high_confidence_accuracy": 0.8367346938775511,
+    "executable_rate": 0.8495665476797553,
+    "solve_rate": 0.8194798572157063,
+    "objective_evaluable_rate": 0.8490566037735849,
+    "variable_output_rate": 0.8148903620601734,
+    "constraint_checked_rate": 0.8194798572157063,
+    "mean_gap": 631.5081523375416,
+    "median_gap": 0.0,
+    "avg_latency": 21.358284685333306,
+    "avg_tokens": 1432.212136664967,
+    "solver_distribution": {
+      "counts": {
+        "coptpy": 3,
+        "coptpy+cvxpy+gurobipy+highspy+mip+ortools+pulp+pyomo+pyscipopt+scipy.optimize": 1,
+        "coptpy+cvxpy+gurobipy+highspy+ortools+pulp+pyomo+pyscipopt+scipy.optimize": 1,
+        "coptpy+cvxpy+gurobipy+ortools+pyscipopt+scipy.optimize": 1,
+        "cvxpy": 142,
+        "cvxpy+gurobipy+pulp+pyomo+scipy.optimize": 1,
+        "cvxpy+highspy+mip+ortools": 1,
+        "cvxpy+highspy+ortools+scipy.optimize": 1,
+        "cvxpy+mip": 6,
+        "cvxpy+mip+ortools": 1,
+        "cvxpy+mip+ortools+scipy.optimize": 1,
+        "cvxpy+mip+pulp": 3,
+        "cvxpy+mip+pulp+scipy.optimize": 1,
+        "cvxpy+ortools": 3,
+        "cvxpy+ortools+pulp+pyomo+scipy.optimize": 1,
+        "cvxpy+ortools+pyomo+scipy.optimize": 1,
+        "cvxpy+ortools+pyscipopt+scipy.optimize": 1,
+        "cvxpy+ortools+scipy.optimize": 1,
+        "cvxpy+pulp": 2,
+        "cvxpy+pulp+pyomo+scipy.optimize": 1,
+        "cvxpy+pulp+scipy.optimize": 1,
+        "cvxpy+pyomo+scipy.optimize": 1,
+        "cvxpy+pyscipopt": 1,
+        "cvxpy+pyscipopt+scipy.optimize": 1,
+        "cvxpy+scipy.optimize": 5,
+        "highspy+mip+ortools+pulp+scipy.optimize": 1,
+        "mip+ortools": 1,
+        "mip+pulp": 7,
+        "ortools": 115,
+        "ortools+pulp+scipy.optimize": 1,
+        "ortools+scipy.optimize": 1,
+        "pulp": 1480,
+        "pulp+pyomo": 1,
+        "pulp+scipy.optimize": 1,
+        "scipy.optimize": 136,
+        "unknown": 35
+      },
+      "shares": {
+        "coptpy": 0.0015298317185109638,
+        "coptpy+cvxpy+gurobipy+highspy+mip+ortools+pulp+pyomo+pyscipopt+scipy.optimize": 0.0005099439061703213,
+        "coptpy+cvxpy+gurobipy+highspy+ortools+pulp+pyomo+pyscipopt+scipy.optimize": 0.0005099439061703213,
+        "coptpy+cvxpy+gurobipy+ortools+pyscipopt+scipy.optimize": 0.0005099439061703213,
+        "cvxpy": 0.07241203467618562,
+        "cvxpy+gurobipy+pulp+pyomo+scipy.optimize": 0.0005099439061703213,
+        "cvxpy+highspy+mip+ortools": 0.0005099439061703213,
+        "cvxpy+highspy+ortools+scipy.optimize": 0.0005099439061703213,
+        "cvxpy+mip": 0.0030596634370219276,
+        "cvxpy+mip+ortools": 0.0005099439061703213,
+        "cvxpy+mip+ortools+scipy.optimize": 0.0005099439061703213,
+        "cvxpy+mip+pulp": 0.0015298317185109638,
+        "cvxpy+mip+pulp+scipy.optimize": 0.0005099439061703213,
+        "cvxpy+ortools": 0.0015298317185109638,
+        "cvxpy+ortools+pulp+pyomo+scipy.optimize": 0.0005099439061703213,
+        "cvxpy+ortools+pyomo+scipy.optimize": 0.0005099439061703213,
+        "cvxpy+ortools+pyscipopt+scipy.optimize": 0.0005099439061703213,
+        "cvxpy+ortools+scipy.optimize": 0.0005099439061703213,
+        "cvxpy+pulp": 0.0010198878123406426,
+        "cvxpy+pulp+pyomo+scipy.optimize": 0.0005099439061703213,
+        "cvxpy+pulp+scipy.optimize": 0.0005099439061703213,
+        "cvxpy+pyomo+scipy.optimize": 0.0005099439061703213,
+        "cvxpy+pyscipopt": 0.0005099439061703213,
+        "cvxpy+pyscipopt+scipy.optimize": 0.0005099439061703213,
+        "cvxpy+scipy.optimize": 0.0025497195308516064,
+        "highspy+mip+ortools+pulp+scipy.optimize": 0.0005099439061703213,
+        "mip+ortools": 0.0005099439061703213,
+        "mip+pulp": 0.0035696073431922487,
+        "ortools": 0.05864354920958695,
+        "ortools+pulp+scipy.optimize": 0.0005099439061703213,
+        "ortools+scipy.optimize": 0.0005099439061703213,
+        "pulp": 0.7547169811320755,
+        "pulp+pyomo": 0.0005099439061703213,
+        "pulp+scipy.optimize": 0.0005099439061703213,
+        "scipy.optimize": 0.0693523712391637,
+        "unknown": 0.017848036715961243
+      },
+      "max_share": 0.7547169811320755,
+      "entropy": 1.0083664255153049,
+      "uniformity": 0.2813900087687942
+    },
+    "failure_distribution": {
+      "counts": {
+        "correct": 1394,
+        "exec_no_solve": 15,
+        "infeasible_unbounded_misclassification": 44,
+        "missing_module": 156,
+        "name_error": 1,
+        "runtime_error": 87,
+        "syntax_error": 50,
+        "timeout": 1,
+        "wrong_numeric": 213
+      },
+      "shares": {
+        "correct": 0.7108618052014278,
+        "exec_no_solve": 0.007649158592554819,
+        "infeasible_unbounded_misclassification": 0.022437531871494134,
+        "missing_module": 0.07955124936257012,
+        "name_error": 0.0005099439061703213,
+        "runtime_error": 0.04436511983681795,
+        "syntax_error": 0.025497195308516064,
+        "timeout": 0.0005099439061703213,
+        "wrong_numeric": 0.10861805201427843
+      }
+    },
+    "verification_distribution": {
+      "counts": {
+        "executed_no_verified_solution": 58,
+        "missing_objective": 1,
+        "not_executable": 295,
+        "objective_match": 1394,
+        "objective_mismatch": 2,
+        "objective_mismatch_with_variables": 211
+      },
+      "shares": {
+        "executed_no_verified_solution": 0.029576746557878633,
+        "missing_objective": 0.0005099439061703213,
+        "not_executable": 0.15043345232024477,
+        "objective_match": 0.7108618052014278,
+        "objective_mismatch": 0.0010198878123406426,
+        "objective_mismatch_with_variables": 0.10759816420193778
+      }
+    }
+  },
+  "gemini-2.5-pro/neutral_best_v2": {
+    "n": 1961,
+    "accuracy": 0.21978582355940846,
+    "acc_5pct": 0.21978582355940846,
+    "acc_1pct": 0.2085670576236614,
+    "acc_1e-4": 0.19734829168791432,
+    "high_confidence_accuracy": 0.9288793103448276,
+    "executable_rate": 0.23559408465068843,
+    "solve_rate": 0.23151453340132586,
+    "objective_evaluable_rate": 0.23559408465068843,
+    "variable_output_rate": 0.23202447730749617,
+    "constraint_checked_rate": 0.23151453340132586,
+    "mean_gap": 0.1118184060757263,
+    "median_gap": 0.0,
+    "avg_latency": 30.373737930582834,
+    "avg_tokens": 4361.615502294748,
+    "solver_distribution": {
+      "counts": {
+        "cvxpy": 64,
+        "cvxpy+mosek": 1,
+        "gurobipy": 1,
+        "mip": 26,
+        "mip+ortools": 2,
+        "mip+scipy.optimize": 1,
+        "ortools": 118,
+        "pulp": 1035,
+        "pyomo": 2,
+        "pyscipopt": 2,
+        "scipy.optimize": 62,
+        "unknown": 647
+      },
+      "shares": {
+        "cvxpy": 0.03263640999490056,
+        "cvxpy+mosek": 0.0005099439061703213,
+        "gurobipy": 0.0005099439061703213,
+        "mip": 0.013258541560428353,
+        "mip+ortools": 0.0010198878123406426,
+        "mip+scipy.optimize": 0.0005099439061703213,
+        "ortools": 0.06017338092809791,
+        "pulp": 0.5277919428862825,
+        "pyomo": 0.0010198878123406426,
+        "pyscipopt": 0.0010198878123406426,
+        "scipy.optimize": 0.03161652218255992,
+        "unknown": 0.32993370729219784
+      },
+      "max_share": 0.5277919428862825,
+      "entropy": 1.183146964948149,
+      "uniformity": 0.4761333650296638
+    },
+    "failure_distribution": {
+      "counts": {
+        "correct": 431,
+        "exec_no_solve": 6,
+        "infeasible_unbounded_misclassification": 2,
+        "missing_module": 4,
+        "runtime_error": 13,
+        "syntax_error": 1482,
+        "wrong_numeric": 23
+      },
+      "shares": {
+        "correct": 0.21978582355940846,
+        "exec_no_solve": 0.0030596634370219276,
+        "infeasible_unbounded_misclassification": 0.0010198878123406426,
+        "missing_module": 0.002039775624681285,
+        "runtime_error": 0.006629270780214177,
+        "syntax_error": 0.7557368689444162,
+        "wrong_numeric": 0.011728709841917389
+      }
+    },
+    "verification_distribution": {
+      "counts": {
+        "executed_no_verified_solution": 8,
+        "not_executable": 1499,
+        "objective_match": 431,
+        "objective_mismatch_with_variables": 23
+      },
+      "shares": {
+        "executed_no_verified_solution": 0.00407955124936257,
+        "not_executable": 0.7644059153493116,
+        "objective_match": 0.21978582355940846,
+        "objective_mismatch_with_variables": 0.011728709841917389
       }
     }
   }

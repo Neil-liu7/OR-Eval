@@ -35,10 +35,14 @@ def run_model_evaluation(
     timeout: int = 30,
     memory_limit_mb: int | None = 2048,
     max_tokens: int = 4096,
+    evaluation_mode: str = "single_pass",
+    max_turns: int = 3,
+    few_shot: int = 0,
 ) -> dict:
     output_dir.mkdir(parents=True, exist_ok=True)
     problems = problem_set if problem_set is not None else load_datasets(datasets, data_dir, limit_per_dataset)
     prompts = prompt_set or [prompt or default_neutral_prompt()]
+    few_shot_examples = _build_few_shot_examples(few_shot, problems) if few_shot > 0 else None
     summary: dict[str, dict] = {}
     solver_env = solver_environment_snapshot()
     solver_env_digest = solver_environment_hash(solver_env)
@@ -70,6 +74,9 @@ def run_model_evaluation(
                 timeout=timeout,
                 memory_limit_mb=memory_limit_mb,
                 run_metadata=run_metadata,
+                evaluation_mode=evaluation_mode,
+                max_turns=max_turns,
+                few_shot_examples=few_shot_examples,
             )
             metrics = aggregate_results(results)
             summary[f"{model_name}/{prompt_spec.id}"] = metrics
@@ -179,6 +186,9 @@ def _evaluate_problem_set(
     timeout: int,
     memory_limit_mb: int | None,
     run_metadata: dict | None = None,
+    evaluation_mode: str = "single_pass",
+    max_turns: int = 3,
+    few_shot_examples: list[dict] | None = None,
 ) -> list[dict]:
     run_metadata = run_metadata or {}
     done = _load_existing(output_file)
@@ -190,7 +200,10 @@ def _evaluate_problem_set(
 
     with ThreadPoolExecutor(max_workers=max(1, concurrency)) as pool:
         futures = [
-            pool.submit(_evaluate_one, client, problem, prompt_spec, timeout, memory_limit_mb, run_metadata)
+            pool.submit(
+                _evaluate_one, client, problem, prompt_spec, timeout, memory_limit_mb,
+                run_metadata, evaluation_mode, max_turns, few_shot_examples,
+            )
             for problem in pending
         ]
         for fut in tqdm(as_completed(futures), total=len(futures), desc=f"{client.model}/{prompt_spec.id}"):
@@ -209,13 +222,17 @@ def _evaluate_one(
     timeout: int,
     memory_limit_mb: int | None,
     run_metadata: dict | None = None,
+    evaluation_mode: str = "single_pass",
+    max_turns: int = 3,
+    few_shot_examples: list[dict] | None = None,
 ) -> dict:
     run_metadata = run_metadata or {}
-    prompt = render_prompt(prompt_spec.text, problem.question)
+    prompt = render_prompt(prompt_spec.text, problem.question, few_shot_examples=few_shot_examples)
     response = client.generate(prompt)
     code = extract_code_block(response.text)
     execution = execute_code(code, timeout=timeout, memory_limit_mb=memory_limit_mb) if code else None
-    return _build_result_row(
+
+    row = _build_result_row(
         model=client.model,
         prompt_spec=prompt_spec,
         problem=problem,
@@ -229,6 +246,48 @@ def _evaluate_one(
         tokens_completion=response.tokens_completion,
         tokens_total=response.tokens_total,
     )
+
+    if evaluation_mode == "single_pass" or row.get("acc_5pct"):
+        return row
+
+    if evaluation_mode == "self_debug" and code and not row.get("executable"):
+        from or_eval.evaluation_modes import self_debug_turns
+        turns = self_debug_turns(
+            client, problem.question, code, execution,
+            max_turns=max_turns, timeout=timeout, memory_limit_mb=memory_limit_mb,
+        )
+        if turns:
+            last = turns[-1]
+            row["multi_turn"] = {
+                "mode": "self_debug",
+                "turns": len(turns),
+                "final_success": last.success,
+                "final_predicted": last.predicted,
+            }
+            if last.success and last.predicted is not None:
+                from or_eval.metrics import tolerance_flags as _tflags
+                row["multi_turn"]["acc_5pct"] = _tflags(last.predicted, problem.answer).get("acc_5pct", False)
+
+    elif evaluation_mode == "reflexion":
+        from or_eval.evaluation_modes import reflexion_turns
+        turns = reflexion_turns(
+            client, problem.question, code or "", execution,
+            ground_truth=problem.answer,
+            max_turns=max_turns, timeout=timeout, memory_limit_mb=memory_limit_mb,
+        )
+        if turns:
+            last = turns[-1]
+            row["multi_turn"] = {
+                "mode": "reflexion",
+                "turns": len(turns),
+                "final_success": last.success,
+                "final_predicted": last.predicted,
+            }
+            if last.success and last.predicted is not None:
+                from or_eval.metrics import tolerance_flags as _tflags
+                row["multi_turn"]["acc_5pct"] = _tflags(last.predicted, problem.answer).get("acc_5pct", False)
+
+    return row
 
 
 def _row_from_local_execution(
@@ -370,6 +429,27 @@ def _fairness_smoke_ablation_rows(problem: BenchmarkProblem, base_metadata: dict
         row["solution_verification"] = solution_verification_record(row)
         rows.append(row)
     return rows
+
+
+def _build_few_shot_examples(n: int, problems: list[BenchmarkProblem]) -> list[dict] | None:
+    """Build few-shot examples from the simplest problems in the set.
+
+    Uses the first N problems as demonstrations with a trivial code template.
+    These are NOT solved dynamically — they show the expected output format.
+    """
+    if n <= 0 or not problems:
+        return None
+    import random
+    rng = random.Random(42)
+    candidates = list(problems)
+    rng.shuffle(candidates)
+    examples = []
+    for p in candidates[:n]:
+        examples.append({
+            "question": p.question[:500],
+            "code": f'# Solve: {p.question[:80]}...\n# (formulate and solve with any optimizer)\nprint("OBJECTIVE_VALUE:", {p.answer})',
+        })
+    return examples
 
 
 def _load_existing(path: Path) -> list[dict]:

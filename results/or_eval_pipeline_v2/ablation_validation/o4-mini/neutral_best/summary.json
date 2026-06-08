@@ -1,0 +1,74 @@
+{
+  "n": 300,
+  "accuracy": 0.7466666666666667,
+  "acc_5pct": 0.7466666666666667,
+  "acc_1pct": 0.7233333333333334,
+  "acc_1e-4": 0.6533333333333333,
+  "high_confidence_accuracy": 0.8517110266159695,
+  "executable_rate": 0.8733333333333333,
+  "solve_rate": 0.8566666666666667,
+  "objective_evaluable_rate": 0.8733333333333333,
+  "variable_output_rate": 0.8533333333333334,
+  "constraint_checked_rate": 0.8566666666666667,
+  "mean_gap": 4.08088954602627,
+  "median_gap": 0.0,
+  "avg_latency": 16.579511137008666,
+  "avg_tokens": 3084.2633333333333,
+  "solver_distribution": {
+    "counts": {
+      "cvxpy": 9,
+      "gurobipy": 1,
+      "ortools": 2,
+      "pulp": 244,
+      "scipy.optimize": 8,
+      "unknown": 36
+    },
+    "shares": {
+      "cvxpy": 0.03,
+      "gurobipy": 0.0033333333333333335,
+      "ortools": 0.006666666666666667,
+      "pulp": 0.8133333333333334,
+      "scipy.optimize": 0.02666666666666667,
+      "unknown": 0.12
+    },
+    "max_share": 0.8133333333333334,
+    "entropy": 0.6767405525010485,
+    "uniformity": 0.37769609376899743
+  },
+  "failure_distribution": {
+    "counts": {
+      "correct": 224,
+      "exec_no_solve": 3,
+      "infeasible_unbounded_misclassification": 2,
+      "missing_module": 9,
+      "no_code": 26,
+      "runtime_error": 3,
+      "wrong_numeric": 33
+    },
+    "shares": {
+      "correct": 0.7466666666666667,
+      "exec_no_solve": 0.01,
+      "infeasible_unbounded_misclassification": 0.006666666666666667,
+      "missing_module": 0.03,
+      "no_code": 0.08666666666666667,
+      "runtime_error": 0.01,
+      "wrong_numeric": 0.11
+    }
+  },
+  "verification_distribution": {
+    "counts": {
+      "executed_no_verified_solution": 5,
+      "not_executable": 38,
+      "objective_match": 224,
+      "objective_mismatch": 1,
+      "objective_mismatch_with_variables": 32
+    },
+    "shares": {
+      "executed_no_verified_solution": 0.016666666666666666,
+      "not_executable": 0.12666666666666668,
+      "objective_match": 0.7466666666666667,
+      "objective_mismatch": 0.0033333333333333335,
+      "objective_mismatch_with_variables": 0.10666666666666667
+    }
+  }
+}

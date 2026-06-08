@@ -4,47 +4,79 @@
 
 OR-Eval addresses the critical gap in OR+AI research: existing benchmarks produce incomparable results due to differing prompts, solver dependencies, execution environments, and evaluation criteria. OR-Eval standardizes the entire pipeline so that any researcher can reproduce and fairly compare LLM performance on optimization tasks.
 
+## Key Findings
+
+Our evaluation of 11 models across 1,961 problems reveals:
+
+- **Solver-specific prompts inflate accuracy by up to 37%** — making cross-paper comparisons meaningless
+- **13.4% of failures are environment issues** (missing packages), not model failures
+- **Failure handling policy can swing accuracy by 71%** — the same model ranks #2 or #8 depending on how you count
+- **Model rankings are unstable across datasets** (mean Kendall's τ = 0.54)
+
+## Results (11 Models, 6 Datasets, 1,961 Problems)
+
+| # | Model | Acc@5% | Exec% | Solve% | CI (95%) |
+|---|-------|-------:|------:|-------:|----------|
+| 1 | o4-mini | **77.9%** | 90.6% | 88.8% | [76.1%, 79.7%] |
+| 2 | gpt-4.1-mini | 73.9% | 87.0% | 84.2% | [72.0%, 75.9%] |
+| 3 | qwen3-235b-a22b | 71.1% | 85.0% | 81.9% | [69.0%, 73.1%] |
+| 4 | gpt-4.1 | 69.4% | 79.6% | 77.1% | [67.3%, 71.4%] |
+| 5 | deepseek-v3 | 66.5% | 85.9% | 80.6% | [64.4%, 68.5%] |
+| 6 | deepseek-v3.2 | 56.9% | 71.8% | 67.7% | [54.7%, 59.2%] |
+| 7 | gpt-4o-mini | 50.5% | 79.7% | 69.7% | [48.2%, 52.7%] |
+| 8 | gpt-4o | 39.8% | 43.2% | 42.4% | [37.6%, 42.0%] |
+| 9 | qwen-max | 32.0% | 39.6% | 37.0% | [30.0%, 34.1%] |
+| 10 | gemini-2.5-pro | 22.0% | 23.6% | 23.2% | [20.2%, 23.8%] |
+
+*All results: single-pass, temperature=0, solver-neutral prompt, 95% bootstrap CI.*
+
 ## Key Features
 
-- **Solver-neutral evaluation** — prompts do not prescribe a solver; the framework detects which of 15 solver libraries the model actually chose
+- **Solver-neutral evaluation** — prompts do not prescribe a solver; the framework detects which of 15 solver libraries the model chose
 - **Fairness protocol** — cryptographic hashes (prompt, config, solver environment) ensure reproducibility; a 13-gate audit certifies results
-- **6 benchmark datasets** — NL4OPT, MAMO (Easy/Complex LP), OptiBench, IndustryOR, OptMATH_Bench (1,961 problems total)
+- **6 benchmark datasets** — NL4OPT, MAMO (Easy/Complex LP), OptiBench, IndustryOR, OptMATH_Bench (1,961 problems)
 - **Multi-provider inference** — OpenAI, Anthropic, vLLM/Ollama, or any OpenAI-compatible endpoint
-- **Three-round prompt search** — automated grid search → refinement → validation to find the best solver-neutral prompt
-- **Solver bias ablation** — quantifies how much solver-specific prompts distort results
-- **Failure taxonomy** — classifies every error (syntax, missing module, timeout, wrong numeric, etc.)
+- **Prompt search** — automated 3-round grid search to find the best solver-neutral prompt
+- **Solver bias ablation** — quantifies how solver-specific prompts distort results
+- **Failure taxonomy** — classifies every error (syntax, missing module, timeout, wrong answer, etc.)
+- **Statistical analysis** — bootstrap CI, pairwise significance tests, rank stability, sensitivity analysis
+- **Multi-turn evaluation** — optional self-debug and reflexion modes
 - **Paper-ready output** — LaTeX tables, SVG charts, Markdown report, CSV, and JSON
 
 ## Quick Start
 
 ```bash
-pip install -e .
+pip install -e ".[solvers]"    # includes cvxpy, pyomo, networkx
 export OR_EVAL_API_KEY="your-api-key"
 
 # Verify framework locally (no API calls)
-python -m or_eval.cli fairness-smoke --output-dir /tmp/smoke
-python -m or_eval.cli fairness-audit --results-dir /tmp/smoke --strict
+or-eval fairness-smoke --output-dir /tmp/smoke
+or-eval fairness-audit --results-dir /tmp/smoke --strict
 
-# Run full pipeline
-./scripts/run_or_eval_pipeline.sh
+# Evaluate a model
+or-eval evaluate --models deepseek-v3 --datasets NL4OPT --limit-per-dataset 10
+
+# Full pipeline
+bash scripts/run_or_eval_pipeline.sh
 ```
 
 ## Installation
 
-**Requirements:** Python ≥ 3.9
+**Requirements:** Python >= 3.9
 
 ```bash
-git clone https://github.com/your-org/OR-Eval.git
+git clone https://github.com/Neil-liu7/OR-Eval.git
 cd OR-Eval
-pip install -e .
+pip install -e "."
 ```
 
-Optional provider SDKs:
+Optional dependencies:
 
 ```bash
-pip install -e ".[openai]"          # OpenAI SDK
-pip install -e ".[anthropic]"       # Anthropic SDK
-pip install -e ".[all-providers]"   # Both
+pip install -e ".[solvers]"        # cvxpy, pyomo, networkx (recommended)
+pip install -e ".[openai]"         # OpenAI SDK
+pip install -e ".[anthropic]"      # Anthropic SDK
+pip install -e ".[all]"            # Everything
 ```
 
 ## Configuration
@@ -63,41 +95,34 @@ export ANTHROPIC_API_KEY="sk-..."   # Anthropic direct
 api_url: "http://ebill.baidu-int.com/v1/models/{model}"
 
 models:
-  - deepseek-v3                              # auto-detect provider
-  - deepseek-v3.2
-  - name: gpt-4o                             # explicit provider
-    provider: openai
-    api_key_env: OPENAI_API_KEY
-  - name: claude-sonnet-4-20250514
+  - deepseek-v3
+  - gpt-4.1-mini
+  - name: claude-4-sonnet
     provider: anthropic
     api_key_env: ANTHROPIC_API_KEY
-  - name: my-local-model                     # local vLLM/Ollama
+  - name: my-local-model
     provider: vllm
     api_url: http://localhost:8000/v1/chat/completions
 
-datasets:
-  - NL4OPT
-  - MAMO_EasyLP
-  - MAMO_ComplexLP
-  - OptiBench
-  - IndustryOR
-  - OptMATH_Bench
-
-execution:
-  timeout: 30
-  memory_limit_mb: 2048
+# Per-model overrides (e.g., higher token limit for reasoning models)
+model_overrides:
+  gemini-2.5-pro:
+    max_tokens: 16384
 ```
 
-### Supported Providers
+### Adding a New Benchmark
 
-| Provider | Models | Default URL |
-|----------|--------|-------------|
-| `ebill` | Any model via Baidu eBill proxy | `http://ebill.baidu-int.com/v1/models/{model}` |
-| `openai` | GPT-4o, o3, o4, etc. | `https://api.openai.com/v1/chat/completions` |
-| `anthropic` | Claude family | `https://api.anthropic.com/v1/messages` |
-| `vllm` | Any local model | `http://localhost:8000/v1/chat/completions` |
+Drop a YAML file in `or_eval/tasks/configs/`:
 
-Auto-detection: `gpt-*`/`o3-*` → openai, `claude-*` → anthropic, `localhost` URL → vllm, otherwise → ebill.
+```yaml
+name: MyBenchmark
+dataset_file: my_benchmark.jsonl
+problem_type: mixed_integer_programming
+difficulty: hard
+capabilities: [formulation, coding, constraint_modeling]
+```
+
+No code changes needed — it's auto-discovered on next run.
 
 ## Pipeline Overview
 
@@ -108,19 +133,21 @@ Auto-detection: `gpt-*`/`o3-*` → openai, `claude-*` → anthropic, `localhost`
 │                                                                 │
 │  1. PROMPT SEARCH                                               │
 │     27 candidates → grid eval → top-5 refinement → final       │
-│     Score = 0.7×accuracy + 0.2×exec_rate + 0.1×uniformity      │
 │                                                                 │
 │  2. FULL EVALUATION                                             │
 │     N models × 1961 problems × solver-neutral prompt            │
 │     Single-pass, temperature=0, JSONL resume                    │
 │                                                                 │
 │  3. ABLATION                                                    │
-│     Neutral vs. pyscipopt/gurobipy/coptpy prompts               │
-│     300 validation samples, seed=42                             │
+│     Neutral vs. solver-specific prompts (bias quantification)   │
 │                                                                 │
-│  4. REPORT + AUDIT                                              │
+│  4. STATISTICAL ANALYSIS                                        │
+│     Bootstrap CI, pairwise significance, rank stability,        │
+│     methodology sensitivity, item discrimination                │
+│                                                                 │
+│  5. REPORT + AUDIT                                              │
 │     Markdown / LaTeX / CSV / JSON / SVG                         │
-│     13-gate fairness audit + target audit                       │
+│     13-gate fairness audit                                      │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -128,123 +155,92 @@ Auto-detection: `gpt-*`/`o3-*` → openai, `claude-*` → anthropic, `localhost`
 ## CLI Reference
 
 ```bash
-python -m or_eval.cli COMMAND [OPTIONS]
+or-eval COMMAND [OPTIONS]
 ```
 
 | Command | Description |
 |---------|-------------|
-| `data-info` | Show dataset problem counts |
-| `solvers` | Show locally importable solver packages |
-| `solver-env` | Show solver versions and reproducibility hash |
-| `providers` | Show available inference providers |
-| `search-prompts` | Run 3-round prompt search |
-| `evaluate` | Run full model evaluation (JSONL resume) |
+| `evaluate` | Run model evaluation (JSONL resume, multi-turn, few-shot) |
 | `ablation` | Compare neutral vs. solver-specific prompts |
+| `search-prompts` | Run 3-round prompt search |
+| `statistics` | Bootstrap CI, significance tests, sensitivity analysis |
 | `report` | Generate Markdown, CSV, JSON, LaTeX tables |
 | `fairness-smoke` | Local no-API framework verification |
 | `fairness-audit` | Validate results against fairness protocol |
-| `target-audit` | Check against full acceptance criteria |
-| `result-status` | Paper-readiness status check |
-| `fairness-protocol` | Print machine-readable protocol manifest |
+| `tasks` | Show registered benchmarks and metadata |
+| `solvers` | Show locally importable solver packages |
+| `providers` | Show available inference providers |
 
-## Evaluation Metrics
+## Evaluation Modes
+
+```bash
+# Default: single-pass (fair baseline)
+or-eval evaluate --models gpt-4.1 --mode single_pass
+
+# Self-debug: retry on execution failure
+or-eval evaluate --models gpt-4.1 --mode self_debug --max-turns 3
+
+# Reflexion: retry on wrong answer
+or-eval evaluate --models gpt-4.1 --mode reflexion --max-turns 2
+
+# Few-shot
+or-eval evaluate --models gpt-4.1 --few-shot 3
+```
+
+## Metrics
 
 | Metric | Description |
 |--------|-------------|
-| `accuracy@5%` | Primary: predicted within 5% relative error of ground truth |
+| `accuracy@5%` | Primary: predicted within 5% relative error |
 | `accuracy@1%` | Stricter tolerance |
-| `accuracy@1e-4` | Near-exact match |
+| `env_corrected_accuracy` | Accuracy excluding environment failures (missing packages) |
 | `executable_rate` | Code runs without error |
-| `solve_rate` | Code produces a solver-feasible solution |
-| `objective_evaluable_rate` | Predicted value is extractable |
-| `variable_output_rate` | Decision variable values are reported |
-| `solver_distribution.max_share` | Concentration of dominant solver |
+| `solve_rate` | Code produces a feasible solution |
+| `solver_distribution` | Which solvers models naturally prefer |
 
 ## Fairness Protocol
 
-OR-Eval enforces a strict fairness protocol to ensure reproducibility:
+OR-Eval enforces reproducibility through:
 
-1. **Schema version** — every result row is tagged `or-eval-result-v2`
-2. **Hash-based resume** — JSONL resume requires matching `prompt_hash`, `config_hash`, and `solver_env_hash`
-3. **Failed prediction suppression** — non-executable rows cannot contribute predictions
-4. **Solver environment reporting** — full availability matrix is recorded
-5. **Failure taxonomy** — every non-correct row is classified
-6. **Solver bias detection** — ablation quantifies prompt-induced solver concentration
-7. **Variable evidence** — decision variables tracked for equivalent-modeling analysis
-
-Run the audit:
+1. **Triple hashing** — prompt_hash + config_hash + solver_env_hash gate JSONL resume
+2. **Failed prediction suppression** — non-executable rows cannot contribute predictions
+3. **Solver bias detection** — ablation quantifies prompt-induced solver concentration
+4. **13-gate audit** — all results must pass before publication claims
 
 ```bash
-python -m or_eval.cli fairness-audit --results-dir results/ --strict
+or-eval fairness-audit --results-dir results/ --strict
 ```
-
-## Results (Current Run)
-
-| Model | N | Acc@5% | Executable | Solve | Variable Output |
-|-------|--:|-------:|-----------:|------:|----------------:|
-| o3-mini | 288 | 86.8% | 96.5% | 90.6% | — |
-| gpt-4.1-mini | 1961 | 73.9% | 87.0% | 84.2% | 80.8% |
-| deepseek-v3 | 1961 | 66.4% | 85.8% | 80.4% | 77.2% |
-| deepseek-v3.2 | 1961 | 56.9% | 71.8% | 67.7% | 63.4% |
-| gpt-4o-mini | 1961 | 50.5% | 79.7% | 69.7% | 66.7% |
-| gpt-4o | 1961 | 39.8% | 43.2% | 42.4% | 40.5% |
 
 ## Project Structure
 
 ```
 OR-Eval/
 ├── or_eval/
-│   ├── cli.py                   # Click CLI entry point
+│   ├── cli.py                   # Click CLI (15 commands)
 │   ├── evaluation.py            # Core evaluation loop
-│   ├── pipeline.py              # Legacy compat wrapper
-│   ├── prompt_search.py         # 3-round prompt search
-│   ├── inference/
-│   │   ├── __init__.py          # Public API (create_client, GeminiStyleClient)
-│   │   └── providers.py         # Multi-provider adapters
+│   ├── evaluation_modes.py      # Self-debug, reflexion
+│   ├── prompt_search.py         # 3-round prompt optimization
+│   ├── inference/providers.py   # Multi-provider adapters
 │   ├── execution/
-│   │   ├── sandbox.py           # Subprocess execution with timeout
+│   │   ├── sandbox.py           # Subprocess + timeout + memory limit
 │   │   ├── extractors.py        # Code/objective/variable extraction
-│   │   └── solver_env.py        # Solver detection & environment hash
+│   │   └── solver_env.py        # 15-solver detection & hashing
 │   ├── metrics/
-│   │   └── numerical_judge.py   # Tolerance-based numerical judgment
-│   ├── prompts/
-│   │   ├── neutral.py           # Prompt registry & generation
-│   │   ├── templates/           # Jinja2 prompt templates
-│   │   └── solver_instructions/ # Per-solver instruction templates
-│   ├── data/
-│   │   ├── loader.py            # Unified dataset loader
-│   │   ├── schema.py            # Data schema definitions
-│   │   └── adapters/            # Per-dataset format adapters
-│   ├── reporting/
-│   │   └── reports.py           # Report, audit, LaTeX generation
-│   └── multi_prompt/
-│       ├── evaluator.py         # Multi-prompt robustness scoring
-│       └── registry.py          # Prompt variant registry
-├── configs/
-│   ├── default.yaml             # Default pipeline configuration
-│   └── quick.yaml               # Fast local testing config
+│   │   ├── numerical_judge.py   # Tolerance-based judgment + aggregation
+│   │   ├── statistics.py        # CI, significance, rank correlation
+│   │   └── sensitivity.py       # Methodology sensitivity analysis
+│   ├── tasks/
+│   │   ├── registry.py          # YAML-driven task discovery
+│   │   └── configs/             # Drop-in benchmark definitions
+│   ├── prompts/neutral.py       # Prompt registry & generation
+│   └── reporting/               # Report, audit, LaTeX generation
+├── configs/default.yaml
 ├── scripts/
-│   └── run_or_eval_pipeline.sh  # One-command full pipeline
+│   ├── run_or_eval_pipeline.sh
+│   └── run_supplement_eval.sh
 ├── tests/
-│   ├── test_core.py             # Core functionality tests
-│   └── test_providers.py        # Provider system tests
-├── data/unified/                # Pre-converted dataset files
-├── results/                     # Evaluation output artifacts
-├── FAIRNESS_PROTOCOL.md         # Fairness protocol specification
-├── CONTRIBUTING.md              # Contribution guidelines
-├── CHANGELOG.md                 # Version history
-├── LICENSE                      # Apache 2.0
-└── pyproject.toml               # Package metadata
+└── results/
 ```
-
-## Reproducibility Guarantees
-
-- Temperature fixed at `0` for all API calls
-- Single-pass generation only (no self-debug, no Reflexion, no agent loops)
-- Deterministic validation splits: `seed=42`, 50 samples per dataset
-- JSONL append-only with hash-gated resume
-- Non-executable rows normalized to `predicted=None`
-- Solver environment hash ensures consistent execution context
 
 ## Supported Solvers (15)
 
@@ -252,11 +248,13 @@ PySCIPOpt, Gurobi, COPT, PuLP, CVXPY, Pyomo, OR-Tools, SciPy Optimize, DOcplex, 
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup, coding standards, and PR guidelines.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup and PR guidelines.
 
-## License
-
-This project is licensed under the Apache License 2.0. See [LICENSE](LICENSE) for details.
+```bash
+pip install -e ".[dev,solvers]"
+python -m pytest tests/ -v
+or-eval fairness-smoke --output-dir /tmp/smoke
+```
 
 ## Citation
 
@@ -265,6 +263,10 @@ This project is licensed under the Apache License 2.0. See [LICENSE](LICENSE) fo
   title={OR-Eval: Unified Solver-Neutral Evaluation Framework for Operations Research LLMs},
   author={OR-Eval Contributors},
   year={2025},
-  url={https://github.com/your-org/OR-Eval}
+  url={https://github.com/Neil-liu7/OR-Eval}
 }
 ```
+
+## License
+
+Apache License 2.0. See [LICENSE](LICENSE).
