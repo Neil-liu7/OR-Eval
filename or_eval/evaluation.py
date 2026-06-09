@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
@@ -401,7 +402,6 @@ Answer:"""
 
 def _evaluate_mcq(client, problem: BenchmarkProblem, prompt_spec: PromptSpec, run_metadata: dict) -> dict:
     """Evaluate a multiple-choice QA problem (ORQA-style)."""
-    import re
     prompt = MCQ_PROMPT.format(question=problem.question)
     response = client.generate(prompt)
     raw = response.text.strip()

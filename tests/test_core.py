@@ -205,5 +205,89 @@ class DataSplitTests(unittest.TestCase):
         ])
 
 
+class MCQAndVariableMatchTests(unittest.TestCase):
+    def _mock_client(self, reply):
+        class _Resp:
+            text = reply
+            error = None
+            latency = 0.1
+            tokens_prompt = 10
+            tokens_completion = 1
+            tokens_total = 11
+
+        class _Client:
+            model = "mock"
+
+            def generate(self, prompt):
+                return _Resp()
+
+        return _Client()
+
+    def test_mcq_correct_answer(self):
+        from or_eval.evaluation import _evaluate_mcq
+        from or_eval.data import BenchmarkProblem
+        from or_eval.prompts.neutral import PromptSpec
+
+        problem = BenchmarkProblem(
+            id="ORQA:0", dataset="ORQA",
+            question="Context...\n\nQuestion: ?\n\nA. a\nB. b\nC. c\nD. d",
+            answer="C", metadata={"eval_mode": "mcq", "question_type": "Q6"},
+        )
+        row = _evaluate_mcq(self._mock_client("C"), problem, PromptSpec(id="t", text="t"), {})
+        self.assertEqual(row["predicted"], "C")
+        self.assertTrue(row["correct"])
+        self.assertTrue(row["acc_5pct"])
+        self.assertEqual(row["failure_type"], "correct")
+        self.assertEqual(row["eval_mode"], "mcq")
+
+    def test_mcq_wrong_answer(self):
+        from or_eval.evaluation import _evaluate_mcq
+        from or_eval.data import BenchmarkProblem
+        from or_eval.prompts.neutral import PromptSpec
+
+        problem = BenchmarkProblem(
+            id="ORQA:1", dataset="ORQA", question="Q\n\nA. a\nB. b\nC. c\nD. d",
+            answer="C", metadata={"eval_mode": "mcq"},
+        )
+        row = _evaluate_mcq(self._mock_client("The answer is A."), problem, PromptSpec(id="t", text="t"), {})
+        self.assertEqual(row["predicted"], "A")
+        self.assertFalse(row["correct"])
+        self.assertEqual(row["failure_type"], "wrong_answer")
+
+    def test_variable_match_all_and_partial(self):
+        from or_eval.evaluation import _check_variable_match
+
+        full = _check_variable_match({"x": 5.0, "y": 3.0}, {"x": 5.0, "y": 3.0})
+        self.assertTrue(full["all_match"])
+        self.assertEqual(full["matched"], 2)
+
+        partial = _check_variable_match({"x": 5.0}, {"x": 5.0, "y": 3.0})
+        self.assertFalse(partial["all_match"])
+        self.assertEqual(partial["matched"], 1)
+
+        within_tol = _check_variable_match({"x": 5.02}, {"x": 5.0})
+        self.assertTrue(within_tol["all_match"])
+
+        outside_tol = _check_variable_match({"x": 6.0}, {"x": 5.0})
+        self.assertFalse(outside_tol["all_match"])
+
+    def test_mcq_rows_excluded_from_solver_distribution(self):
+        mcq = [
+            {"eval_mode": "mcq", "solver": "mcq", "executable": True, "acc_5pct": True, "solve_success": True},
+            {"eval_mode": "mcq", "solver": "mcq", "executable": True, "acc_5pct": False, "solve_success": False},
+        ]
+        code = [
+            {"solver": "pulp", "executable": True, "acc_5pct": True, "solve_success": True, "predicted": 1.0},
+        ]
+        metrics = aggregate_results(mcq + code)
+        # solver distribution must not contain "mcq"
+        self.assertNotIn("mcq", metrics["solver_distribution"]["counts"])
+        self.assertEqual(metrics["solver_distribution"]["counts"], {"pulp": 1})
+        # accuracy still counts all rows (2 correct of 3)
+        self.assertAlmostEqual(metrics["accuracy"], 2 / 3)
+        # executable_rate is over code rows only (1/1)
+        self.assertEqual(metrics["executable_rate"], 1.0)
+
+
 if __name__ == "__main__":
     unittest.main()

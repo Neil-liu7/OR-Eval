@@ -129,7 +129,10 @@ def solution_verification_record(row: dict) -> dict:
 
 
 def solver_distribution(results: list[dict]) -> dict[str, Any]:
-    counter = Counter(r.get("solver") or r.get("execution", {}).get("solver") or "unknown" for r in results)
+    # Solver concentration only applies to code-generation rows. Multiple-choice
+    # QA rows (eval_mode == "mcq") have no solver and would distort max_share.
+    code_rows = [r for r in results if r.get("eval_mode") != "mcq"]
+    counter = Counter(r.get("solver") or r.get("execution", {}).get("solver") or "unknown" for r in code_rows)
     total = sum(counter.values())
     if total == 0:
         return {"counts": {}, "shares": {}, "max_share": 0.0, "entropy": 0.0, "uniformity": 0.0}
@@ -149,13 +152,17 @@ def aggregate_results(results: list[dict]) -> dict[str, Any]:
     n = len(results)
     if n == 0:
         return {"n": 0}
-    executable = sum(1 for r in results if r.get("executable"))
-    solved = sum(1 for r in results if r.get("solve_success"))
+    # Execution-oriented metrics only make sense for code-generation rows.
+    # Multiple-choice QA rows (ORQA) have no code/solver/execution.
+    code_rows = [r for r in results if r.get("eval_mode") != "mcq"]
+    code_n = len(code_rows)
+    executable = sum(1 for r in code_rows if r.get("executable"))
+    solved = sum(1 for r in code_rows if r.get("solve_success"))
     flags = {name: sum(1 for r in results if r.get(name)) / n for name in TOLERANCES}
-    objective_evaluable = sum(1 for r in results if _objective_evaluable(r))
-    variable_outputs = sum(1 for r in results if r.get("variable_values"))
+    objective_evaluable = sum(1 for r in code_rows if _objective_evaluable(r))
+    variable_outputs = sum(1 for r in code_rows if r.get("variable_values"))
     constraint_checked = sum(
-        1 for r in results
+        1 for r in code_rows
         if (r.get("solution_verification") or {}).get("constraint_feasibility") not in {None, "not_checked"}
     )
     high_conf_rows = [
@@ -182,11 +189,11 @@ def aggregate_results(results: list[dict]) -> dict[str, Any]:
         **flags,
         "high_confidence_accuracy": high_conf_accuracy,
         "env_corrected_accuracy": env_corrected_accuracy,
-        "executable_rate": executable / n,
-        "solve_rate": solved / n,
-        "objective_evaluable_rate": objective_evaluable / n,
-        "variable_output_rate": variable_outputs / n,
-        "constraint_checked_rate": constraint_checked / n,
+        "executable_rate": executable / code_n if code_n else None,
+        "solve_rate": solved / code_n if code_n else None,
+        "objective_evaluable_rate": objective_evaluable / code_n if code_n else None,
+        "variable_output_rate": variable_outputs / code_n if code_n else None,
+        "constraint_checked_rate": constraint_checked / code_n if code_n else None,
         "mean_gap": sum(gaps) / len(gaps) if gaps else None,
         "median_gap": median_gap,
         "avg_latency": sum(latencies) / len(latencies) if latencies else None,
