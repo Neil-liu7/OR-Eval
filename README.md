@@ -1,5 +1,7 @@
 # OR-Eval
 
+[![CI](https://github.com/Neil-liu7/OR-Eval/actions/workflows/ci.yml/badge.svg)](https://github.com/Neil-liu7/OR-Eval/actions/workflows/ci.yml)
+
 **Unified, solver-neutral, reproducible evaluation framework for Operations Research LLMs.**
 
 OR-Eval addresses the critical gap in OR+AI research: existing benchmarks produce incomparable results due to differing prompts, solver dependencies, execution environments, and evaluation criteria. OR-Eval standardizes the entire pipeline so that any researcher can reproduce and fairly compare LLM performance on optimization tasks.
@@ -112,7 +114,8 @@ model_overrides:
 
 ### Adding a New Benchmark
 
-Drop a YAML file in `or_eval/tasks/configs/`:
+1. Place the data file under the data directory (rows use `en_question` / `en_answer`).
+2. Drop a YAML file in `or_eval/tasks/configs/`:
 
 ```yaml
 name: MyBenchmark
@@ -122,7 +125,8 @@ difficulty: hard
 capabilities: [formulation, coding, constraint_modeling]
 ```
 
-No code changes needed — it's auto-discovered on next run.
+No code changes needed — the loader resolves the task through the registry,
+so `python -m or_eval.cli evaluate --datasets MyBenchmark` works directly.
 
 ## Pipeline Overview
 

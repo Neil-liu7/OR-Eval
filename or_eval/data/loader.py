@@ -39,9 +39,8 @@ class BenchmarkProblem:
 
 def load_dataset(dataset: str, data_dir: Path | str = DEFAULT_DATA_DIR) -> list[BenchmarkProblem]:
     data_dir = Path(data_dir)
-    if dataset not in DATASET_FILES:
-        raise KeyError(f"Unknown dataset {dataset!r}. Choose from: {', '.join(DATASET_FILES)}")
-    path = data_dir / DATASET_FILES[dataset]
+    filename = _resolve_dataset_file(dataset)
+    path = data_dir / filename
     rows = list(_read_json_or_jsonl(path))
     if dataset == "ORQA":
         return _load_orqa(rows, dataset)
@@ -65,6 +64,26 @@ def load_dataset(dataset: str, data_dir: Path | str = DEFAULT_DATA_DIR) -> list[
             metadata=metadata,
         ))
     return problems
+
+
+def _resolve_dataset_file(dataset: str) -> str:
+    """Resolve a dataset name to its data file.
+
+    Built-in datasets use DATASET_FILES. YAML-registered tasks are resolved
+    through the task registry (lazy import avoids a circular dependency, since
+    the registry imports this module).
+    """
+    if dataset in DATASET_FILES:
+        return DATASET_FILES[dataset]
+    try:
+        from or_eval.tasks.registry import yaml_task_files
+        yaml_files = yaml_task_files()
+    except Exception:
+        yaml_files = {}
+    if dataset in yaml_files:
+        return yaml_files[dataset]
+    known = ", ".join(list(DATASET_FILES) + sorted(yaml_files))
+    raise KeyError(f"Unknown dataset {dataset!r}. Choose from: {known}")
 
 
 def load_datasets(

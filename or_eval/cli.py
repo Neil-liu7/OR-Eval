@@ -454,7 +454,9 @@ def _parse_datasets(value: str):
     if value == "all":
         return "all"
     datasets = _split(value)
-    unknown = [d for d in datasets if d not in DATASET_FILES]
+    from or_eval.tasks.registry import yaml_task_files
+    known = set(DATASET_FILES) | set(yaml_task_files())
+    unknown = [d for d in datasets if d not in known]
     if unknown:
         raise click.ClickException(f"Unknown datasets: {', '.join(unknown)}")
     return datasets

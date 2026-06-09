@@ -56,6 +56,22 @@ def load_task_problems(
     return problems
 
 
+def yaml_task_files() -> dict[str, str]:
+    """Map of YAML-registered (non-builtin) task names to their data files.
+
+    Used by the data loader to resolve datasets defined purely via YAML
+    configs, so `evaluate --datasets <yaml_task>` works without a core edit.
+    """
+    from or_eval.data.loader import DATASET_FILES
+
+    _discover_tasks()
+    return {
+        name: cfg.dataset_file
+        for name, cfg in _REGISTRY.items()
+        if name not in DATASET_FILES
+    }
+
+
 def _discover_tasks() -> None:
     if _REGISTRY:
         return
