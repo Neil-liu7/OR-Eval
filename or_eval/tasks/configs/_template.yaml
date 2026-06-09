@@ -7,9 +7,7 @@
 # 5. Run: python -m or_eval.cli evaluate --datasets <your_benchmark>
 
 name: MyNewBenchmark
-dataset_file: my_new_benchmark.jsonl   # relative to data_dir
-question_field: en_question            # JSON field containing the problem text
-answer_field: en_answer                # JSON field containing the ground truth value
+dataset_file: my_new_benchmark.jsonl   # relative to data_dir; rows use en_question/en_answer
 
 # Problem classification
 problem_type: linear_programming       # LP, MIP, NLP, combinatorial, stochastic, mixed
@@ -23,24 +21,8 @@ capabilities:                          # what this benchmark tests
   - mathematical_reasoning
   - nl_understanding
 
-# Metrics (subset of available OR-Eval metrics)
-metrics:
-  - acc_5pct
-  - acc_1pct
-  - executable_rate
-  - solve_rate
-  - variable_output_rate
-
 # Evaluation mode
-evaluation_mode: single_pass           # single_pass | multi_turn | agent
-
-# Few-shot configuration (optional)
-few_shot:
-  enabled: false
-  default_shots: 0
-  max_shots: 5
-  selection: random                    # random | difficulty_matched | type_matched
-  examples_file: null                  # optional path to curated examples
+evaluation_mode: single_pass           # single_pass | self_debug | reflexion
 
 # Metadata
 description: "Description of your benchmark"

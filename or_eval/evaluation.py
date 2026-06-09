@@ -38,12 +38,10 @@ def run_model_evaluation(
     max_tokens: int = 4096,
     evaluation_mode: str = "single_pass",
     max_turns: int = 3,
-    few_shot: int = 0,
 ) -> dict:
     output_dir.mkdir(parents=True, exist_ok=True)
     problems = problem_set if problem_set is not None else load_datasets(datasets, data_dir, limit_per_dataset)
     prompts = prompt_set or [prompt or default_neutral_prompt()]
-    few_shot_examples = _build_few_shot_examples(few_shot, problems) if few_shot > 0 else None
     summary: dict[str, dict] = {}
     solver_env = solver_environment_snapshot()
     solver_env_digest = solver_environment_hash(solver_env)
@@ -77,7 +75,6 @@ def run_model_evaluation(
                 run_metadata=run_metadata,
                 evaluation_mode=evaluation_mode,
                 max_turns=max_turns,
-                few_shot_examples=few_shot_examples,
             )
             metrics = aggregate_results(results)
             summary[f"{model_name}/{prompt_spec.id}"] = metrics
@@ -189,7 +186,6 @@ def _evaluate_problem_set(
     run_metadata: dict | None = None,
     evaluation_mode: str = "single_pass",
     max_turns: int = 3,
-    few_shot_examples: list[dict] | None = None,
 ) -> list[dict]:
     run_metadata = run_metadata or {}
     done = _load_existing(output_file)
@@ -203,7 +199,7 @@ def _evaluate_problem_set(
         futures = [
             pool.submit(
                 _evaluate_one, client, problem, prompt_spec, timeout, memory_limit_mb,
-                run_metadata, evaluation_mode, max_turns, few_shot_examples,
+                run_metadata, evaluation_mode, max_turns,
             )
             for problem in pending
         ]
@@ -225,7 +221,6 @@ def _evaluate_one(
     run_metadata: dict | None = None,
     evaluation_mode: str = "single_pass",
     max_turns: int = 3,
-    few_shot_examples: list[dict] | None = None,
 ) -> dict:
     run_metadata = run_metadata or {}
     eval_mode = problem.metadata.get("eval_mode", "code_gen")
@@ -233,7 +228,7 @@ def _evaluate_one(
     if eval_mode == "mcq":
         return _evaluate_mcq(client, problem, prompt_spec, run_metadata)
 
-    prompt = render_prompt(prompt_spec.text, problem.question, few_shot_examples=few_shot_examples)
+    prompt = render_prompt(prompt_spec.text, problem.question)
     response = client.generate(prompt)
     code = extract_code_block(response.text)
     execution = execute_code(code, timeout=timeout, memory_limit_mb=memory_limit_mb) if code else None
@@ -503,27 +498,6 @@ def _fairness_smoke_ablation_rows(problem: BenchmarkProblem, base_metadata: dict
         row["solution_verification"] = solution_verification_record(row)
         rows.append(row)
     return rows
-
-
-def _build_few_shot_examples(n: int, problems: list[BenchmarkProblem]) -> list[dict] | None:
-    """Build few-shot examples from the simplest problems in the set.
-
-    Uses the first N problems as demonstrations with a trivial code template.
-    These are NOT solved dynamically — they show the expected output format.
-    """
-    if n <= 0 or not problems:
-        return None
-    import random
-    rng = random.Random(42)
-    candidates = list(problems)
-    rng.shuffle(candidates)
-    examples = []
-    for p in candidates[:n]:
-        examples.append({
-            "question": p.question[:500],
-            "code": f'# Solve: {p.question[:80]}...\n# (formulate and solve with any optimizer)\nprint("OBJECTIVE_VALUE:", {p.answer})',
-        })
-    return examples
 
 
 def _load_existing(path: Path) -> list[dict]:

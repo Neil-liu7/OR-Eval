@@ -29,20 +29,8 @@ print("OBJECTIVE_VALUE:", value)
 ```"""
 
 
-def render_prompt(template: str, question: str, few_shot_examples: list[dict] | None = None) -> str:
-    prompt = template.replace("{question}", question.strip())
-    if few_shot_examples:
-        examples_text = "\n\n".join(
-            f"Example {i+1}:\nProblem: {ex['question']}\n```python\n{ex['code']}\n```"
-            for i, ex in enumerate(few_shot_examples)
-            if "question" in ex and "code" in ex
-        )
-        prompt = prompt.replace("{examples}", examples_text)
-        if "{examples}" not in template:
-            prompt = f"{examples_text}\n\nNow solve:\n{prompt}"
-    else:
-        prompt = prompt.replace("{examples}", "")
-    return prompt
+def render_prompt(template: str, question: str) -> str:
+    return template.replace("{question}", question.strip())
 
 
 def neutral_prompt_candidates() -> list[PromptSpec]:

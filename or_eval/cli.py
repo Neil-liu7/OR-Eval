@@ -163,8 +163,7 @@ def search_prompts_cmd(model, config, data_dir, output_dir, per_dataset, seed, c
 @click.option("--concurrency", type=int, default=4, show_default=True)
 @click.option("--mode", type=click.Choice(["single_pass", "self_debug", "reflexion"]), default="single_pass", show_default=True, help="Evaluation mode.")
 @click.option("--max-turns", type=int, default=3, show_default=True, help="Max repair turns for multi-turn modes.")
-@click.option("--few-shot", type=int, default=0, show_default=True, help="Number of few-shot examples (0 = zero-shot).")
-def evaluate_cmd(models, datasets, config, data_dir, output_dir, prompt_file, prompt_id, limit_per_dataset, concurrency, mode, max_turns, few_shot):
+def evaluate_cmd(models, datasets, config, data_dir, output_dir, prompt_file, prompt_id, limit_per_dataset, concurrency, mode, max_turns):
     """Run full model evaluation with JSONL resume."""
     from or_eval.evaluation import run_model_evaluation
 
@@ -186,7 +185,6 @@ def evaluate_cmd(models, datasets, config, data_dir, output_dir, prompt_file, pr
         max_tokens=cfg.get("api", {}).get("max_tokens", 4096),
         evaluation_mode=mode,
         max_turns=max_turns,
-        few_shot=few_shot,
     )
     click.echo(json.dumps(summary, indent=2, ensure_ascii=False))
 

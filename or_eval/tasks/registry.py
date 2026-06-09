@@ -19,26 +19,13 @@ _REGISTRY: dict[str, "TaskConfig"] = {}
 class TaskConfig:
     name: str
     dataset_file: str
-    question_field: str = "en_question"
-    answer_field: str = "en_answer"
     problem_type: str = "mixed"
     difficulty: str = "mixed"
     capabilities: list[str] = field(default_factory=lambda: ["formulation", "coding"])
-    metrics: list[str] = field(default_factory=lambda: ["acc_5pct", "executable_rate", "solve_rate"])
-    few_shot: FewShotConfig | None = None
     evaluation_mode: str = "single_pass"
     description: str = ""
     source: str = ""
     metadata: dict[str, Any] = field(default_factory=dict)
-
-
-@dataclass(frozen=True)
-class FewShotConfig:
-    enabled: bool = False
-    default_shots: int = 0
-    max_shots: int = 5
-    selection: str = "random"
-    examples_file: str | None = None
 
 
 def register_task(config: TaskConfig) -> None:
@@ -161,19 +148,12 @@ def _load_yaml_configs() -> None:
             continue
         if raw["name"] in _REGISTRY:
             continue
-        few_shot = None
-        if "few_shot" in raw and isinstance(raw["few_shot"], dict):
-            few_shot = FewShotConfig(**{k: v for k, v in raw["few_shot"].items() if k in FewShotConfig.__dataclass_fields__})
         config = TaskConfig(
             name=raw["name"],
             dataset_file=raw.get("dataset_file", f"{raw['name']}.jsonl"),
-            question_field=raw.get("question_field", "en_question"),
-            answer_field=raw.get("answer_field", "en_answer"),
             problem_type=raw.get("problem_type", "mixed"),
             difficulty=raw.get("difficulty", "mixed"),
             capabilities=raw.get("capabilities", ["formulation", "coding"]),
-            metrics=raw.get("metrics", ["acc_5pct", "executable_rate", "solve_rate"]),
-            few_shot=few_shot,
             evaluation_mode=raw.get("evaluation_mode", "single_pass"),
             description=raw.get("description", ""),
             source=raw.get("source", ""),
