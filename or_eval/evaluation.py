@@ -227,6 +227,11 @@ def _evaluate_one(
     few_shot_examples: list[dict] | None = None,
 ) -> dict:
     run_metadata = run_metadata or {}
+    eval_mode = problem.metadata.get("eval_mode", "code_gen")
+
+    if eval_mode == "mcq":
+        return _evaluate_mcq(client, problem, prompt_spec, run_metadata)
+
     prompt = render_prompt(prompt_spec.text, problem.question, few_shot_examples=few_shot_examples)
     response = client.generate(prompt)
     code = extract_code_block(response.text)
@@ -377,6 +382,75 @@ def _build_result_row(
     row["failure_type"] = classify_failure(row)
     row["verification_status"] = verification_status(row)
     row["solution_verification"] = solution_verification_record(row)
+    # Variable-level matching for OptiBench ReSocratic format
+    expected_results = problem.metadata.get("expected_results")
+    if expected_results and row.get("variable_values"):
+        var_match = _check_variable_match(row["variable_values"], expected_results)
+        row["variable_match"] = var_match
+        row["solution_verification"]["variable_match"] = var_match
+    return row
+
+
+MCQ_PROMPT = """Answer the following multiple-choice question about operations research / optimization modeling.
+Reply with ONLY the letter (A, B, C, or D) of the correct answer.
+
+{question}
+
+Answer:"""
+
+
+def _evaluate_mcq(client, problem: BenchmarkProblem, prompt_spec: PromptSpec, run_metadata: dict) -> dict:
+    """Evaluate a multiple-choice QA problem (ORQA-style)."""
+    import re
+    prompt = MCQ_PROMPT.format(question=problem.question)
+    response = client.generate(prompt)
+    raw = response.text.strip()
+    match = re.search(r'\b([A-D])\b', raw)
+    predicted = match.group(1) if match else raw[:1].upper()
+    correct = predicted == problem.answer
+    row = {
+        "run_key": _run_key(client.model, prompt_spec.id, problem),
+        "schema_version": RESULT_SCHEMA_VERSION,
+        "model": client.model,
+        "dataset": problem.dataset,
+        "problem_id": problem.id,
+        "prompt_id": prompt_spec.id,
+        "prompt_type": prompt_spec.prompt_type,
+        "prompt_metadata": prompt_spec.metadata or {},
+        "question": problem.question,
+        "answer": problem.answer,
+        "raw_response": response.text,
+        "code": None,
+        "api_error": response.error,
+        "latency": response.latency,
+        "tokens_prompt": response.tokens_prompt,
+        "tokens_completion": response.tokens_completion,
+        "tokens_total": response.tokens_total,
+        "executable": True,
+        "solver": "mcq",
+        "solver_available": True,
+        "solver_availability_state": "not_detected",
+        "solver_status": "optimal" if correct else "incorrect",
+        "solve_success": correct,
+        "execution": None,
+        "predicted": predicted,
+        "objective_extraction": {"value": predicted, "source": "mcq_answer", "confidence": "high"},
+        "variable_values": None,
+        "gap": 0.0 if correct else 1.0,
+        "prompt_hash": run_metadata.get("prompt_hash"),
+        "config_hash": run_metadata.get("config_hash"),
+        "solver_env_hash": run_metadata.get("solver_env_hash"),
+        "run_metadata": run_metadata,
+        "acc_5pct": correct,
+        "acc_1pct": correct,
+        "acc_1e-4": correct,
+        "eval_mode": "mcq",
+        "question_type": problem.metadata.get("question_type"),
+    }
+    row["correct"] = correct
+    row["failure_type"] = "correct" if correct else "wrong_answer"
+    row["verification_status"] = "objective_match" if correct else "objective_mismatch"
+    row["solution_verification"] = {"objective_status": "match" if correct else "mismatch", "constraint_feasibility": "not_applicable"}
     return row
 
 
@@ -526,6 +600,37 @@ def _matches_run_metadata(row: dict, run_metadata: dict) -> bool:
 
 def _semantic_config(config: dict) -> dict:
     return {key: value for key, value in config.items() if key != "concurrency"}
+
+
+def _check_variable_match(actual: dict, expected: dict, tolerance: float = 0.05) -> dict:
+    """Check if all expected variable values match actual values (OptiBench ReSocratic strict mode)."""
+    matched = 0
+    mismatched = []
+    for key, expected_val in expected.items():
+        actual_val = actual.get(key)
+        if actual_val is None:
+            mismatched.append({"key": key, "expected": expected_val, "actual": None})
+            continue
+        try:
+            ev, av = float(expected_val), float(actual_val)
+            if ev == 0:
+                ok = abs(av) <= 1e-4
+            else:
+                ok = abs(ev - av) / max(abs(ev), 1e-12) <= tolerance
+        except (ValueError, TypeError):
+            ok = str(expected_val).strip() == str(actual_val).strip()
+        if ok:
+            matched += 1
+        else:
+            mismatched.append({"key": key, "expected": expected_val, "actual": actual_val})
+    total = len(expected)
+    return {
+        "all_match": matched == total,
+        "matched": matched,
+        "total": total,
+        "match_rate": matched / total if total else 0.0,
+        "mismatched": mismatched[:5],
+    }
 
 
 def _normalize_existing_row(row: dict) -> dict:

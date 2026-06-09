@@ -123,6 +123,14 @@ def _register_builtin_tasks() -> None:
             "description": "Mathematical reasoning for optimization",
             "source": "OptMATH, 2024",
         },
+        "ORQA": {
+            "problem_type": "multiple_choice_qa",
+            "difficulty": "medium",
+            "capabilities": ["conceptual_understanding", "constraint_identification", "model_reasoning"],
+            "description": "OR expert-level multiple-choice QA (AAAI 2025)",
+            "source": "Mostajabdaveh et al., AAAI 2025",
+            "eval_mode": "mcq",
+        },
     }
 
     for name, filename in DATASET_FILES.items():

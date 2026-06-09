@@ -193,12 +193,13 @@ class DataSplitTests(unittest.TestCase):
         split_a = validation_split(DEFAULT_DATA_DIR, per_dataset=2, seed=42)
         split_b = validation_split(DEFAULT_DATA_DIR, per_dataset=2, seed=42)
         self.assertEqual([p.id for p in split_a], [p.id for p in split_b])
-        self.assertEqual(len(split_a), 12)
+        self.assertEqual(len(split_a), 14)
         self.assertEqual(sorted({p.dataset for p in split_a}), [
             "IndustryOR",
             "MAMO_ComplexLP",
             "MAMO_EasyLP",
             "NL4OPT",
+            "ORQA",
             "OptMATH_Bench",
             "OptiBench",
         ])

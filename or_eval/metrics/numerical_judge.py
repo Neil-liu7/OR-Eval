@@ -53,6 +53,8 @@ def classify_failure(row: dict) -> str:
     """Classify an evaluation row for case-level error analysis."""
     if row.get("acc_5pct"):
         return "correct"
+    if row.get("eval_mode") == "mcq":
+        return "wrong_answer"
     if row.get("api_error"):
         return "api_error"
     if not row.get("code"):

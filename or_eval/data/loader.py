@@ -15,6 +15,7 @@ DATASET_FILES = {
     "OptiBench": "OptiBench.jsonl",
     "IndustryOR": "IndustryOR_fixedV2.json",
     "OptMATH_Bench": "OptMATH_Bench_166.jsonl",
+    "ORQA": "ORQA_test.jsonl",
 }
 
 _PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -42,6 +43,8 @@ def load_dataset(dataset: str, data_dir: Path | str = DEFAULT_DATA_DIR) -> list[
         raise KeyError(f"Unknown dataset {dataset!r}. Choose from: {', '.join(DATASET_FILES)}")
     path = data_dir / DATASET_FILES[dataset]
     rows = list(_read_json_or_jsonl(path))
+    if dataset == "ORQA":
+        return _load_orqa(rows, dataset)
     problems: list[BenchmarkProblem] = []
     for i, row in enumerate(rows):
         question = row.get("en_question") or row.get("question") or row.get("problem_text")
@@ -50,6 +53,10 @@ def load_dataset(dataset: str, data_dir: Path | str = DEFAULT_DATA_DIR) -> list[
             raise ValueError(f"{path}:{i + 1} is missing en_question/en_answer")
         metadata = {k: v for k, v in row.items() if k not in {"en_question", "question", "problem_text", "en_answer", "answer"}}
         raw_id = metadata.get("index", metadata.get("id", i))
+        # OptiBench ReSocratic format: "results" dict with all variable values
+        if "results" in row and isinstance(row["results"], dict):
+            metadata["expected_results"] = row["results"]
+            metadata["eval_mode"] = "variable_match"
         problems.append(BenchmarkProblem(
             id=f"{dataset}:{raw_id}",
             dataset=dataset,
@@ -129,3 +136,30 @@ def _normalize_answer(answer: Any) -> float | str:
         return float(str(answer).strip())
     except (TypeError, ValueError):
         return str(answer).strip()
+
+
+def _load_orqa(rows: list[dict], dataset: str) -> list[BenchmarkProblem]:
+    """Load ORQA multiple-choice QA format."""
+    problems: list[BenchmarkProblem] = []
+    for i, row in enumerate(rows):
+        context = row.get("CONTEXT", "")
+        question = row.get("QUESTION", "")
+        options = row.get("OPTIONS", [])
+        target = row.get("TARGET_ANSWER")
+        qtype = row.get("QUESTION_TYPE", "")
+        options_text = "\n".join(f"{chr(65+j)}. {opt}" for j, opt in enumerate(options))
+        full_question = f"{context}\n\nQuestion: {question}\n\n{options_text}"
+        answer_letter = chr(65 + target) if isinstance(target, int) else str(target)
+        problems.append(BenchmarkProblem(
+            id=f"{dataset}:{i}",
+            dataset=dataset,
+            question=full_question,
+            answer=answer_letter,
+            metadata={
+                "question_type": qtype,
+                "options": options,
+                "target_index": target,
+                "eval_mode": "mcq",
+            },
+        ))
+    return problems
